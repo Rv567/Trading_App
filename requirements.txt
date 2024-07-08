@@ -1,5 +1,6 @@
 git+https://github.com/rongardF/tvdatafeed.git
-./TA_Lib-0.4.29-cp312-cp312-win_amd64.whl
+git+https://github.com/cgohlke/talib-build?tab=readme-ov-file.git
+#./TA_Lib-0.4.29-cp312-cp312-win_amd64.whl
 streamlit
 streamlit-option-menu
 pandas
