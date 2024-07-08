@@ -1,11 +1,11 @@
 git+https://github.com/rongardF/tvdatafeed.git
+git+https://github.com/TA-Lib/ta-lib-python.git
 streamlit
 pandas
 numpy
 matplotlib
 seaborn
 mplfinance
-TA-Lib
 statsmodels
 xgboost
 scikit-learn
