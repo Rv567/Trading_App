@@ -8,7 +8,7 @@ def app():
     st.subheader("Update Real-Time Data")
     st.write("Initiate the update the stock dataframes with real-time data")
 
-    if st.button('Update stock dataframes'):
+    if st.button('Update stock dataframes ..'):
         with st.spinner('In progress...'):
             time.sleep(1)
             #Market Index
