@@ -13,5 +13,4 @@ optuna
 shap
 plotly
 backtesting
-smtplib
 ipython
