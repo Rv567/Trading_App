@@ -1,5 +1,5 @@
 git+https://github.com/rongardF/tvdatafeed.git
-#git+https://github.com/cgohlke/talib-build?tab=readme-ov-file.git
+git+https://github.com/TA-Lib/ta-lib.git
 ta-lib
 streamlit
 streamlit-option-menu
