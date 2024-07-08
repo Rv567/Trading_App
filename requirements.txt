@@ -1,5 +1,4 @@
 git+https://github.com/rongardF/tvdatafeed.git
-file://./TA_Lib-0.4.29-cp311-cp311-win_amd64.whl
 streamlit
 pandas
 numpy
