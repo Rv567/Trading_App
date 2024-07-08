@@ -1,4 +1,5 @@
--i https://github.com/rongardF/tvdatafeed
+--extra-index-url https://github.com/rongardF/tvdatafeed
+tvdatafeed
 streamlit
 pandas
 numpy
