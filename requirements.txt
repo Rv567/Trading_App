@@ -1,5 +1,5 @@
 git+https://github.com/rongardF/tvdatafeed.git
-git+https://github.com/TA-Lib/ta-lib-python.git
+TA-Lib==0.4.30
 streamlit
 streamlit-option-menu
 pandas
