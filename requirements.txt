@@ -1,12 +1,11 @@
-tvdatafeed
+-i https://github.com/rongardF/tvdatafeed
 streamlit
 pandas
 numpy
 matplotlib
 seaborn
 mplfinance
-pickle5
-talib
+TA-Lib
 statsmodels
 xgboost
 scikit-learn
