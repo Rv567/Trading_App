@@ -1,6 +1,6 @@
 git+https://github.com/rongardF/tvdatafeed.git
 #ta-lib-bin
-numpy
+numpy==1.26.3
 pandas-ta
 streamlit
 streamlit-option-menu
