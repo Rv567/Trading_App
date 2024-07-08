@@ -1,4 +1,4 @@
-import talib as ta
+import pandas_ta as ta
 
 
 #Momentum Indicators (7)
