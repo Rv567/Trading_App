@@ -16,3 +16,4 @@ shap
 plotly
 backtesting
 ipython
+gunicorn
