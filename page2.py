@@ -8,9 +8,11 @@ def app():
 
     df = st.session_state['Newdict_df']
     Newdict_df_close = {key:value["Close"] for key,value in df.items()}
+    Newdict_df_return = {key:value["Close"].pct_change() for key,value in df.items()}
+    
     #st.write(Newdict_df_close["ATW"])
 
-    df = pd.DataFrame(Newdict_df_close)
+    df = pd.DataFrame(Newdict_df_return)
     df.index = pd.to_datetime(df.index)
     correlation_matrix = df.corr()
     #Heatmap
