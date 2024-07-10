@@ -246,8 +246,8 @@ def optimize_strategies(dataframe, strategies):
     best_parameters = None"""
 
     for strategy_name, strategy in strategies.items():
-        bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
-        stats = bt.run()
+        #bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
+        #stats = bt.run()
         #optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
         results = walk_forward_analysis(dataframe, strategy["symbol"], **strategy["optimize_params"], n_splits=5)
         combined_results = pd.DataFrame(results)
