@@ -60,6 +60,7 @@ def app():
         for elem in high_volatility_df_stocks:
             if elem in dataframes:
                 #optimize_strategies(dataframes[elem], strategies)
+                st.write(elem)
                 bt = Backtest(dataframes[elem], SmaCross, cash=1_000_000, commission=0.0044)
                 stats = bt.run()
                 st.write(stats)
