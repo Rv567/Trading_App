@@ -10,8 +10,8 @@ class SmaCross(Strategy):
     def init(self):
         # Precompute the two moving 
         close = self.data.Close
-        self.sma1 = self.I(lambda x: ta.sma(x, self.n1).to_numpy(), close)
-        self.sma2 = self.I(lambda x: ta.sma(x, self.n2).to_numpy(), close)
+        self.sma1 = self.I(lambda x: ta.sma(x, length=self.n1), close)
+        self.sma2 = self.I(lambda x: ta.sma(x, length=self.n2), close)
 
     def next(self):
         # If short MA crosses above long MA, buy the asset
