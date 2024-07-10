@@ -69,7 +69,9 @@ def app():
         for elem in low_volatility_df_stocks:
             if elem in dataframes:
                 st.write(elem)
-                st.write(dataframes[elem])
+                bt = Backtest(dataframes[elem], SmaCross, cash=1_000_000, commission=0.0044)
+                stats = bt.run()
+                st.write(stats)
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
     strategy = strategies[strategy_name]
