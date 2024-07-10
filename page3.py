@@ -54,6 +54,7 @@ def app():
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
     high_volatility_df_stocks = high_volatility_df["Key"].tolist()
+    high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
     if market == "Marché Haussier":
