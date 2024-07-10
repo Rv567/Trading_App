@@ -16,8 +16,6 @@ def app():
         df.index = pd.to_datetime(df.index)
 
     stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='st')
-    marche = ["Marché Haussier","Marché Baissier"]
-    market = st.selectbox('Select market trend', marche,key='mar')
 
     st.subheader("Strategy Selection")
     strategies = {
@@ -51,6 +49,8 @@ def app():
     }
     }
 
+    marche = ["Marché Haussier","Marché Baissier"]
+    market = st.selectbox('Select market trend', marche,key='mar')
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
     high_volatility_df_stocks = high_volatility_df["Key"].tolist()
@@ -60,7 +60,10 @@ def app():
         for elem in high_volatility_df_stocks:
             if elem in dataframes:
                 st.write(dataframes[elem])
-
+    else :
+        for elem in low_volatility_df_stocks:
+            if elem in dataframes:
+                st.write(dataframes[elem])
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
     strategy = strategies[strategy_name]

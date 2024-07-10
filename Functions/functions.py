@@ -200,6 +200,22 @@ def plot_train_vs_test(df_date,df_actuals,df_y_pred,rmse_test):
     plt.show()
     st.pyplot(plt.gcf())
 
+def optimize_strategies(dataframe, strategies):
+    best_strategy = None
+    best_return = float('-inf')
+    best_parameters = None
+
+    for strategy_name, strategy in strategies.items():
+        bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
+        optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
+        
+        if optim['Return [%]'] > best_return:
+            best_return = optim['Return [%]']
+            best_strategy = strategy_name
+            best_parameters = optim["_strategy"]
+
+    return best_strategy, best_parameters
+
 def backtest_ML(data):
     
     # Parameters
