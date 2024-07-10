@@ -55,7 +55,8 @@ def app():
     low_volatility_df = st.session_state['low_volatility_df']
 
     toto = low_volatility_df["Key"].values
-    st.write(toto)
+    toto_list = [str(x) for x in toto]
+    st.write(toto_list)
     #if market == "Marché Haussier":
 
 
