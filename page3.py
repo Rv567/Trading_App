@@ -15,7 +15,7 @@ def app():
         df.index.name = None
         df.index = pd.to_datetime(df.index)
 
-    stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='mar')
+    stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='st')
     marche = ["Marché Haussier","Marché Baissier"]
     market = st.selectbox('Select market trend', marche,key='mar')
 
