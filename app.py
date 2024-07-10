@@ -30,15 +30,15 @@ class MultiApp:
 
         # Executing the selected app in the main page context
         if selected_app == "Data":
-            page2.app()
-        elif selected_app == "Stock Market":
-            page5.app()
-        elif selected_app == "Trading Strategy":
-            page4.app()
-        elif selected_app == "Prediction":
-            page3.app()  
-        elif selected_app == "Statistical Data Analysis":
             page1.app()
+        elif selected_app == "Stock Market":
+            page2.app()
+        elif selected_app == "Trading Strategy":
+            page3.app()
+        elif selected_app == "Prediction":
+            page4.app()  
+        elif selected_app == "Statistical Data Analysis":
+            page5.app()
         elif selected_app == "Model":
             page6.app()
 
