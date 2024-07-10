@@ -54,9 +54,9 @@ def app():
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
 
-    toto = low_volatility_df["Key"].values
-    toto_list = [str(x) for x in toto]
-    st.write(toto_list)
+    toto = low_volatility_df["Key"].tolist()
+    ty = st.selectbox('Select market', toto,key='ma')
+    
     #if market == "Marché Haussier":
 
 
