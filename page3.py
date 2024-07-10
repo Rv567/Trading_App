@@ -9,13 +9,15 @@ def app():
     st.subheader("Stock Symbol Selection")
     dataframes = load_data()
     stock_list = ["ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
-
+    marche = ["Marché Haussier","Marché Baissier"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     for key, df in dataframes.items():
         df.index.name = None
         df.index = pd.to_datetime(df.index)
 
-    stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='stock1')
+    #stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='mar')
+    marche = ["Marché Haussier","Marché Baissier"]
+    market = st.selectbox('Select market trend', marche,key='mar')
 
     st.subheader("Strategy Selection")
     strategies = {
@@ -48,6 +50,14 @@ def app():
                                 'constraint': lambda p: 20 < p.n2 - p.n1}
     }
     }
+
+    high_volatility_df = st.session_state['high_volatility_df']
+    low_volatility_df = st.session_state['low_volatility_df']
+    toto = high_volatility_df["key"].tolist()
+    st.write(toto)
+    #if market == "Marché Haussier":
+
+
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
     strategy = strategies[strategy_name]
