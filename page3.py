@@ -53,12 +53,13 @@ def app():
 
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
-
-    toto = low_volatility_df["Key"].tolist()
-    ty = st.selectbox('Select market', toto,key='ma')
+    high_volatility_df_stocks = high_volatility_df["Key"].tolist()
+    low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
-    #if market == "Marché Haussier":
-
+    if market == "Marché Haussier":
+        for elem in high_volatility_df_stocks:
+            if elem in dataframes:
+                st.write(dataframes[elem])
 
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
