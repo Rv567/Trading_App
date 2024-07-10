@@ -26,8 +26,8 @@ def app():
     st.write("Display Stock Chart")
     st.line_chart(dataframes[stock_symbol]["Close"], color=stock_color[stock_symbol])
 
-    st.write("Time series decompostion into (trend, seasonal, and residual)")
-    decompose(dataframes[stock_symbol])
+    """st.write("Time series decompostion into (trend, seasonal, and residual)")
+    decompose(dataframes[stock_symbol])"""
 
     #We separate our selected data into high/ low volatility stocks
     st.header('Liquidity Filtering')
