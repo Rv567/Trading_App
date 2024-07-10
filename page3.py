@@ -61,13 +61,13 @@ def app():
         for elem in high_volatility_df_stocks:
             if elem in dataframes:
                 st.write(elem)
-                optimize_strategies(dataframes[elem], strategies)
+                st.write(optimize_strategies(dataframes[elem], strategies))
                 
     else :
         for elem in low_volatility_df_stocks:
             if elem in dataframes:
                 st.write(elem)
-                optimize_strategies(dataframes[elem], strategies)
+                st.write(optimize_strategies(dataframes[elem], strategies))
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
     strategy = strategies[strategy_name]
