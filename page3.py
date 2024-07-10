@@ -54,24 +54,20 @@ def app():
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
     high_volatility_df_stocks = high_volatility_df["Key"].tolist()
-    #high_volatility_df_stocks.remove("CFG")
+    high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
     if market == "Marché Haussier":
         for elem in high_volatility_df_stocks:
             if elem in dataframes:
-                #optimize_strategies(dataframes[elem], strategies)
                 st.write(elem)
-                bt = Backtest(dataframes[elem], SmaCross, cash=1_000_000, commission=0.0044)
-                stats = bt.run()
-                st.write(stats)
+                optimize_strategies(dataframes[elem], strategies)
+                
     else :
         for elem in low_volatility_df_stocks:
             if elem in dataframes:
                 st.write(elem)
-                bt = Backtest(dataframes[elem], SmaCross, cash=1_000_000, commission=0.0044)
-                stats = bt.run()
-                st.write(stats)
+                optimize_strategies(dataframes[elem], strategies)
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
     strategy = strategies[strategy_name]
