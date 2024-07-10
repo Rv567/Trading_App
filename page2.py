@@ -19,8 +19,8 @@ def app():
                 for symbol in stock_list}
 
     stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='stock1')
-    #st.dataframe(dataframes[stock_symbol])
-    st.write(dataframes[stock_symbol].tail(10))
+    
+    #st.write(dataframes[stock_symbol].tail(10))
 
     st.subheader(f'Historical Closing Prices for {stock_symbol}')
     st.write("Display Stock Chart")
