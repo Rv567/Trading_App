@@ -10,8 +10,8 @@ class SmaCross(Strategy):
     def init(self):
         # Precompute the two moving 
         close = self.data.Close
-        self.sma1 = self.I(ta.SMA,pd.Series(close) , self.n1)
-        self.sma2 = self.I(ta.SMA, pd.Series(close), self.n2)
+        self.sma1 = self.I(ta.sma,pd.Series(close) , self.n1)
+        self.sma2 = self.I(ta.sma, pd.Series(close), self.n2)
 
     def next(self):
         # If short MA crosses above long MA, buy the asset
@@ -33,8 +33,8 @@ class SmaCross_StopLoss(Strategy):
         def init(self):
             # Precompute the two moving 
             close = self.data.Close
-            self.sma1 = self.I(ta.SMA,pd.Series(close) , self.n1)
-            self.sma2 = self.I(ta.SMA, pd.Series(close), self.n2)
+            self.sma1 = self.I(ta.sma,pd.Series(close) , self.n1)
+            self.sma2 = self.I(ta.sma, pd.Series(close), self.n2)
 
         def next(self):
             buy_signals = 0
@@ -72,10 +72,10 @@ class MultiIndicatorStrategy(Strategy):
         close = self.data.Close
         volume = self.data.Volume
 
-        self.rsi = self.I(ta.RSI, pd.Series(close),self.n_rsi)
-        self.sma = self.I(ta.SMA, pd.Series(close),self.n_sma)
-        self.atr = self.I(ta.ATR, pd.Series(high), pd.Series(low), pd.Series(close),self.n_atr)
-        self.ad = self.I(ta.AD, pd.Series(high), pd.Series(low), pd.Series(close), pd.Series(volume))
+        self.rsi = self.I(ta.rsi, pd.Series(close),self.n_rsi)
+        self.sma = self.I(ta.sma, pd.Series(close),self.n_sma)
+        self.atr = self.I(ta.atr, pd.Series(high), pd.Series(low), pd.Series(close),self.n_atr)
+        self.ad = self.I(ta.ad, pd.Series(high), pd.Series(low), pd.Series(close), pd.Series(volume))
     
     def next(self):
         buy_signals = 0
