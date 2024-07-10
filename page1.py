@@ -115,7 +115,7 @@ def app():
     st.plotly_chart(fig, use_container_width=True)
 
     st.header('Asset vs. Benchmark')
-    stock_list = stock_list.remove("MASI")
+    stock_list.remove("MASI")
     stock_symbol = st.selectbox('Select an Asset', stock_list,key='st1')
 
     #Asset
