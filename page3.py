@@ -59,10 +59,11 @@ def app():
     if market == "Marché Haussier":
         for elem in high_volatility_df_stocks:
             if elem in dataframes:
-                st.write(dataframes[elem])
+                optimize_strategies(dataframes[elem], strategies)
     else :
         for elem in low_volatility_df_stocks:
             if elem in dataframes:
+                st.write(elem)
                 st.write(dataframes[elem])
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
