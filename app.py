@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import page1,page2,page3,page4,page5,page6
+import page2,page5,page4,page3,page1,page6
 
 
 st.set_page_config(page_title="Home", layout="wide")
@@ -29,16 +29,16 @@ class MultiApp:
             )
 
         # Executing the selected app in the main page context
-        if selected_app == "Stock Market":
-            page1.app()
-        elif selected_app == "Statistical Data Analysis":
+        if selected_app == "Data":
             page2.app()
-        elif selected_app == "Prediction":
-            page3.app()
-        elif selected_app == "Trading Strategy":
-            page4.app()  
-        elif selected_app == "Data":
+        elif selected_app == "Stock Market":
             page5.app()
+        elif selected_app == "Trading Strategy":
+            page4.app()
+        elif selected_app == "Prediction":
+            page3.app()  
+        elif selected_app == "Statistical Data Analysis":
+            page1.app()
         elif selected_app == "Model":
             page6.app()
 
