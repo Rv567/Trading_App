@@ -200,6 +200,46 @@ def plot_train_vs_test(df_date,df_actuals,df_y_pred,rmse_test):
     plt.show()
     st.pyplot(plt.gcf())
 
+#Backtest the strategy on the choosen sequence with our list of parameters
+def optimize_strategy(data, strategy, param_grid):
+    bt = Backtest(data, strategy, cash=1_000_000, commission=0.0044)
+    best_score = -np.inf
+    best_params = None
+
+    for params in ParameterGrid(param_grid):
+        stats = bt.run(**params)
+        if stats['Return [%]'] > best_score:
+            best_score = stats['Return [%]']
+            best_params = params
+
+    return best_params
+
+#Split data into folds
+#We optimize on in-sample
+#We test on out-sample
+
+def walk_forward_analysis(data, strategy, param_grid, n_splits=5):
+    # Split data into segments
+    segment_size = len(data) // n_splits
+    results = []
+    
+    for i in range(n_splits):
+        in_sample = data[:segment_size * (i+1)]
+        out_of_sample = data[segment_size * (i+1):segment_size * (i+2)]
+
+        if len(out_of_sample) == 0:
+            break
+
+        # Optimize on in-sample data
+        best_params = optimize_strategy(in_sample, strategy, param_grid)
+
+        # Test on out-of-sample data with the best parameters
+        bt = Backtest(out_of_sample, strategy, cash=1_000_000, commission=0.0044)
+        stats = bt.run(**best_params)
+        print(best_params)
+        results.append(stats)
+
+    return results
 def optimize_strategies(dataframe, strategies):
     """best_strategy = None
     best_return = float('-inf')
@@ -209,13 +249,17 @@ def optimize_strategies(dataframe, strategies):
         bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
         stats = bt.run()
         #optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
+        results = walk_forward_analysis(dataframe, strategy["symbol"], **strategy["optimize_params"], n_splits=5)
+        combined_results = pd.DataFrame(results)
+        final_params = results[-2]
+        
         
         """if optim['Return [%]'] > best_return:
             best_return = optim['Return [%]']
             best_strategy = strategy_name
             best_parameters = optim["_strategy"]"""
 
-    best_strategy = stats["_strategy"]
+        best_strategy = final_params["_strategy"]
     return best_strategy
     #return best_strategy, best_parameters
 

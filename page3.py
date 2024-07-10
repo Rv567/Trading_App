@@ -44,8 +44,7 @@ def app():
             'exit': 'Sell when short-term SMA crosses below long-term SMA',
             "symbol" : SmaCross,
             "optimize_params": {'n1': range(20, 110, 10),
-                                'n2': range(20, 210, 10),
-                                'constraint': lambda p: 20 < p.n2 - p.n1}
+                                'n2': range(20, 210, 10)}
     }
     }
 
