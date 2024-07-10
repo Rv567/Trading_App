@@ -207,12 +207,12 @@ def optimize_strategies(dataframe, strategies):
 
     for strategy_name, strategy in strategies.items():
         bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
-        optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
+        #optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
         
-        if optim['Return [%]'] > best_return:
-            best_return = optim['Return [%]']
+        if bt['Return [%]'] > best_return:
+            best_return = bt['Return [%]']
             best_strategy = strategy_name
-            best_parameters = optim["_strategy"]
+            best_parameters = bt["_strategy"]
 
     return best_strategy, best_parameters
 
