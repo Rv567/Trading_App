@@ -16,8 +16,8 @@ class MultiApp:
         with st.sidebar:
             selected_app = option_menu(
                 menu_title=None,
-                options=['Stock Market', 'Statistical Data Analysis',"Prediction","Trading Strategy","Data","Model"],
-                icons=['bank2', 'bar-chart-fill',"graph-up-arrow","clipboard2-pulse-fill","database-fill-up","robot"],
+                options=["Data",'Stock Market',"Trading Strategy","Prediction" ,'Statistical Data Analysis',"Model"],
+                icons=["database-fill-up",'bank2',"clipboard2-pulse-fill","graph-up-arrow",'bar-chart-fill',"robot"],
                 menu_icon='chat-text-fill',
                 default_index=0,
                 styles={
