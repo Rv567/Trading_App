@@ -35,13 +35,6 @@ def app():
 
     # Customize the layout to center the chart
     fig.update_layout(
-        title={
-            'text': f"Close Prices for {stock_symbol}",
-            'y':0.9,
-            'x':0.5,
-            'xanchor': 'center',
-            'yanchor': 'top'
-        },
         xaxis_title="Time",
         yaxis_title="Close Price",
         margin=dict(l=40, r=40, t=40, b=40),
