@@ -71,7 +71,7 @@ def app():
     df_strat = pd.DataFrame()
     if 'stock_strategy_return' not in st.session_state:
         st.session_state['stock_strategy_return'] = {}
-        
+
     stock_strategy_return_low = {}
 
     st.subheader("Strategy Optimization")
@@ -97,7 +97,7 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
         
     stock_strategy_return_high = st.session_state['stock_strategy_return']
-    st.write(stock_strategy_return_high)
+    st.write(pd.DataFrame(stock_strategy_return_high))
 
     #df_returns = pd.DataFrame(stock_strategy_return)
     #df_returns.to_pickle('Strategies_return.pkl')
