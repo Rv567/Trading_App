@@ -5,7 +5,7 @@ pandas-ta
 streamlit
 streamlit-option-menu
 streamlit-authenticator
-pandas
+pandas 
 matplotlib
 seaborn
 mplfinance
