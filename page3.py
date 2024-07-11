@@ -64,16 +64,9 @@ def app():
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
     st.markdown("""
-    **Market Trend Selection:**
+    **Key Points:**
     - For an **uptrend market**, stocks with a **beta > 1** are selected.
     - For a **downtrend market**, stocks with a **beta < 1** are selected.
-    """)
-    st.markdown("""
-    #### Key Points:
-    **Beta measures how much a stock's price moves compared to the overall market. It's basically a risk indicator.**
-    - **Beta = 1**: The stock moves exactly in line with the market.
-    - **Beta > 1**: The stock is more volatile than the market.
-    - **Beta < 1**: The stock is less volatile than the market.
     """)
 
 
