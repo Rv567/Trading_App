@@ -241,6 +241,7 @@ def walk_forward_analysis(data, strategy, param_grid, n_splits=5):
 
     return results
 def optimize_strategies(dataframe, strategies):
+    
     best_strategy = None
     best_return = float('-inf')
     best_parameters = None
@@ -256,7 +257,7 @@ def optimize_strategies(dataframe, strategies):
             best_strategy = strategy_name
             best_parameters = optim["_strategy"]
 
-    return best_parameters
+    return best_parameters, optim
     #return best_strategy, best_parameters
 
 def backtest_ML(data):
