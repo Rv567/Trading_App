@@ -75,7 +75,8 @@ def app():
         st.session_state['stock_strategy_return_low'] = {}
 
     st.subheader("Strategy Optimization")
-    if st.button("Optimize"):
+    action = st.checkbox('Optimize')
+    if action:
         if market == "Marché Haussier":
             
             st.write("Stock with a Beta > 1")
