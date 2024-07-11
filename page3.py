@@ -104,9 +104,9 @@ def app():
     stock_strategy_param = st.session_state['stock_strategy_param']
 
     df_return = pd.DataFrame(stock_strategy_return_high)
-    df_param = pd.DataFrame(stock_strategy_param)
+    #df_param = pd.DataFrame(stock_strategy_param, index=[0])
     st.write(df_return)
-    st.write(df_param)
+    st.write(stock_strategy_param)
 
 
 
