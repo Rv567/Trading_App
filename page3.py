@@ -63,6 +63,7 @@ def app():
     high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
+    st.subheader("Strategy Optimization")
     stock_strategy_return = {}
     if market == "Marché Haussier":
         for elem in high_volatility_df_stocks:
@@ -71,7 +72,6 @@ def app():
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                 stock_strategy_return[elem]=optim
                 st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-                st.write(best_parameters)
                 
     else :
         for elem in low_volatility_df_stocks:
@@ -80,28 +80,11 @@ def app():
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                 stock_strategy_return[elem]=optim
                 st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-                st.write(best_parameters)
 
     
     stock_list.remove("CFG")
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
     st.write(stock_strategy_return[stock_symbol])
-
-    if st.button("Backtest Strategy"):
-        stats = bt.run()
-        st.write("Backtest Results")
-        st.write(stats)
-        
-
-    st.subheader("Strategy Optimization")
-    if st.button("Optimize Strategy"):
-        with st.spinner('In progress...'):
-            optim = bt.optimize(maximize="Return [%]",
-                            **strategy["optimize_params"])
-            st.write(optim)
-            #bt.plot()
-        st.divider()
-        st.subheader(f"Optimized Strategy Parameters :white_check_mark: : {optim['_strategy']}")
 
     
     
