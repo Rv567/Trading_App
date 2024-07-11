@@ -119,16 +119,20 @@ def measure_liquidity(df):
     average_volume = volume.mean()
     return average_volume
 
-def beta(df, index_df):
+def beta(df, df_marketIndex): #4-Year Beta
 
-    stock_df = df.copy()
-    stock_df.index = pd.to_datetime(stock_df.index)
-    stock_df = stock_df.loc["2020-01-01":] # on calcule le beta a partir d'une date
+    df_stock = df.copy()
+    df_stock.index = pd.to_datetime(df_stock.index)
+    df_marketIndex.index = pd.to_datetime(df_marketIndex.index)
+
+    df_stock = df_stock.loc["2020-01-01":] # on calcule le beta a partir d'une date
+    df_marketIndex = df_marketIndex.loc["2020-01-01":]
+
     
-    stock_df["Variation"] = stock_df["Close"].pct_change()
-    index_df["Variation"] = index_df["Close"].pct_change() 
+    df_stock["Variation"] = df_stock["Close"].pct_change()
+    df_marketIndex["Variation"] = df_marketIndex["Close"].pct_change() 
 
-    combined = pd.DataFrame({"stock": stock_df["Variation"], "index": index_df["Variation"]})
+    combined = pd.DataFrame({"stock": df_stock["Variation"], "index": df_marketIndex["Variation"]})
     combined = combined.dropna()
     covariance_matrix  = np.cov(combined["stock"], combined["index"])
     covariance = covariance_matrix[0, 1] # covariance(stock,index)
