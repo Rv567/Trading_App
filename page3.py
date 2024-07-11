@@ -98,16 +98,18 @@ def app():
     #Beta > 1
     stock_strategy_return_high = st.session_state['stock_strategy_return_high']
     df_return_high = pd.DataFrame(stock_strategy_return_high)
-    df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]]) #move strategy to the top
+    df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]]) #move _strategy to the top
+    df_return_high.to_pickle('performance_high.pkl')
     #Beta < 1
     stock_strategy_return_low = st.session_state['stock_strategy_return_low']
     df_return_low = pd.DataFrame(stock_strategy_return_low)
     df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
+    df_return_low.to_pickle('performance_low.pkl')
 
     if market == "Marché Haussier":
-        st.write(df_return_high)
+        st.write(pd.read_pickle('performance_high.pkl'))
     else:
-        st.write(df_return_low)
+        st.write(pd.read_pickle('performance_low.pkl'))
     
 
 
