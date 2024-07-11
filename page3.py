@@ -102,13 +102,12 @@ def app():
     #Beta < 1
     stock_strategy_return_low = st.session_state['stock_strategy_return_low']
     df_return_low = pd.DataFrame(stock_strategy_return_low)
-    """df_return_low = pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])"""
-    st.write(df_return_low)
-    st.write(pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]]))
+    df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
+
     if market == "Marché Haussier":
+        st.write(df_return_high)
+    else:
         st.write(df_return_low)
-    """else:
-        st.write(df_return_low)"""
     
 
 
