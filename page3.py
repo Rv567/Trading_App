@@ -63,6 +63,8 @@ def app():
                 st.write(elem)
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                 stock_strategy_return[elem]=best_parameters
+                st.write("Best Strategy")
+                st.write(best_parameters)
                 
     else :
         for elem in low_volatility_df_stocks:
@@ -70,6 +72,8 @@ def app():
                 st.write(elem)
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                 stock_strategy_return[elem]=best_parameters
+                st.write("Best Strategy")
+                st.write(best_parameters)
 
     strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
     strategy = strategies[strategy_name]
