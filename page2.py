@@ -23,6 +23,7 @@ def app():
     #st.write(dataframes[stock_symbol].tail(10))
 
     st.subheader(f'Historical Closing Prices for {stock_symbol}')
+    st.write(dataframes[stock_symbol])
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(
