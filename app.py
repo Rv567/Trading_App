@@ -1,24 +1,19 @@
 from Functions.mylibraries import *
 import page2,page5,page4,page3,page1,page6
 
-# User authentication configuration
-names = ["User"]
-usernames = ["Axiom"]
-passwords = ["Axiom"]
+with open('config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
 
-hashed_passwords = Hasher(passwords).generate()
-
-# Create the authenticator object
 authenticator = stauth.Authenticate(
-    names,
-    usernames,
-    hashed_passwords,
-    "auth_cookie",
-    "my_app",
-    cookie_expiry_days=30
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['pre-authorized']
 )
-# Authentication widget
-name, authentication_status, username = authenticator.login("Login", "main")
+
+name, authentication_status, username = authenticator.login('Login', 'main')
+
 st.set_page_config(page_title="Home", layout="wide")
 if authentication_status:
     st.set_page_config(page_title="Home", layout="wide")
