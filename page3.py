@@ -72,26 +72,27 @@ def app():
 
     st.subheader("Strategy Optimization")
     stock_strategy_return = {}
-    if market == "Marché Haussier":
-        st.write("Stock with a Beta > 1")
-        for elem in high_volatility_df_stocks:
-            if elem in dataframes:
-                st.write(elem)
-                best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                stock_strategy_return[elem]=optim
-                st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-                
-    else :
-        st.write("Stock with a Beta < 1")
-        for elem in low_volatility_df_stocks:
-            if elem in dataframes:
-                st.write(elem)
-                best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                stock_strategy_return[elem]=optim
-                st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+    if st.button("Optimize"):
+        if market == "Marché Haussier":
+            st.write("Stock with a Beta > 1")
+            for elem in high_volatility_df_stocks:
+                if elem in dataframes:
+                    st.write(elem)
+                    best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
+                    stock_strategy_return[elem]=optim
+                    st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+                    
+        else :
+            st.write("Stock with a Beta < 1")
+            for elem in low_volatility_df_stocks:
+                if elem in dataframes:
+                    st.write(elem)
+                    best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
+                    stock_strategy_return[elem]=optim
+                    st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
 
     st.session_state['stock_strategy_return'] = stock_strategy_return
-    
+
     stock_list.remove("CFG")
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
     st.write(stock_strategy_return[stock_symbol])
