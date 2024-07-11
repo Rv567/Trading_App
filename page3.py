@@ -105,6 +105,7 @@ def app():
 
     df_return = pd.DataFrame(stock_strategy_return_high)
     df_return = pd.concat([df_return.iloc[[-3]], df_return.iloc[:-3]])
+    st.dataframe(df_return)
     
     st.write(df_return)
     
