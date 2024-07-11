@@ -5,11 +5,11 @@ from Functions.startegies import *
 
 def app():
     st.header("Introduction to the Trading Strategy page")
-    st.write("Welcome to the Trading Strategy page. Here, you can select a stock symbol, choose a trading strategy, and backtest it to see how it performs")
-    st.subheader("Stock Symbol Selection")
+    st.write("Welcome to the Trading Strategy page. Start by selecting the market trend (uptrend or downtrend). Based on your choice, you'll be presented with stocks having a beta > 1 (for uptrend) or stocks with a beta < 1 (for downtrend). Then, you will get the best trading strategy.")
+    #st.subheader("Stock Symbol Selection")
     dataframes = load_data()
     stock_list = ["ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
-    marche = ["Marché Haussier","Marché Baissier"]
+    
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     for key, df in dataframes.items():
         df.index.name = None
@@ -17,7 +17,7 @@ def app():
 
     stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='st')
 
-    st.subheader("Strategy Selection")
+    st.subheader("Market Trend Selection")
     strategies = {
         'MAcross strategy with Stop Loss': {
             'description': 'Moving Average Crossover Strategy combined with a Trailing Stop Loss',
@@ -49,7 +49,7 @@ def app():
     }
 
     marche = ["Marché Haussier","Marché Baissier"]
-    market = st.selectbox('Select market trend', marche,key='mar')
+    market = st.selectbox('Select Market Trend', marche,key='mar')
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
     high_volatility_df_stocks = high_volatility_df["Key"].tolist()
