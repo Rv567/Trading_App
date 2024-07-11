@@ -68,14 +68,11 @@ def app():
     - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
 
-    if 'stock_strategy_parm' not in st.session_state:
-        st.session_state['stock_strategy_param'] = {}
+    if 'stock_strategy_return_high' not in st.session_state:
+        st.session_state['stock_strategy_return_high'] = {}
 
-    if 'stock_strategy_return' not in st.session_state:
-        st.session_state['stock_strategy_return'] = {}
-        
-
-    stock_strategy_return_low = {}
+    if 'stock_strategy_return_low' not in st.session_state:
+        st.session_state['stock_strategy_return_low'] = {}
 
     st.subheader("Strategy Optimization")
     if st.button("Optimize"):
@@ -86,10 +83,8 @@ def app():
                 if elem in dataframes:
                     st.write(elem)
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                    #stock_strategy_return_high[elem]=optim
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-                    st.session_state['stock_strategy_param'][elem] = best_parameters
-                    st.session_state['stock_strategy_return'][elem] = optim
+                    st.session_state['stock_strategy_return_high'][elem] = optim
                     
         else :
             st.write("Stock with a Beta < 1")
@@ -97,17 +92,22 @@ def app():
                 if elem in dataframes:
                     st.write(elem)
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                    stock_strategy_return_low[elem]=optim
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+                    st.session_state['stock_strategy_return_low'][elem] = optim
         
-    stock_strategy_return_high = st.session_state['stock_strategy_return']
-    stock_strategy_param = st.session_state['stock_strategy_param']
+    #Beta > 1
+    stock_strategy_return_high = st.session_state['stock_strategy_return_high']
+    df_return_high = pd.DataFrame(stock_strategy_return_high)
+    df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]]) #move strategy to the top
+    #Beta < 1
+    stock_strategy_return_low = st.session_state['stock_strategy_return_low']
+    df_return_low = pd.DataFrame(stock_strategy_return_low)
+    df_return_low = pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
 
-    df_return = pd.DataFrame(stock_strategy_return_high)
-    df_return = pd.concat([df_return.iloc[[-3]], df_return.iloc[:-3]])
-    st.table(df_return)
-    
-    st.write(df_return)
+    if market == "Marché Haussier":
+        st.write(df_return_high)
+    else:
+        st.write(df_return_low)
     
 
 
