@@ -248,6 +248,7 @@ def optimize_strategies(dataframe, strategies):
     best_strategy = None
     best_return = float('-inf')
     best_parameters = None
+    best_optim = None
 
     total_strategies = len(strategies)
     progress = 0
@@ -266,12 +267,13 @@ def optimize_strategies(dataframe, strategies):
             best_return = optim['Return [%]']
             best_strategy = strategy_name
             best_parameters = optim["_strategy"]
+            best_optim = optim
 
         # Update progress bar
         progress_bar.progress(progress / total_strategies)
 
     status_text.text("Optimization completed.")
-    return best_parameters, optim
+    return best_parameters, best_optim
     #return best_strategy, best_parameters
 
 def backtest_ML(data):
