@@ -2,9 +2,9 @@ from Functions.mylibraries import *
 import page2,page5,page4,page3,page1,page6
 
 # User authentication configuration
-names = ["Axiom"]
+names = ["User"]
 usernames = ["Axiom"]
-passwords = ["password123", "Axiom"]
+passwords = ["Axiom"]
 
 hashed_passwords = stauth.Hasher(passwords).generate()
 
