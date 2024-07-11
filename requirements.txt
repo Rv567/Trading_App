@@ -4,6 +4,7 @@ numpy==1.26.3
 pandas-ta
 streamlit
 streamlit-option-menu
+streamlit_authenticator
 pandas
 matplotlib
 seaborn
