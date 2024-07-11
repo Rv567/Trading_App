@@ -3,6 +3,7 @@ from tvDatafeed import TvDatafeed, Interval
 import streamlit as st
 from streamlit_option_menu import option_menu
 import streamlit_authenticator as stauth
+from streamlit_authenticator.utilities.hasher import Hasher
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

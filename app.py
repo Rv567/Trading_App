@@ -6,7 +6,7 @@ names = ["User"]
 usernames = ["Axiom"]
 passwords = ["Axiom"]
 
-hashed_passwords = stauth.Hasher(passwords).generate()
+hashed_passwords = Hasher(passwords).generate()
 
 # Create the authenticator object
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "my_app", "auth_cookie", cookie_expiry_days=30)
