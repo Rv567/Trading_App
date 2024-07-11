@@ -90,7 +90,9 @@ def app():
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     stock_strategy_return[elem]=optim
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-
+        
+        df_returns = pd.DataFrame(stock_strategy_return)
+        df_returns.to_pickle('Strategies_return.pkl')
         st.session_state['stock_strategy_return'] = stock_strategy_return
 
     df = st.session_state['stock_strategy_return']
