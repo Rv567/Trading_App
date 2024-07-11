@@ -95,15 +95,16 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
         
     st.write(stock_strategy_return_high)
+    st.write(stock_strategy_return_low)
 
     #df_returns = pd.DataFrame(stock_strategy_return)
     #df_returns.to_pickle('Strategies_return.pkl')
     #st.session_state['stock_strategy_return'] = stock_strategy_return
 
     #df = st.session_state['stock_strategy_return']
-    stock_list.remove("CFG")
+    """stock_list.remove("CFG")
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
-    st.write(df[stock_symbol])
+    st.write(df[stock_symbol])"""
 
     
     
