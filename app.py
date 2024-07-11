@@ -13,9 +13,9 @@ authenticator = stauth.Authenticate(
     names,
     usernames,
     hashed_passwords,
-    cookie_name="auth_cookie",
-    key="my_app",
-    cookie_expiry_days=30
+    "auth_cookie",
+    "my_app",
+    30
 )
 # Authentication widget
 name, authentication_status, username = authenticator.login("Login", "main")
