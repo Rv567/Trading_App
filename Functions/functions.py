@@ -125,8 +125,8 @@ def beta(df, df_marketIndex): #4-Year Beta
     df_stock.index = pd.to_datetime(df_stock.index)
     df_marketIndex.index = pd.to_datetime(df_marketIndex.index)
 
-    df_stock = df_stock.loc["2019-01-01":] # on calcule le beta a partir d'une date
-    df_marketIndex = df_marketIndex.loc["2019-01-01":]
+    df_stock = df_stock.loc["2023-01-01":] # on calcule le beta a partir d'une date
+    df_marketIndex = df_marketIndex.loc["2023-01-01":]
 
     
     df_stock["Variation"] = df_stock["Close"].pct_change()
