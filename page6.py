@@ -10,7 +10,7 @@ def app():
     df_ml= Newdict_df.copy()
 
     st.header("Introduction to the Model page")
-    st.write("Welcome to the Model Management page. Here, you can view and manage the machine learning model used for predicting stock prices")
+    st.write("Welcome to the Model Management page. Here, you can view and manage the machine learning model used for predicting stock prices.")
 
     st.subheader("Model Overview")
     st.write("Brief description of the XGBoost model and its purpose")

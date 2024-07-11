@@ -4,7 +4,7 @@ from Functions.mylibraries import *
 
 def app():
     st.header("Introduction to the Data page")
-    st.write("Welcome to the Data Management page. Here, you update stock dataframes with real-time data")
+    st.write("Welcome to the Data Management page. Here, you update stock dataframes with real-time data.")
     st.subheader("Update Real-Time Data")
     st.write("Initiate the update the stock dataframes with real-time data")
 

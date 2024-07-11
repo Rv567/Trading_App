@@ -5,7 +5,7 @@ from Functions.startegies import *
 
 def app():
     st.header("Introduction to the Trading Strategy page")
-    st.write("Welcome to the Trading Strategy page. Start by selecting the market trend (uptrend or downtrend). Based on your choice, you'll be presented with stocks having a beta > 1 (for uptrend) or stocks with a beta < 1 (for downtrend). Then, you will get the corresponding trading strategy.")
+    st.write("Welcome to the Trading Strategy page. Here, you can define the best trading strategy for each stock.")
     #st.subheader("Stock Symbol Selection")
     dataframes = load_data()
     stock_list = ["ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
@@ -65,8 +65,8 @@ def app():
     
     st.markdown("""
     **Key Points:**
-    - For an **uptrend market**, stocks with a **beta > 1** are selected.
-    - For a **downtrend market**, stocks with a **beta < 1** are selected.
+    - For an **uptrend market**, stocks with a **Beta > 1** are selected.
+    - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
 
 

@@ -5,7 +5,7 @@ from Functions.indicators import *
 
 def app():
     st.header("Introduction to the prediction page and the model")
-    st.write("Welcome to the Prediction page. Here, you can view the predicted close prices and variation percentages for tomorrow, along with trading decisions")
+    st.write("Welcome to the Prediction page. Here, you can view the predicted close prices and variation percentages for tomorrow, along with trading decisions.")
 
     st.subheader("Prediction Table")
     st.write("DataFrame showing Actual close price t-1, Actual close price, Predicted tomorrow variation %, Threshold, Beta value and Decision (Buy/Sell/Hold)")

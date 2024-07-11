@@ -4,7 +4,7 @@ from Functions.mylibraries import *
 
 def app():
     st.header("Introduction to the statistical analysis and its importance")
-    st.write("Welcome to the Statistical Data Analysis page. Here, we analyze correlations between different stocks to identify pairs with strong relationships")
+    st.write("Welcome to the Statistical Data Analysis page. Here, we analyze correlations between different stocks to identify pairs with strong relationships.")
 
     df = st.session_state['Newdict_df']
     Newdict_df_close = {key:value["Close"] for key,value in df.items()}

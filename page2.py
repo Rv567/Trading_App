@@ -4,7 +4,7 @@ from Functions.mylibraries import *
 
 def app():
     st.header('Brief introduction to the page and its functionalities')
-    st.write("Welcome to the Stock Market Visualization page. Here, you can explore recent close prices, filter stocks by liquidity, and classify them based on their beta values")
+    st.write("Welcome to the Stock Market Visualization page. Here, you can explore recent close prices, filter stocks by liquidity, and classify them based on their beta values.")
 
     st.header("Stock Ticker Selection")
     #We load our entire data from pickle files
