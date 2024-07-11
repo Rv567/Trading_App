@@ -23,7 +23,6 @@ def app():
     #st.write(dataframes[stock_symbol].tail(10))
 
     st.subheader(f'Historical Closing Prices for {stock_symbol}')
-    st.write("Display Stock Chart")
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(
@@ -33,16 +32,20 @@ def app():
         line=dict(color=stock_color[stock_symbol])
     ))
 
-    # Customize the layout to center the chart
     fig.update_layout(
+        title={
+        'text': f"Close Prices for {stock_symbol}",
+        'y':0.9,
+        'x':0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'
+        },
         xaxis_title="Time",
         yaxis_title="Close Price",
         margin=dict(l=40, r=40, t=40, b=40),
         width=800,
         height=400
     )
-
-    # Display the Plotly figure in Streamlit
     st.plotly_chart(fig)
 
     """st.write("Time series decompostion into (trend, seasonal, and residual)")
