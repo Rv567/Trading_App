@@ -241,22 +241,32 @@ def walk_forward_analysis(data, strategy, param_grid, n_splits=5):
 
     return results
 def optimize_strategies(dataframe, strategies):
-    
     best_strategy = None
     best_return = float('-inf')
     best_parameters = None
 
+    total_strategies = len(strategies)
+    progress = 0
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+
     for strategy_name, strategy in strategies.items():
+        progress += 1
+        status_text.text(f"Optimizing strategy: {strategy_name} ({progress}/{total_strategies})")
+
         bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
         stats = bt.run()
         optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
-        
-        
+
         if optim['Return [%]'] > best_return:
             best_return = optim['Return [%]']
             best_strategy = strategy_name
             best_parameters = optim["_strategy"]
 
+        # Update progress bar
+        progress_bar.progress(progress / total_strategies)
+
+    status_text.text("Optimization completed.")
     return best_parameters, optim
     #return best_strategy, best_parameters
 
