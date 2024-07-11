@@ -104,7 +104,7 @@ def app():
     stock_strategy_param = st.session_state['stock_strategy_param']
 
     df_return = pd.DataFrame(stock_strategy_return_high)
-    df_return = pd.concat([df_return.iloc[[-1]], df_return.iloc[:-1]]).reset_index(drop=True)
+    df_return = pd.concat([df_return.iloc[[-1]], df_return.iloc[:-1]])
     
     st.write(df_return)
     
