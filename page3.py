@@ -70,7 +70,7 @@ def app():
                 st.write(elem)
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                 stock_strategy_return[elem]=optim
-                st.write("Best Strategy")
+                st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                 st.write(best_parameters)
                 
     else :
@@ -79,7 +79,7 @@ def app():
                 st.write(elem)
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                 stock_strategy_return[elem]=optim
-                st.write("Best Strategy")
+                st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                 st.write(best_parameters)
 
     
