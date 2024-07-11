@@ -66,6 +66,7 @@ def app():
     st.subheader("Strategy Optimization")
     stock_strategy_return = {}
     if market == "Marché Haussier":
+        st.write("Stock with a Beta > 1")
         for elem in high_volatility_df_stocks:
             if elem in dataframes:
                 st.write(elem)
@@ -74,6 +75,7 @@ def app():
                 st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                 
     else :
+        st.write("Stock with a Beta < 1")
         for elem in low_volatility_df_stocks:
             if elem in dataframes:
                 st.write(elem)
