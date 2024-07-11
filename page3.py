@@ -90,6 +90,7 @@ def app():
                 stock_strategy_return[elem]=optim
                 st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
 
+    st.session_state['stock_strategy_return'] = stock_strategy_return
     
     stock_list.remove("CFG")
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
