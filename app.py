@@ -2,7 +2,18 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import page2,page5,page4,page3,page1,page6
 
+# User authentication configuration
+names = ["Axiom"]
+usernames = ["Axiom"]
+passwords = ["password123", "Axiom"]
 
+hashed_passwords = stauth.Hasher(passwords).generate()
+
+# Create the authenticator object
+authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "my_app", "auth_cookie", cookie_expiry_days=30)
+
+# Authentication widget
+name, authentication_status, username = authenticator.login("Login", "main")
 st.set_page_config(page_title="Home", layout="wide")
 
 class MultiApp:
