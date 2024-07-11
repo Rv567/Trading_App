@@ -60,6 +60,11 @@ def app():
     fst = filter_stocks(dataframes, 0.7, threshold)
     Newdict_df = {key:value for key,value in dataframes.items() if key in fst}
     st.session_state['Newdict_df'] = Newdict_df # store it for page2
+    st.markdown("""
+    **Volume Calculation:**
+    The average volume of a stock is calculated using a 30-day rolling mean (dynamic average of previous 30 days).
+    """)
+
     st.write("Stocks meeting the liquidity criteria")
     st.write(Newdict_df.keys())
     st.header("Beta Classification")
