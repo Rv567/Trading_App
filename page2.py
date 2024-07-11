@@ -26,11 +26,11 @@ def app():
     fig = go.Figure()
 
     fig.add_trace(go.Scatter(
-        x=list(range(len(dataframes[stock_symbol]["Close"]))),
+        x=dataframes[stock_symbol]["Close"].index()),
         y=dataframes[stock_symbol]["Close"],
         mode='lines',
         line=dict(color=stock_color[stock_symbol])
-    ))
+    )
 
     fig.update_layout(
         title={
