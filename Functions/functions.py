@@ -252,8 +252,8 @@ def optimize_strategies(dataframe, strategies):
 
     for strategy_name, strategy in strategies.items():
         progress += 1
-        #status_text.text(f"Optimizing strategy: {strategy_name} ({progress}/{total_strategies})")
-        st.markdown(f"### Optimizing strategy: **{strategy_name}** ({progress}/{total_strategies})")
+        status_text.text(f"Optimizing strategy: {strategy_name} ({progress}/{total_strategies})")
+    
         bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
         stats = bt.run()
         optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
