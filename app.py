@@ -9,7 +9,7 @@ passwords = ["Axiom"]
 hashed_passwords = Hasher(passwords).generate()
 
 # Create the authenticator object
-authenticator = Authenticate(
+authenticator = stauth.Authenticate(
     names=names,
     usernames=usernames,
     passwords=hashed_passwords,
