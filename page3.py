@@ -104,7 +104,7 @@ def app():
     stock_strategy_param = st.session_state['stock_strategy_param']
 
     df_return = pd.DataFrame(stock_strategy_return_high)
-    st.write(stock_strategy_param)
+    st.write(df_return)
 
 
     """stock_list.remove("CFG")
