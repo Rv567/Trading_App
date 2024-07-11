@@ -68,9 +68,12 @@ def app():
     - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
 
-    df_strat = pd.DataFrame()
+    if 'stock_strategy_parm' not in st.session_state:
+        st.session_state['stock_strategy_param'] = {}
+
     if 'stock_strategy_return' not in st.session_state:
         st.session_state['stock_strategy_return'] = {}
+        
 
     stock_strategy_return_low = {}
 
@@ -85,6 +88,7 @@ def app():
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     #stock_strategy_return_high[elem]=optim
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+                    st.session_state['stock_strategy_param'][elem] = best_parameters
                     st.session_state['stock_strategy_return'][elem] = optim
                     
         else :
@@ -97,16 +101,13 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
         
     stock_strategy_return_high = st.session_state['stock_strategy_return']
-    st.write(stock_strategy_return_high)
+    df_return = pd.DataFrame(stock_strategy_return_high)
+    st.write(df_return["ATW"])
 
-    #df_returns = pd.DataFrame(stock_strategy_return)
-    #df_returns.to_pickle('Strategies_return.pkl')
-    #st.session_state['stock_strategy_return'] = stock_strategy_return
 
-    #df = st.session_state['stock_strategy_return']
-    """stock_list.remove("CFG")
+    stock_list.remove("CFG")
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
-    st.write(df[stock_symbol])"""
+    st.write(df[stock_symbol])
 
     
     
