@@ -64,7 +64,7 @@ def app():
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
     st.markdown("""
-    **Key Points:**
+    ## Key Points:
     - For an **uptrend market**, stocks with a **Beta > 1** are selected.
     - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
