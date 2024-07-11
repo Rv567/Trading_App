@@ -63,6 +63,12 @@ def app():
     high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     
+    st.markdown("""
+    **Market Trend Selection:**
+    - For an **uptrend market**, stocks with a **beta > 1** are selected.
+    - For a **downtrend market**, stocks with a **beta < 1** are selected.
+    """)
+
     st.subheader("Strategy Optimization")
     stock_strategy_return = {}
     if market == "Marché Haussier":
