@@ -9,8 +9,14 @@ passwords = ["Axiom"]
 hashed_passwords = Hasher(passwords).generate()
 
 # Create the authenticator object
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "my_app", "auth_cookie", cookie_expiry_days=30)
-
+authenticator = Authenticate(
+    names=names,
+    usernames=usernames,
+    passwords=hashed_passwords,
+    cookie_name="auth_cookie",
+    key="my_app",
+    cookie_expiry_days=30
+)
 # Authentication widget
 name, authentication_status, username = authenticator.login("Login", "main")
 st.set_page_config(page_title="Home", layout="wide")
