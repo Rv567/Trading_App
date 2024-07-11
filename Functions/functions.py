@@ -246,21 +246,18 @@ def optimize_strategies(dataframe, strategies):
     best_parameters = None
 
     for strategy_name, strategy in strategies.items():
-        #bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
-        #stats = bt.run()
-        #optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
-        results = walk_forward_analysis(dataframe, strategy["symbol"], strategy["optimize_params"], n_splits=5)
-        combined_results = pd.DataFrame(results)
-        final_params = results[-2]
+        bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
+        stats = bt.run()
+        optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
         
         
-        if final_params['Return [%]'] > best_return:
-            best_return = final_params['Return [%]']
+        if optim['Return [%]'] > best_return:
+            best_return = optim['Return [%]']
             best_strategy = strategy_name
-            best_parameters = final_params["_strategy"]
+            best_parameters = optim["_strategy"]
 
     return best_parameters
-
+    #return best_strategy, best_parameters
 
 def backtest_ML(data):
     
