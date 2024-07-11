@@ -119,14 +119,14 @@ def measure_liquidity(df):
     average_volume = volume.mean()
     return average_volume
 
-def beta(df, df_marketIndex): #4-Year Beta
+def beta(df, df_marketIndex): #3-Year Beta
 
     df_stock = df.copy()
     df_stock.index = pd.to_datetime(df_stock.index)
     df_marketIndex.index = pd.to_datetime(df_marketIndex.index)
 
-    df_stock = df_stock.loc["2023-01-01":] # on calcule le beta a partir d'une date
-    df_marketIndex = df_marketIndex.loc["2023-01-01":]
+    df_stock = df_stock.loc["2021-01-01":] # on calcule le beta a partir d'une date
+    df_marketIndex = df_marketIndex.loc["2021-01-01":]
 
     
     df_stock["Variation"] = df_stock["Close"].pct_change()
