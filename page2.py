@@ -65,7 +65,7 @@ def app():
     - The average volume of a stock is calculated using a 30-day rolling mean (dynamic average of previous 30 days).
     """)
 
-    st.write("Stocks meeting the liquidity criteria")
+    st.subheader("Stocks meeting the liquidity criteria")
     st.write(Newdict_df.keys())
     st.header("Beta Classification")
     st.write("We split the selected stocks into High/Low volatility stocks")
