@@ -101,8 +101,10 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
         
     stock_strategy_return_high = st.session_state['stock_strategy_return']
+    stock_strategy_param = st.session_state['stock_strategy_param']
+
     df_return = pd.DataFrame(stock_strategy_return_high)
-    st.write(df_return["ATW"].iloc[1])
+    st.write(stock_strategy_param)
 
 
     """stock_list.remove("CFG")
