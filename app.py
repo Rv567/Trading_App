@@ -10,7 +10,7 @@ hashed_passwords = Hasher(passwords).generate()
 
 # Create the authenticator object
 authenticator = stauth.Authenticate(
-    names=names,
+    #names=names,
     usernames=usernames,
     passwords=hashed_passwords,
     cookie_name="auth_cookie",
