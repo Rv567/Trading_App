@@ -16,7 +16,7 @@ name, authentication_status, username = authenticator.login('Login', 'main')
 
 st.set_page_config(page_title="Home", layout="wide")
 if authentication_status:
-    st.set_page_config(page_title="Home", layout="wide")
+    authenticator.logout('Logout', 'sidebar')
     class MultiApp:
         def __init__(self):
             self.apps = []
