@@ -85,6 +85,11 @@ def app():
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     st.session_state['stock_strategy_return_high'][elem] = optim
+                    stock_strategy_return_high = st.session_state['stock_strategy_return_high']
+                    df_return_high = pd.DataFrame(stock_strategy_return_high)
+                    df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
+                    st.write(df_return_high)
+
                     
         else :
             st.write("Stock with a Beta < 1")
@@ -94,8 +99,12 @@ def app():
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     st.session_state['stock_strategy_return_low'][elem] = optim
+                    stock_strategy_return_low = st.session_state['stock_strategy_return_low']
+                    df_return_low = pd.DataFrame(stock_strategy_return_low)
+                    df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
+                    st.write(df_return_low)
         
-    #Beta > 1
+    """#Beta > 1
     stock_strategy_return_high = st.session_state['stock_strategy_return_high']
     df_return_high = pd.DataFrame(stock_strategy_return_high)
     df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]]) #move _strategy to the top
@@ -109,7 +118,7 @@ def app():
     if market == "Marché Haussier":
         st.write(pd.read_pickle('performance_high.pkl'))
     else:
-        st.write(pd.read_pickle('performance_low.pkl'))
+        st.write(pd.read_pickle('performance_low.pkl'))"""
     
 
 
