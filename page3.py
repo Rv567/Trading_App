@@ -5,7 +5,7 @@ from Functions.startegies import *
 
 def app():
     st.header("Introduction to the Trading Strategy page")
-    st.write("Welcome to the Trading Strategy page. Start by selecting the market trend (uptrend or downtrend). Based on your choice, you'll be presented with stocks having a beta > 1 (for uptrend) or stocks with a beta < 1 (for downtrend). Then, you will get the best trading strategy.")
+    st.write("Welcome to the Trading Strategy page. Start by selecting the market trend (uptrend or downtrend). Based on your choice, you'll be presented with stocks having a beta > 1 (for uptrend) or stocks with a beta < 1 (for downtrend). Then, you will get the corresponding trading strategy.")
     #st.subheader("Stock Symbol Selection")
     dataframes = load_data()
     stock_list = ["ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
@@ -14,10 +14,8 @@ def app():
     for key, df in dataframes.items():
         df.index.name = None
         df.index = pd.to_datetime(df.index)
+    
 
-    stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='st')
-
-    st.subheader("Market Trend Selection")
     strategies = {
         'MAcross strategy with Stop Loss': {
             'description': 'Moving Average Crossover Strategy combined with a Trailing Stop Loss',
@@ -48,6 +46,15 @@ def app():
     }
     }
 
+    strategy_name = st.selectbox("Choose a Trading Strategy to Understand its Function",strategies,key='stat')
+    strategy = strategies[strategy_name]
+
+    st.subheader(f"Strategy: {strategy_name}")
+    st.write(f"**:orange[Description]:** {strategy['description']}")
+    st.write(f"**:green[Entry Condition]:** {strategy['entry']}")
+    st.write(f"**:red[Exit Condition]:** {strategy['exit']}")
+
+    st.subheader("Market Trend Selection")
     marche = ["Marché Haussier","Marché Baissier"]
     market = st.selectbox('Select Market Trend', marche,key='mar')
     high_volatility_df = st.session_state['high_volatility_df']
@@ -62,7 +69,7 @@ def app():
             if elem in dataframes:
                 st.write(elem)
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                stock_strategy_return[elem]=best_parameters
+                stock_strategy_return[elem]=optim
                 st.write("Best Strategy")
                 st.write(best_parameters)
                 
@@ -71,20 +78,15 @@ def app():
             if elem in dataframes:
                 st.write(elem)
                 best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                stock_strategy_return[elem]=best_parameters
+                stock_strategy_return[elem]=optim
                 st.write("Best Strategy")
                 st.write(best_parameters)
 
-    strategy_name = st.selectbox('Choose a strategy', strategies,key='stat')
-    strategy = strategies[strategy_name]
-
-    st.subheader(f"Strategy: {strategy_name}")
-    st.write(f"**:orange[Description]:** {strategy['description']}")
-    st.write(f"**:green[Entry Condition]:** {strategy['entry']}")
-    st.write(f"**:red[Exit Condition]:** {strategy['exit']}")
-
-    bt = Backtest(dataframes[stock_symbol], strategy["symbol"], cash=1_000_000, commission=0.0044)
     
+    stock_list.remove("CFG")
+    stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
+    st.write(stock_strategy_return[stock_symbol])
+
     if st.button("Backtest Strategy"):
         stats = bt.run()
         st.write("Backtest Results")
