@@ -102,7 +102,7 @@ def app():
         
     stock_strategy_return_high = st.session_state['stock_strategy_return']
     df_return = pd.DataFrame(stock_strategy_return_high)
-    st.write(df_return["ATW"])
+    st.write(df_return["ATW"].iloc[1])
 
 
     """stock_list.remove("CFG")
