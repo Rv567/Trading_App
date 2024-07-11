@@ -17,15 +17,22 @@ def app():
     
 
     strategies = {
-        'MAcross strategy with Stop Loss': {
-            'description': 'Moving Average Crossover Strategy combined with a Trailing Stop Loss',
+        'SMA Cross Strategy': {
+            'description': 'Simple Moving Average Crossover Strategy',
+            'entry': 'Buy when short-term SMA crosses above long-term SMA',
+            'exit': 'Sell when short-term SMA crosses below long-term SMA',
+            "symbol" : SmaCross,
+            "optimize_params": {'n1': range(20, 110, 10),
+                                'n2': range(20, 210, 10)}
+        },
+        'SMA Cross Strategy with Stop Loss': {
+            'description': 'Simple Moving Average Crossover Strategy combined with a Trailing Stop Loss',
             'entry': 'Buy when short-term SMA crosses above long-term SMA',
             'exit': 'Sell when the Stop Loss is triggered',
             "symbol" : SmaCross_StopLoss,
             "optimize_params": {'n1': range(20, 110, 10),
                                 'n2': range(20, 210, 10),
                                 "trailing_stop" : range(1,11,1)}
-
         },
         'Multi Indicator Strategy': {
             'description': 'Strategy that combines 4 indicators at once RSI, SMA, ATR and AD',
@@ -35,15 +42,7 @@ def app():
             "optimize_params": {"level_rsi" : range(10,45,1),
                                 "n_sma" : range(20,110,10),
                                 "trailing_stop" : range(1,11,1)}
-        },
-        'SMA Crossover': {
-            'description': 'Simple Moving Average Crossover Strategy',
-            'entry': 'Buy when short-term SMA crosses above long-term SMA',
-            'exit': 'Sell when short-term SMA crosses below long-term SMA',
-            "symbol" : SmaCross,
-            "optimize_params": {'n1': range(20, 110, 10),
-                                'n2': range(20, 210, 10)}
-    }
+        }
     }
 
     strategy_name = st.selectbox("Choose a Trading Strategy to Understand its Function",strategies,key='stat')
@@ -70,7 +69,9 @@ def app():
     """)
 
     df_strat = pd.DataFrame()
-    stock_strategy_return_high = {}
+    if 'stock_strategy_return' not in st.session_state:
+        st.session_state['stock_strategy_return'] = {}
+        
     stock_strategy_return_low = {}
 
     st.subheader("Strategy Optimization")
@@ -82,8 +83,9 @@ def app():
                 if elem in dataframes:
                     st.write(elem)
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
-                    stock_strategy_return_high[elem]=optim
+                    #stock_strategy_return_high[elem]=optim
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+                    st.session_state['stock_strategy_return'][elem] = optim
                     
         else :
             st.write("Stock with a Beta < 1")
@@ -94,8 +96,8 @@ def app():
                     stock_strategy_return_low[elem]=optim
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
         
+    stock_strategy_return_high = st.session_state['stock_strategy_return']
     st.write(stock_strategy_return_high)
-    st.write(stock_strategy_return_low)
 
     #df_returns = pd.DataFrame(stock_strategy_return)
     #df_returns.to_pickle('Strategies_return.pkl')

@@ -63,7 +63,6 @@ class MultiIndicatorStrategy(Strategy):
     n_rsi = 14
     level_rsi = 30
     n_sma = 50
-    n_atr = 14
     trailing_stop = 2
 
     def init(self):
