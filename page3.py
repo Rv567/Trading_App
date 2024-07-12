@@ -126,16 +126,13 @@ def app():
         st.write(pd.read_pickle('performance_low.pkl'))"""
     
 
-
-
-
     """stock_list.remove("CFG")
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
     st.write(df[stock_symbol])"""
 
     if market == "Marché Haussier":
         st.write("Corresponding Stocks performance")
-        st.write(df_return_high)
-    else :
+        st.write(pd.read_pickle('performance_high.pkl'))
+    """else :
         st.write("Corresponding Stocks performance")
-        st.write(df_return_low)
+        st.write(df_return_low)"""
