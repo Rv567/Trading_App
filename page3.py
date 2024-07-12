@@ -130,9 +130,8 @@ def app():
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
     st.write(df[stock_symbol])"""
 
-    if market == "Marché Haussier":
-        st.write("Corresponding Stocks performance")
-        st.write(pd.read_pickle('performance_high.pkl'))
+    st.write("Corresponding Stocks' performance for an uptrend market")
+    st.write(pd.read_pickle('performance_high.pkl'))
     """else :
         st.write("Corresponding Stocks performance")
         st.write(df_return_low)"""
