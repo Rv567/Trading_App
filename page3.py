@@ -126,8 +126,8 @@ def app():
         st.write(pd.read_pickle('performance_low.pkl'))"""
     
 
-    st.subheader("Corresponding Stocks performance for an uptrend market")
+    st.subheader("Corresponding Stocks performance for an **uptrend market**")
     st.write(pd.read_pickle('performance_high.pkl'))
     
-    st.subheader("Corresponding Stocks performance for a downtrend market")
+    st.subheader("Corresponding Stocks performance for a **downtrend market**")
     st.write(pd.read_pickle('performance_low.pkl'))
