@@ -77,7 +77,7 @@ def app():
     st.subheader("Strategy Optimization")
     if st.button("Optimize"):
         if market == "Marché Haussier":
-            
+            st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
@@ -88,11 +88,13 @@ def app():
             stock_strategy_return_high = st.session_state['stock_strategy_return_high']
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
+            df_return_high.to_pickle('performance_high.pkl')
             st.write(df_return_high)
 
                     
         else :
             st.write("Stock with a Beta < 1")
+            st.write(pd.read_pickle('performance_low.pkl'))
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
@@ -102,6 +104,7 @@ def app():
             stock_strategy_return_low = st.session_state['stock_strategy_return_low']
             df_return_low = pd.DataFrame(stock_strategy_return_low)
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
+            df_return_low.to_pickle('performance_low.pkl')
             st.write(df_return_low)
         
     """#Beta > 1
