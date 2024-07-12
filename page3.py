@@ -71,9 +71,10 @@ def app():
     if 'stock_strategy_return_high' not in st.session_state:
         st.session_state['stock_strategy_return_high'] = {}
 
-    if 'stock_strategy_return_low' not in st.session_state:
-        st.session_state['stock_strategy_return_low'] = {}
+    if 'df_return_low' not in st.session_state:
+        st.session_state['df_return_low'] = {}
 
+    stock_strategy_return_low = {}
     st.subheader("Strategy Optimization")
     if st.button("Optimize"):
         if market == "Marché Haussier":
@@ -100,11 +101,12 @@ def app():
                     st.write(elem)
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-                    st.session_state['stock_strategy_return_low'][elem] = optim
-            stock_strategy_return_low = st.session_state['stock_strategy_return_low']
+                    stock_strategy_return_low[elem] = optim
+
             df_return_low = pd.DataFrame(stock_strategy_return_low)
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
             df_return_low.to_pickle('performance_low.pkl')
+            st.session_state['df_return_low'] = df_return_low
             st.write(df_return_low)
         
     """#Beta > 1
@@ -132,5 +134,5 @@ def app():
     st.write(df[stock_symbol])"""
 
     
-    
-    
+    df_return_low = st.session_state['df_return_low']
+    st.write(df_return_low)
