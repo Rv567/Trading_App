@@ -126,12 +126,8 @@ def app():
         st.write(pd.read_pickle('performance_low.pkl'))"""
     
 
-    """stock_list.remove("CFG")
-    stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
-    st.write(df[stock_symbol])"""
-
-    st.write("Corresponding Stocks' performance for an uptrend market")
+    st.subheader("Corresponding Stocks performance for an uptrend market")
     st.write(pd.read_pickle('performance_high.pkl'))
-    """else :
-        st.write("Corresponding Stocks performance")
-        st.write(df_return_low)"""
+    
+    st.subheader("Corresponding Stocks performance for a downtrend market")
+    st.write(pd.read_pickle('performance_low.pkl'))
