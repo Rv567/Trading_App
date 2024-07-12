@@ -243,6 +243,7 @@ def walk_forward_analysis(data, strategy, param_grid, n_splits=5):
         results.append(stats)
 
     return results
+
 def optimize_strategies(dataframe, strategies):
     best_strategy = None
     best_return = float('-inf')
@@ -259,12 +260,10 @@ def optimize_strategies(dataframe, strategies):
         status_text.text(f"Optimizing strategy: {strategy_name} ({progress}/{total_strategies})")
     
         bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
-        stats = bt.run()
         optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
 
         if optim['Return [%]'] > best_return:
             best_return = optim['Return [%]']
-            best_strategy = strategy_name
             best_parameters = optim["_strategy"]
             best_optim = optim
 
@@ -276,7 +275,6 @@ def optimize_strategies(dataframe, strategies):
     #return best_strategy, best_parameters
 
 def backtest_ML(data):
-    
     # Parameters
     initial_cash = 1000000
     cash = initial_cash
