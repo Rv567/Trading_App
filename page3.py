@@ -76,7 +76,7 @@ def app():
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
     st.header("Strategy Optimization")
-    if st.button("Optimize"):
+    if st.button("Optimize 🚀"):
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
