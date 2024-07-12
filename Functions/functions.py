@@ -29,6 +29,18 @@ def reorganize(dataframe):
         'volume': 'Volume'
     }).rename_axis("Date")
 
+def format_technical_rating(rating: float) -> str:
+    if rating >= 0.5:
+        return 'Strong Buy'
+    elif rating >= 0.2:
+        return 'Buy'
+    elif rating >= -0.1:
+        return 'Neutral'
+    elif rating >= -0.5:
+        return 'Sell'
+    else:
+        return 'Strong Sell'
+    
 #Time series decompostion into (trend, seasonal, and residual)
 def decompose(dataframe):
     df_close = dataframe["Close"]

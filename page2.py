@@ -186,7 +186,22 @@ def app():
     # Display the plot in Streamlit
     st.plotly_chart(fig3,use_container_width=True)
 
-    st.header("Additional Features")
-    st.write("Key stock metrics (Sharpe Ratio, P/E ratio, market cap)")
+    st.header("Stock Screener")
+    st.write("Fundamental Analysis tool")
 
-    
+    morocco_url = 'https://scanner.tradingview.com/morocco/scan'
+
+    # Create a query for the Moroccan stock exchange
+    query = (Query()
+            .select('name', 'close', "Change %", "beta_1_year", "Price to Earnings Ratio (TTM)", 'Price to Book (FY)','dividends_yield',
+                    "Net Income (Annual YoY Growth)", "Perf.YTD", 'volume', 'Recommend.All')
+            .order_by('market_cap_basic', ascending=False))  # Sort by market cap in descending order
+    query.url = morocco_url
+    count, df = query.get_scanner_data()
+    # apply the formatting function to the column
+    df['Rating'] = df['Recommend.All'].apply(format_technical_rating)
+
+    df.drop(columns=["ticker",'Recommend.All'],inplace=True)
+    df.rename(columns={"name":"Name","close":"Close","beta_1_year":"Beta 1Y","price_earnings_ttm":"P/E","price_book_ratio":"P/B","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth","Perf.YTD":"Perf %","volume":"Volume"})
+
+    st.write(df)

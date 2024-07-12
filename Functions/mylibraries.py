@@ -41,6 +41,7 @@ from IPython.display import display
 import warnings
 warnings.filterwarnings("ignore")
 
+from tradingview_screener import Query, Column
 import yaml
 from yaml.loader import SafeLoader
 
