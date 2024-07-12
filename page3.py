@@ -131,3 +131,23 @@ def app():
     
     st.subheader("Corresponding Stocks performance for a **downtrend market**")
     st.write(pd.read_pickle('performance_low.pkl'))
+
+    custom_button_css = """
+        <style>
+        .stButton > button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .stButton > button:hover {
+            background-color: #45a049;
+        }
+        </style>
+    """
+
+    # Inject CSS into the Streamlit app
+    st.markdown(custom_button_css, unsafe_allow_html=True)
