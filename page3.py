@@ -77,8 +77,7 @@ def app():
     st.subheader("Strategy Optimization")
     if st.button("Optimize"):
         if market == "Marché Haussier":
-            fg = pd.read_pickle('performance_high.pkl')
-            st.write(fg)
+            #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
@@ -95,7 +94,7 @@ def app():
                     
         else :
             st.write("Stock with a Beta < 1")
-            st.write(pd.read_pickle('performance_low.pkl'))
+            #st.write(pd.read_pickle('performance_low.pkl'))
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
