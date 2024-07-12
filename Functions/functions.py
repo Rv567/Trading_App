@@ -11,8 +11,7 @@ def load_data():
     ticker = ["MASI","ATW", "IAM", "BCP", "LHM", "BOA", "TQM", "CMA", "TMA", "ADH", "TGC", "CDM", "ATL", "BCI", "AKT", "SAH", "CFG", "ARD", "ADI", "DYT", "ATH", "RDS", "DHO", "FBR"]
     dataframes = {}
     for ticker_symbol in ticker:
-        df = pd.read_pickle(f'dataframe_{ticker_symbol}.pkl')
-        dataframes[ticker_symbol]=df
+        dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_{ticker_symbol}.pkl')
     return dataframes
 
 #Reoragnize the dataframe with proper names for the columns 

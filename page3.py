@@ -68,12 +68,12 @@ def app():
     - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
 
-    if 'stock_strategy_return_high' not in st.session_state:
-        st.session_state['stock_strategy_return_high'] = {}
-
+    if 'df_return_high' not in st.session_state:
+        st.session_state['df_return_high'] = {}
     if 'df_return_low' not in st.session_state:
         st.session_state['df_return_low'] = {}
 
+    stock_strategy_return_high = {}
     stock_strategy_return_low = {}
     st.subheader("Strategy Optimization")
     if st.button("Optimize"):
@@ -85,12 +85,12 @@ def app():
                     st.write(elem)
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
-                    st.session_state['stock_strategy_return_high'][elem] = optim
-            stock_strategy_return_high = st.session_state['stock_strategy_return_high']
+                    stock_strategy_return_high[elem] = optim
+
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             df_return_high.to_pickle('performance_high.pkl')
-            st.write(df_return_high)
+            st.session_state['df_return_high'] = df_return_high
 
                     
         else :
@@ -107,7 +107,7 @@ def app():
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
             df_return_low.to_pickle('performance_low.pkl')
             st.session_state['df_return_low'] = df_return_low
-            st.write(df_return_low)
+            
         
     """#Beta > 1
     stock_strategy_return_high = st.session_state['stock_strategy_return_high']
@@ -133,6 +133,9 @@ def app():
     stock_symbol = st.selectbox('Choose a Stock to see its performance', stock_list,key='stoc')
     st.write(df[stock_symbol])"""
 
-    
-    df_return_low = st.session_state['df_return_low']
-    st.write(df_return_low)
+    if market == "Marché Haussier":
+        st.write("Corresponding Stocks performance")
+        st.write(df_return_high)
+    else :
+        st.write("Corresponding Stocks performance")
+        st.write(df_return_low)
