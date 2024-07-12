@@ -188,3 +188,5 @@ def app():
 
     st.header("Additional Features")
     st.write("Key stock metrics (Sharpe Ratio, P/E ratio, market cap)")
+
+    

@@ -16,4 +16,5 @@ optuna
 shap
 plotly
 backtesting
+tradingview-screener
 ipython
