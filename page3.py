@@ -53,7 +53,7 @@ def app():
     st.write(f"**:green[Entry Condition]:** {strategy['entry']}")
     st.write(f"**:red[Exit Condition]:** {strategy['exit']}")
 
-    st.subheader("Market Trend Selection")
+    st.header("Market Trend Selection")
     marche = ["Marché Haussier","Marché Baissier"]
     market = st.selectbox('Select Market Trend', marche,key='mar')
     high_volatility_df = st.session_state['high_volatility_df']
@@ -75,7 +75,7 @@ def app():
 
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
-    st.subheader("Strategy Optimization")
+    st.header("Strategy Optimization")
     if st.button("Optimize"):
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
