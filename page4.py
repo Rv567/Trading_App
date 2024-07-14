@@ -13,6 +13,9 @@ def app():
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
 
+    features_df = {}
+    target_df ={}
+
     for key in Newdict_df.keys():
 
         df_ml= Newdict_df.copy()
@@ -38,10 +41,10 @@ def app():
         stock["Close"] = stock["Close"].shift(-1)
 
         # Remove all lagged features to define df_features
-        features_df = stock[[col for col in stock.columns if 'Lag' in col ]]#and "Close" not in col
+        features_df[key] = stock[[col for col in stock.columns if 'Lag' in col ]]#and "Close" not in col
 
         # Define df_target
-        target_df = stock[["Close","Variation"]]
+        target_df[key] = stock[["Close","Variation"]]
 
     df_tomorrow_prediction =df_ml.copy() # features for tomorrow prediction
     # Date
@@ -68,12 +71,12 @@ def app():
     df_actuals = {}
 
     for key in df_ml.keys():
-        df_ml[key]=df_ml[key].dropna()
-        X = df_ml[key].drop(columns=['Open', 'High', 'Low',"Variation","Close"])
-        y = df_ml[key]["Close"]
+        #df_ml[key]=df_ml[key].dropna()
+        X = features_df[key]
+        y = target_df[key]["Variation%"]
 
         # Train/ Test the model,
-        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8,test_size=0.2, shuffle=False)
+        X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2, shuffle=False)
         model = XGBRegressor()
         model.fit(X_train, y_train)
 
