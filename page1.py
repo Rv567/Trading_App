@@ -1,6 +1,6 @@
 from Functions.functions import *
 from Functions.mylibraries import *
-from data import *
+from data_daily import *
 
 
 def app():
