@@ -14,6 +14,13 @@ def load_data():
         dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_{ticker_symbol}.pkl')
     return dataframes
 
+def load_data_weekly():
+    ticker = ["MASI","ATW", "IAM", "BCP", "LHM", "BOA", "TQM", "CMA", "TMA", "ADH", "TGC", "CDM", "ATL", "BCI", "AKT", "SAH", "CFG", "ARD", "ADI", "DYT", "ATH", "RDS", "DHO", "FBR"]
+    dataframes = {}
+    for ticker_symbol in ticker:
+        dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_weekly_{ticker_symbol}.pkl')
+    return dataframes
+
 #Reoragnize the dataframe with proper names for the columns 
 def reorganize(dataframe):
     if 'symbol' in dataframe.columns:
