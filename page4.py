@@ -5,10 +5,12 @@ from Functions.indicators import *
 
 def app():
     st.header("Introduction to the prediction page and the model")
-    st.write("Welcome to the Prediction page. Here, you can view the predicted close prices and variation percentages for tomorrow, along with trading decisions.")
+    st.write("you can view the predicted weekly variation along with trading decisions.")
 
     st.subheader("Prediction Table")
-    st.write("DataFrame showing Actual close price t-1, Actual close price, Predicted tomorrow variation %, Threshold, Beta value and Decision (Buy/Sell/Hold)")
+    st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold)")
+    st.markdown("<h3 style='color: blue;'>🔄 Model is running...</h3>", unsafe_allow_html=True)
+    st.write()
     Newdict_df = st.session_state['Newdict_df']
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
@@ -83,7 +85,15 @@ def app():
     df_train ={}
     df_test = {}
 
-    for key in Newdict_df.keys():
+    # Progress status
+    progress_bar = st.progress(0)
+    progress_text = st.empty()
+    total_keys = len(Newdict_df.keys())
+
+    for i,key in enumerate(Newdict_df.keys()):
+
+        progress_bar.progress((i + 1) / total_keys)
+        progress_text.text(f"Processing {key}... ({i + 1}/{total_keys})")
         X = features_df[key]
         y = target_df[key]["Variation%"]
 
@@ -119,44 +129,8 @@ def app():
         # Decision Making
         df_threshold[key] = y.median()
 
-        
-        """#Best threshold that maximizes the combined metric (Accuracy and Number of correct predictions)
-        actual_today_close = y_test.values
-        predicted_tomorrow_close = y_pred_test
 
-        results = pd.DataFrame({
-        'Actual Today Close': actual_today_close,
-        'Predicted Tomorrow Close': predicted_tomorrow_close
-        })
-
-        results['Actual Difference (%)'] = results['Actual Today Close'].pct_change() * 100
-        results['Predicted Difference (%)'] = results['Predicted Tomorrow Close'].pct_change() * 100
-
-        thresholds = np.arange(0, 10, 0.1)
-        accuracies = []
-
-        # Loop through different threshold values to find the best one
-        for threshold in thresholds:
-            # Identify instances where the predicted change is greater than the threshold
-            high_change = results['Predicted Difference (%)'].abs() > threshold
-
-            # Calculate the predicted and actual trends
-            predicted_trend = np.sign(results['Predicted Difference (%)'])
-            actual_trend = np.sign(results['Actual Difference (%)'])
-
-            # Filter out NaN values
-            correct_predictions = (predicted_trend == actual_trend).dropna()
-            high_change_correct_predictions = correct_predictions[high_change]
-
-            # Calculate the accuracy
-            accuracy = high_change_correct_predictions.mean() * 100
-            accuracies.append(accuracy)
-
-        max_accuracy = max(accuracies)
-        optimal_threshold = thresholds[accuracies.index(max_accuracy)]
-        threshold_combined[key] = optimal_threshold"""
-
-        """# SHAP values for features importance
+        # SHAP values for features importance
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X_test)
 
@@ -165,7 +139,10 @@ def app():
         sorted_index = np.argsort(mean_shap)[::-1]
         sorted_features = X.columns[sorted_index]
 
-        df_indicator[key] = best_indicators_category(sorted_features)"""
+        df_indicator[key] = best_indicators_category(sorted_features)
+
+    progress_text.text("Model prediction complete!")
+    st.success("All stocks have been processed.")
 
     df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
     df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
@@ -185,7 +162,7 @@ def app():
     df_threshold = pd.DataFrame(list(df_threshold.items()), columns=["Key", 'Median50%'])
 
     # T.Indicators
-    #df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
+    df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
 
     final= pd.merge(df_actualCloseYest,df_actualClose)
     final = pd.merge (final,df_prediction)
@@ -193,9 +170,11 @@ def app():
     final["Decision"] = final.apply(todo,axis=1)
 
     # Sort the final data into high and low volatility stocks
+    st.subheader("Model prediction for stocks with Beta>1")
     high_volatility_df = pd.merge(final,high_volatility_df)
     st.write(high_volatility_df)
-    #low_volatility_df = pd.merge(final,low_volatility_df)
+    st.subheader("Model prediction for stocks with Beta<1")
+    low_volatility_df = pd.merge(final,low_volatility_df)
 
     """high_volatility_df["Decision"] = high_volatility_df.apply(todo,axis=1)
     low_volatility_df["Decision"] = low_volatility_df.apply(todo,axis=1)
@@ -206,5 +185,5 @@ def app():
     st.write(low_volatility_df)"""
 
     st.subheader("Model Insights")
-    st.write("Display the top 4 technical indicators contributing to the predictions.")
-    #st.write(df_indicators)
+    st.write("Display the top 4 Technical Indicators contributing to the predictions.")
+    st.write(df_indicators)
