@@ -138,7 +138,7 @@ def app():
         sorted_index = np.argsort(mean_shap)[::-1]
         sorted_features = X.columns[sorted_index]
 
-        df_indicator[key] = get_first_features(sorted_features)
+        df_indicator[key] = best_indicators_category(sorted_features)
 
     progress_text.text("Model prediction complete!")
     st.success("All stocks have been processed.")

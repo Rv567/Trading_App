@@ -108,22 +108,27 @@ def max_without_nan(lst):
     return max_val
 
 
-def get_first_features(features):
-    categories = {"momentum": ["ADX","MACD" ,"MACD_Hist","MACD_Signal" ,"RSI", "CCI", "STOCH", "ROC", "WR"],
-                "overlap": ["lowerband","middleband","upperband","DEMA", "EMA", "MA", "SAR", "SMA"],
-                "volatility": ["ATR", "NATR"],
-                "volume": ["AD", "ADOSC", "OBV"]}
-    selected_features = {}
-    
-    for category, indicators in categories.items():
-        for indicator in indicators:
-            for feature in features:
-                if indicator in feature:
-                    selected_features[category] = feature
+def best_indicators_category(liste):
+
+    categories = {
+    "momentum": ["ADX","MACD" ,"MACD_Hist","MACD_Signal" ,"RSI", "CCI", "STOCH", "ROC", "WR"],
+    "overlap": ["lowerband","middleband","upperband","DEMA", "EMA", "MA", "SAR", "SMA"],
+    "volatility": ["ATR", "NATR"],
+    "volume": ["AD", "ADOSC", "OBV"]}
+
+    # Initialize dictionaries to store the best indicator for each category
+    best_indicators = {category: None for category in categories}
+
+    for feature in liste:
+        for category, indicators in categories.items():
+            # Check if the feature is in the category
+            if any(indicator in feature for indicator in indicators):
+                # If no best indicator is set for this category
+                if best_indicators[category] is None:
+                    best_indicators[category] = feature
                     break
-            if category in selected_features:
-                break
-    return selected_features
+    
+    return best_indicators
 
 #Liquidity
 def measure_liquidity(df):
