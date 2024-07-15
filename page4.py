@@ -138,7 +138,6 @@ def app():
         sorted_features = X.columns[sorted_index]
 
         df_indicator[key] = get_first_features(sorted_features)
-        st.write(df_indicator[key])
 
     progress_text.text("Model prediction complete!")
     st.success("All stocks have been processed.")
