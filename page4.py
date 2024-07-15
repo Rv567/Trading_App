@@ -111,10 +111,10 @@ def app():
         df_y_pred[key]=y_pred_test
 
 
-        rmse_train = mean_squared_error(y_train,y_pred_train, squared=False)
+        """rmse_train = mean_squared_error(y_train,y_pred_train, squared=False)
         rmse_test = mean_squared_error(y_test,y_pred_test, squared=False)
         df_train[key] = rmse_train
-        df_test[key] = rmse_test
+        df_test[key] = rmse_test"""
 
         # Prediction tomorrow's close
         X_tomorrow = df_pred_tomorrow[key].tail(1)
@@ -143,11 +143,11 @@ def app():
     progress_text.text("Model prediction complete!")
     st.success("All stocks have been processed.")
 
-    df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
+    """df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
     df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
 
     resultat_baselineModel = pd.merge(df_tr,df_tst) # Display Train -> Test
-    #st.write(resultat_baselineModel) # i decided not include the RMSE result table
+    #st.write(resultat_baselineModel) # i decided not include the RMSE result table"""
     
     # Create different dataframes
     # Actual this week and the previous one 
