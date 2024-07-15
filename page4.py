@@ -26,18 +26,17 @@ def app():
     st.header("Model Prediction")
     st.write("We use Machine Learning Model to fit it to our data. Then we use it to predict future Weekly Prediction.")
     st.markdown("""
-        ### How We Calculate Weekly Percentage Change
+        ## Weekly Percentage Change
 
-        To understand the weekly variation of a stock, we calculate the percentage change in the closing price from one week to the next. Here’s how we do it:
+        To understand the weekly variation of a stock, we calculate the percentage change in the closing price from one week to the next.
 
-        1. **Percentage Change Formula**:
-        The percentage change is calculated using the formula:
+        **Percentage Change Formula**:
 
         $$
         \\text{Percentage Change} = \\left( \\frac{\\text{Close}_{\\text{current week}} - \\text{Close}_{\\text{previous week}}}{\\text{Close}_{\\text{previous week}}} \\right) \\times 100
         $$
 
-        2. **Rounding the Result**: """)
+        """)
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
         features_df = {}
