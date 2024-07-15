@@ -131,7 +131,7 @@ def app():
 
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
-    st.write(df_high.loc["_trades"])
+    st.write(df_high)
 
     
     st.subheader("Corresponding Stocks performance for a **downtrend market**")
