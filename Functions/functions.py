@@ -108,13 +108,11 @@ def max_without_nan(lst):
     return max_val
 
 
-categories = {
-"momentum": ["ADX","MACD" ,"MACD_Hist","MACD_Signal" ,"RSI", "CCI", "STOCH", "ROC", "WR"],
-"overlap": ["lowerband","middleband","upperband","DEMA", "EMA", "MA", "SAR", "SMA"],
-"volatility": ["ATR", "NATR"],
-"volume": ["AD", "ADOSC", "OBV"]}
-
-def get_first_features(categories, features):
+def get_first_features(features):
+    categories = {"momentum": ["ADX","MACD" ,"MACD_Hist","MACD_Signal" ,"RSI", "CCI", "STOCH", "ROC", "WR"],
+                "overlap": ["lowerband","middleband","upperband","DEMA", "EMA", "MA", "SAR", "SMA"],
+                "volatility": ["ATR", "NATR"],
+                "volume": ["AD", "ADOSC", "OBV"]}
     selected_features = {}
     
     for category, indicators in categories.items():
