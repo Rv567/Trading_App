@@ -138,6 +138,7 @@ def app():
         sorted_features = X.columns[sorted_index]
 
         df_indicator[key] = best_indicators_category(sorted_features)
+        st.write(df_indicator[key])
 
     progress_text.text("Model prediction complete!")
     st.success("All stocks have been processed.")
@@ -175,13 +176,6 @@ def app():
     low_volatility_df = pd.merge(final,low_volatility_df)
     st.write(low_volatility_df)
 
-    """high_volatility_df["Decision"] = high_volatility_df.apply(todo,axis=1)
-    low_volatility_df["Decision"] = low_volatility_df.apply(todo,axis=1)
-    
-    st.caption("Beta > 1 :")
-    st.write(high_volatility_df)
-    st.caption("Beta < 1 :")
-    st.write(low_volatility_df)"""
 
     st.subheader("Model Insights")
     st.write("Display the top 4 Technical Indicators contributing to the predictions.")
