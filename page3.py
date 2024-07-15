@@ -68,15 +68,6 @@ def app():
     - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
 
-    """if 'df_return_high' not in st.session_state:
-        st.session_state['df_return_high'] = {}
-    if 'df_return_low' not in st.session_state:
-        st.session_state['df_return_low'] = {}
-
-    if 'df_trades_high' not in st.session_state:
-        st.session_state['df_trades_high'] = {}
-    if 'df_trades_low' not in st.session_state:
-        st.session_state['df_trades_low'] = {}"""
 
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
@@ -144,20 +135,20 @@ def app():
             df_trades_low.to_pickle('trades_low.pkl')
             
 
-    st.subheader("Corresponding Stocks performance for an **uptrend market**")
+    st.subheader('Corresponding Stocks performance for an <span style="color:green;">**uptrend market**</span>', unsafe_allow_html=True)
     df_high = pd.read_pickle('performance_high.pkl')
     st.write(df_high)
 
-    st.subheader("Last trade")
+    st.subheader("Last trade for an **uptrend market**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
     st.write(reorganize_trades(df_trades_high))
 
 
-    st.subheader("Corresponding Stocks performance for an **downtrend market**")
+    st.subheader('Corresponding Stocks performance for an <span style="color:red;">**downtrend market**</span>', unsafe_allow_html=True)
     df_low = pd.read_pickle('performance_low.pkl')
     st.write(df_low)
 
-    st.subheader("Last trade")
+    st.subheader("Last trade for an **downtrend market**")
     df_trades_low = pd.read_pickle('trades_low.pkl')
     st.write(reorganize_trades(df_trades_low))
     
