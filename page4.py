@@ -19,77 +19,88 @@ def app():
     dataframes = load_data_weekly()
     stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
+    del Newdict_df['CFG']
+
+    features_df = {}
+    target_df ={}
+    df_pred_tomorrow = {} #model.predict()
 
     for key in Newdict_df.keys():
-
-        df_ml= dataframes.copy()
+        df_ml= Newdict_df.copy()
         stock = df_ml[key]
-
-        test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] #Different indicators
+        # Technical Indicators
+        test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] 
         for elem in test_indicators:
                 elem(stock)
 
+        # Different periods
         for elem in [2,4,8,16,32,64]:
-            EMA(stock,elem) #Exp moving average
-            SMA(stock,elem) #Simple moving average
-            stock[f'Close_rolling_mean_{elem}'] = stock['Close'].rolling(window=elem).mean() #Mean
-            stock[f'Close_rolling_std_{elem}'] = stock['Close'].rolling(window=elem).std() #Std
+                EMA(stock,elem)
+                stock[f'Close_rolling_mean_{elem}'] = stock['Close'].rolling(window=elem).mean()
+                stock[f'Close_rolling_std_{elem}'] = stock['Close'].rolling(window=elem).std()
+                
+        # Lagg all features
+        for col in stock.columns:
+                for i in range(1,10):
+                        stock[f"{col}_Lag{i}"] = stock[col].shift(i)
 
-        for col in stock.columns: #Lagegd features
-            for i in range(1,10):
-                stock[f"{col}_Lag{i}"] = stock[col].shift(i)
+        for i in range(1,10):
+                stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
 
-        stock["Variation"] = stock['Close'].pct_change() * 100
-        stock["Variation"] = stock["Variation"].shift(-1)
 
-        stock["Close"] = stock["Close"].shift(-1)
+
+        # Add a new targets
+        stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
+        stock["Log_Variation"] = np.log(stock['Close']).diff() 
+
+        # Shifting the target features for logical prediction
+        stock["Variation%"] = stock["Variation%"].shift(-1)
+        stock["Log_Variation"] = stock["Log_Variation"].shift(-1)
+
+        df_pred_tomorrow[key] = stock.copy() # Copy to be used to predict tomorrow variation
+        stock.dropna(inplace=True)
 
         # Remove all lagged features to define df_features
         features_df[key] = stock[[col for col in stock.columns if 'Lag' in col ]]#and "Close" not in col
 
         # Define df_target
-        target_df[key] = stock[["Close","Variation"]]
-
-    df_tomorrow_prediction =df_ml.copy() # features for tomorrow prediction
-    # Date
-    df_date = {}
-
-    # For RMSE calculation
-    df_train = {}
-    df_test = {}
+        target_df[key] = stock[["Close","Variation%","Log_Variation"]]  
 
     # Actual vs Prediction values
-    df_prediction = {}
-    df_predictionYest = {}
-    df_actualClose = {}
-    df_actualCloseYest = {}
-
-    # Threshold
-    threshold_combined = {}
+    
+    #df_predictionYest = {}
 
     # Technical Indicators
     df_indicator={}
 
-    # Backtesting
-    df_y_pred = {}
+        ######
+    df_date = {}
     df_actuals = {}
+    df_y_pred = {}
+    df_prediction = {}
+    df_actualClose = {}
+    df_actualCloseYest = {}
+    df_threshold = {}
+    
+    #Train/Test
+    df_train ={}
+    df_test = {}
 
     for key in df_ml.keys():
-        #df_ml[key]=df_ml[key].dropna()
         X = features_df[key]
         y = target_df[key]["Variation%"]
 
-        # Train/ Test the model,
-        X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.2, shuffle=False)
+        # Train/Test the model
+        X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,test_size=0.2, shuffle=False)
         model = XGBRegressor()
         model.fit(X_train, y_train)
 
         y_pred_train = model.predict(X_train)
         y_pred_test = model.predict(X_test)
         
-        # Backtesting
+        # Y tesy Vs. Pred
         df_date[key] = X_test.index
-        df_actuals[key] =y_test.values
+        df_actuals[key] =y_test.values # Actual
         df_y_pred[key]=y_pred_test
 
 
@@ -99,16 +110,19 @@ def app():
         df_test[key] = rmse_test
 
         # Prediction tomorrow's close
-        X_tomorrow = df_tomorrow_prediction[key].tail(1)
-        X_tomorrow=X_tomorrow.drop(columns=['Open', 'High', 'Low',"Variation","Close"])
+        X_tomorrow = df_pred_tomorrow[key].tail(1)
+        X_tomorrow=X_tomorrow[features_df[key].columns]
         df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
-        
-        df_predictionYest[key]=y_pred_test[-1]
+
+        #df_predictionYest[key]=y_pred_test[-1]
         df_actualClose[key] = y_test[-1]
         df_actualCloseYest[key] = y_test[-2]
 
+        # Decision Making
+        df_threshold[key] = y.median()
 
-        #Best threshold that maximizes the combined metric (Accuracy and Number of correct predictions)
+        
+        """#Best threshold that maximizes the combined metric (Accuracy and Number of correct predictions)
         actual_today_close = y_test.values
         predicted_tomorrow_close = y_pred_test
 
@@ -142,7 +156,7 @@ def app():
 
         max_accuracy = max(accuracies)
         optimal_threshold = thresholds[accuracies.index(max_accuracy)]
-        threshold_combined[key] = optimal_threshold
+        threshold_combined[key] = optimal_threshold"""
 
         # SHAP values for features importance
         explainer = shap.TreeExplainer(model)
@@ -158,46 +172,41 @@ def app():
     df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
     df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
 
-    resultat_baselineModel = pd.merge(df_tr,df_tst)
+    resultat_baselineModel = pd.merge(df_tr,df_tst) # Display Train -> Test
     #st.write(resultat_baselineModel) # i decided not include the RMSE result table
     
-
-    # Actual
-    df_actualCloseYest = pd.DataFrame(list(df_actualCloseYest.items()), columns=["Key", 'Actual Close t_1'])
-    df_actualClose = pd.DataFrame(list(df_actualClose.items()), columns=["Key", 'Actual Close'])
+    # Create different dataframes
+    # Actual this week and the previous one 
+    df_actualCloseYest = pd.DataFrame(list(df_actualCloseYest.items()), columns=["Key", 'Week Before Last Variation%'])
+    df_actualClose = pd.DataFrame(list(df_actualClose.items()), columns=["Key", 'Last Week Variation%'])
 
     # Prediction
-    df_predictionYest = pd.DataFrame(list(df_predictionYest.items()), columns=["Key", 'Prediction close t_1'])
-    df_prediction = pd.DataFrame(list(df_prediction.items()), columns=["Key", 'Prediction tomorrow close'])
+    df_prediction = pd.DataFrame(list(df_prediction.items()), columns=["Key", 'Prediction Next Week Variation%'])
 
-    # Thresold
-    df_threshold = pd.DataFrame(list(threshold_combined.items()), columns=["Key", 'Threshold'])
+    # Decision Making
+    df_threshold = pd.DataFrame(list(df_threshold.items()), columns=["Key", 'Median50%'])
 
     # T.Indicators
     df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
 
-    # Backtesting
-    df_actuals = pd.DataFrame(list(df_actuals.items()), columns=["Key", 'Actual Close'])
-    df_y_preds = pd.DataFrame(list(df_y_pred.items()), columns=["Key", 'Predictions'])
-
     final= pd.merge(df_actualCloseYest,df_actualClose)
+    final = pd.merge (final,df_prediction)
+    final = pd.merge (final,df_threshold)
 
-    final["Prediction Variation%"] = ((df_prediction["Prediction tomorrow close"] - df_predictionYest["Prediction close t_1"])/ df_predictionYest["Prediction close t_1"]) *100
-
-    # Add Threshold for each stock
-    final["Threshold"] = df_threshold["Threshold"]
+    final["Decision"] = final.apply(todo,axis=1)
 
     # Sort the final data into high and low volatility stocks
     high_volatility_df = pd.merge(final,high_volatility_df)
-    low_volatility_df = pd.merge(final,low_volatility_df)
+    st.write(high_volatility_df)
+    #low_volatility_df = pd.merge(final,low_volatility_df)
 
-    high_volatility_df["Decision"] = high_volatility_df.apply(todo,axis=1)
+    """high_volatility_df["Decision"] = high_volatility_df.apply(todo,axis=1)
     low_volatility_df["Decision"] = low_volatility_df.apply(todo,axis=1)
     
     st.caption("Beta > 1 :")
     st.write(high_volatility_df)
     st.caption("Beta < 1 :")
-    st.write(low_volatility_df)
+    st.write(low_volatility_df)"""
 
     st.subheader("Model Insights")
     st.write("Display the top 4 technical indicators contributing to the predictions.")

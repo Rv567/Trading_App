@@ -187,13 +187,12 @@ def high_low_volat(df1,df2):
     return list_df
 
 def todo(df):
-    if df["Prediction Variation%"] > df["Threshold"]:
+    if df["Prediction Next Week Variation%"] > df["Median50%"]:
         return "Buy"
-    elif df["Prediction Variation%"] < - df["Threshold"]:
+    elif df["Prediction Next Week Variation%"] < - df["Median50%"]:
         return "Sell"
     else:
         return "Hold"
-    
 
 def plot_scatter_pairs(df, x,y):
 
