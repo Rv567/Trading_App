@@ -10,25 +10,23 @@ def app():
     st.subheader("Prediction Table")
     st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold)")
     st.markdown("<h3 style='color: blue;'>🔄 Model is running...</h3>", unsafe_allow_html=True)
-    st.write()
+    
+    # Retrieve Data
     Newdict_df = st.session_state['Newdict_df']
     high_volatility_df = st.session_state['high_volatility_df']
     low_volatility_df = st.session_state['low_volatility_df']
 
-    features_df = {}
-    target_df ={}
-
     dataframes = load_data_weekly()
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
 
-    st.write(dataframes["ATW"])#verify data
+    #st.write(dataframes["ATW"])#verify data
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
 
     features_df = {}
     target_df ={}
     df_pred_tomorrow = {} #model.predict()
-
+     
     for key in Newdict_df.keys():
         df_ml= dataframes.copy()
         stock = df_ml[key]
@@ -80,93 +78,94 @@ def app():
     df_threshold = {}
     df_indicator={}
     
-    #Train/Test
-    df_train ={}
-    df_test = {}
+    
+    st.header("Strategy Optimization")
+    if st.button("Predict 🚀"):
+        # Progress status
+        progress_bar = st.progress(0)
+        progress_text = st.empty()
+        total_keys = len(Newdict_df.keys())
 
-    # Progress status
-    progress_bar = st.progress(0)
-    progress_text = st.empty()
-    total_keys = len(Newdict_df.keys())
+        for i,key in enumerate(Newdict_df.keys()):
 
-    for i,key in enumerate(Newdict_df.keys()):
+                progress_bar.progress((i + 1) / total_keys)
+                progress_text.text(f"Processing {key}... ({i + 1}/{total_keys})")
+                X = features_df[key]
+                y = target_df[key]["Variation%"]
 
-        progress_bar.progress((i + 1) / total_keys)
-        progress_text.text(f"Processing {key}... ({i + 1}/{total_keys})")
-        X = features_df[key]
-        y = target_df[key]["Variation%"]
+                # Train/Test the model
+                X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,test_size=0.2, shuffle=False)
+                model = XGBRegressor()
+                model.fit(X_train, y_train)
 
-        # Train/Test the model
-        X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,test_size=0.2, shuffle=False)
-        model = XGBRegressor()
-        model.fit(X_train, y_train)
+                y_pred_train = model.predict(X_train)
+                y_pred_test = model.predict(X_test)
+                
+                # Y tesy Vs. Pred
+                df_date[key] = X_test.index
+                df_actuals[key] =y_test.values # Actual
+                df_y_pred[key]=y_pred_test
 
-        y_pred_train = model.predict(X_train)
-        y_pred_test = model.predict(X_test)
+
+                """rmse_train = mean_squared_error(y_train,y_pred_train, squared=False)
+                rmse_test = mean_squared_error(y_test,y_pred_test, squared=False)
+                df_train[key] = rmse_train
+                df_test[key] = rmse_test"""
+
+                # Prediction tomorrow's close
+                X_tomorrow = df_pred_tomorrow[key].tail(1)
+                X_tomorrow=X_tomorrow[features_df[key].columns]
+                df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
+
+                #df_predictionYest[key]=y_pred_test[-1]
+                df_actualClose[key] = y_test[-1]
+                df_actualCloseYest[key] = y_test[-2]
+
+                # Decision Making
+                df_threshold[key] = y.median()
+
+                # Best Indicators
+                # SHAP values for features importance
+                explainer = shap.TreeExplainer(model)
+                shap_values = explainer.shap_values(X_test)
+
+                # Find the best indicators for each stock, indicator = [momentum, overlap, volatility, volume]
+                mean_shap = np.mean(np.abs(shap_values), axis=0)
+                sorted_index = np.argsort(mean_shap)[::-1]
+                sorted_features = X.columns[sorted_index]
+
+                df_indicator[key] = best_indicators_category(sorted_features)
+
+        progress_text.text("Model prediction complete!")
+        st.success("All stocks have been processed.")
+
+        """df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
+        df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
+        resultat_baselineModel = pd.merge(df_tr,df_tst) # Display Train -> Test
+        #st.write(resultat_baselineModel) # i decided not include the RMSE result table"""
         
-        # Y tesy Vs. Pred
-        df_date[key] = X_test.index
-        df_actuals[key] =y_test.values # Actual
-        df_y_pred[key]=y_pred_test
+        # Create different dataframes
+        # Actual this week and the previous one 
+        df_actualCloseYest = pd.DataFrame(list(df_actualCloseYest.items()), columns=["Key", 'Week Before Last Variation%'])
+        df_actualClose = pd.DataFrame(list(df_actualClose.items()), columns=["Key", 'Last Week Variation%'])
 
-
-        """rmse_train = mean_squared_error(y_train,y_pred_train, squared=False)
-        rmse_test = mean_squared_error(y_test,y_pred_test, squared=False)
-        df_train[key] = rmse_train
-        df_test[key] = rmse_test"""
-
-        # Prediction tomorrow's close
-        X_tomorrow = df_pred_tomorrow[key].tail(1)
-        X_tomorrow=X_tomorrow[features_df[key].columns]
-        df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
-
-        #df_predictionYest[key]=y_pred_test[-1]
-        df_actualClose[key] = y_test[-1]
-        df_actualCloseYest[key] = y_test[-2]
+        # Prediction
+        df_prediction = pd.DataFrame(list(df_prediction.items()), columns=["Key", 'Prediction Next Week Variation%'])
 
         # Decision Making
-        df_threshold[key] = y.median()
+        df_threshold = pd.DataFrame(list(df_threshold.items()), columns=["Key", 'Median50%'])
 
+        # T.Indicators
+        df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
+        df_indicators.to_pickle('df_indicators.pkl')
 
-        # SHAP values for features importance
-        explainer = shap.TreeExplainer(model)
-        shap_values = explainer.shap_values(X_test)
+        final= pd.merge(df_actualCloseYest,df_actualClose)
+        final = pd.merge (final,df_prediction)
+        final = pd.merge (final,df_threshold)
+        final["Decision"] = final.apply(todo,axis=1)
+        final.to_pickle('final.pkl')
 
-        # Find the best indicators for each stock, indicator = [momentum, overlap, volatility, volume]
-        mean_shap = np.mean(np.abs(shap_values), axis=0)
-        sorted_index = np.argsort(mean_shap)[::-1]
-        sorted_features = X.columns[sorted_index]
-
-        df_indicator[key] = best_indicators_category(sorted_features)
-
-    progress_text.text("Model prediction complete!")
-    st.success("All stocks have been processed.")
-
-    """df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
-    df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
-
-    resultat_baselineModel = pd.merge(df_tr,df_tst) # Display Train -> Test
-    #st.write(resultat_baselineModel) # i decided not include the RMSE result table"""
-    
-    # Create different dataframes
-    # Actual this week and the previous one 
-    df_actualCloseYest = pd.DataFrame(list(df_actualCloseYest.items()), columns=["Key", 'Week Before Last Variation%'])
-    df_actualClose = pd.DataFrame(list(df_actualClose.items()), columns=["Key", 'Last Week Variation%'])
-
-    # Prediction
-    df_prediction = pd.DataFrame(list(df_prediction.items()), columns=["Key", 'Prediction Next Week Variation%'])
-
-    # Decision Making
-    df_threshold = pd.DataFrame(list(df_threshold.items()), columns=["Key", 'Median50%'])
-
-    # T.Indicators
-    df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
-
-    final= pd.merge(df_actualCloseYest,df_actualClose)
-    final = pd.merge (final,df_prediction)
-    final = pd.merge (final,df_threshold)
-    final["Decision"] = final.apply(todo,axis=1)
-
+    final = pd.read_pickle('final.pkl') # Store it in local
     # Sort the final data into high and low volatility stocks
     st.subheader("Model prediction for stocks with Beta>1")
     high_volatility_df = pd.merge(final,high_volatility_df)
@@ -178,4 +177,5 @@ def app():
 
     st.subheader("Model Insights")
     st.write("Display the top 4 Technical Indicators contributing to the predictions.")
+    df_indicators = pd.read_pickle('df_indicators.pkl')
     st.write(df_indicators)
