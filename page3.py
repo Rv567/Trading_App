@@ -113,6 +113,7 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
                     trades[elem] = last_trade
+                    st.write(trades[elem])
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
@@ -132,6 +133,7 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
                     trades[elem] = last_trade
+                    
 
 
             df_return_low = pd.DataFrame(stock_strategy_return_low)
