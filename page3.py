@@ -157,8 +157,7 @@ def app():
     df_transposed = df_trades_high.transpose()
 
     # Rename the columns to the first row and then drop the first row
-    df_transposed.columns = df_transposed.iloc[0]
-    df_transposed = df_transposed.drop(df_transposed.index[0])
+    
     st.write(df_transposed.columns)
     # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
     selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
