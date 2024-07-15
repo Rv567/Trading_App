@@ -135,7 +135,7 @@ def app():
             df_trades_low.to_pickle('trades_low.pkl')
             
 
-    st.subheader('Corresponding Stocks performance for an <span style="color:green;">**uptrend market**</span>', unsafe_allow_html=True)
+    st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
     st.write(df_high)
 
@@ -144,7 +144,7 @@ def app():
     st.write(reorganize_trades(df_trades_high))
 
 
-    st.subheader('Corresponding Stocks performance for an <span style="color:red;">**downtrend market**</span>', unsafe_allow_html=True)
+    st.subheader("Corresponding Stocks performance for an **downtrend market**")
     df_low = pd.read_pickle('performance_low.pkl')
     st.write(df_low)
 
