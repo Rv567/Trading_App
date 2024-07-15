@@ -23,64 +23,62 @@ def app():
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
 
-    features_df = {}
-    target_df ={}
-    df_pred_tomorrow = {} #model.predict()
-     
-    for key in Newdict_df.keys():
-        df_ml= dataframes.copy()
-        stock = df_ml[key]
-        # Technical Indicators
-        test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] 
-        for elem in test_indicators:
-                elem(stock)
-
-        # Different periods
-        for elem in [2,4,8,16,32,64]:
-                EMA(stock,elem)
-                stock[f'Close_rolling_mean_{elem}'] = stock['Close'].rolling(window=elem).mean()
-                stock[f'Close_rolling_std_{elem}'] = stock['Close'].rolling(window=elem).std()
-                
-        # Lagg all features
-        for col in stock.columns:
-                for i in range(1,10):
-                        stock[f"{col}_Lag{i}"] = stock[col].shift(i)
-
-        for i in range(1,10):
-                stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
-
-
-
-        # Add a new targets
-        stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
-        stock["Log_Variation"] = np.log(stock['Close']).diff() 
-
-        # Shifting the target features for logical prediction
-        stock["Variation%"] = stock["Variation%"].shift(-1)
-        stock["Log_Variation"] = stock["Log_Variation"].shift(-1)
-
-        df_pred_tomorrow[key] = stock.copy() # Copy to be used to predict tomorrow variation
-        stock.dropna(inplace=True)
-
-        # Remove all lagged features to define df_features
-        features_df[key] = stock[[col for col in stock.columns if 'Lag' in col ]]#and "Close" not in col
-
-        # Define df_target
-        target_df[key] = stock[["Close","Variation%","Log_Variation"]]
-
-    ###########
-    df_date = {}
-    df_actuals = {}
-    df_y_pred = {}
-    df_prediction = {}
-    df_actualClose = {}
-    df_actualCloseYest = {}
-    df_threshold = {}
-    df_indicator={}
-    
-    
     st.header("Strategy Optimization")
     if st.button("Predict 🚀"):
+        features_df = {}
+        target_df ={}
+        df_pred_tomorrow = {} #model.predict()
+        for key in Newdict_df.keys():
+                df_ml= dataframes.copy()
+                stock = df_ml[key]
+                # Technical Indicators
+                test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] 
+                for elem in test_indicators:
+                        elem(stock)
+
+                # Different periods
+                for elem in [2,4,8,16,32,64]:
+                        EMA(stock,elem)
+                        stock[f'Close_rolling_mean_{elem}'] = stock['Close'].rolling(window=elem).mean()
+                        stock[f'Close_rolling_std_{elem}'] = stock['Close'].rolling(window=elem).std()
+                        
+                # Lagg all features
+                for col in stock.columns:
+                        for i in range(1,10):
+                                stock[f"{col}_Lag{i}"] = stock[col].shift(i)
+
+                for i in range(1,10):
+                        stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
+
+
+
+                # Add a new targets
+                stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
+                stock["Log_Variation"] = np.log(stock['Close']).diff() 
+
+                # Shifting the target features for logical prediction
+                stock["Variation%"] = stock["Variation%"].shift(-1)
+                stock["Log_Variation"] = stock["Log_Variation"].shift(-1)
+
+                df_pred_tomorrow[key] = stock.copy() # Copy to be used to predict tomorrow variation
+                stock.dropna(inplace=True)
+
+                # Remove all lagged features to define df_features
+                features_df[key] = stock[[col for col in stock.columns if 'Lag' in col ]]#and "Close" not in col
+
+                # Define df_target
+                target_df[key] = stock[["Close","Variation%","Log_Variation"]]
+
+        ###########
+        df_date = {}
+        df_actuals = {}
+        df_y_pred = {}
+        df_prediction = {}
+        df_actualClose = {}
+        df_actualCloseYest = {}
+        df_threshold = {}
+        df_indicator={}
+    
         # Progress status
         progress_bar = st.progress(0)
         progress_text = st.empty()
