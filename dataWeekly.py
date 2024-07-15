@@ -34,10 +34,10 @@ saadawk = tv.get_hist(symbol='RDS',exchange='CSEMA',interval=Interval.in_weekly,
 deltawk = tv.get_hist(symbol='DHO',exchange='CSEMA',interval=Interval.in_weekly,n_bars=60000)
 feniewk =  tv.get_hist(symbol='FBR',exchange='CSEMA',interval=Interval.in_weekly,n_bars=60000)
 
-"""ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
+ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
 dataframes = [masiwk,attijariwk,iamwk,bcpwk,lafargewk,boawk,taqawk,cimentwk,totalwk,addouhawk,tgccwk,cdmwk,atlantawk,bmciwk,akditalwk,sanlamwk,cfgwk,aradeiwk,aliancewk,distywk,autowk,saadawk,deltawk,feniewk]
 
 
 # Save each DataFrame to disk
 for i, df in zip(ticker, dataframes):
-    df.to_pickle(f'dataframe_weekly_{i}.pkl')"""
+    df.to_pickle(f'dataframe_weekly_{i}.pkl')
