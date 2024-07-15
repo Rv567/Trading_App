@@ -43,6 +43,7 @@ def reorganize_trades(df):
     selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
     df_transposed = df_transposed[selected_columns]
     df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
+    df_transposed["Perf %"]=df_transposed["Perf %"]*100
     return df_transposed
 
 def format_technical_rating(rating: float) -> str:
