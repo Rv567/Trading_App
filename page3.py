@@ -72,8 +72,11 @@ def app():
         st.session_state['df_return_high'] = {}
     if 'df_return_low' not in st.session_state:
         st.session_state['df_return_low'] = {}
+
     if 'df_trades_high' not in st.session_state:
         st.session_state['df_trades_high'] = {}
+    if 'df_trades_low' not in st.session_state:
+        st.session_state['df_trades_low'] = {}
 
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
@@ -125,30 +128,32 @@ def app():
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
-                    best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
+                    best_parameters, optim,last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
+                    trades[elem] = last_trade
 
 
             df_return_low = pd.DataFrame(stock_strategy_return_low)
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
             df_return_low.to_pickle('performance_low.pkl')
             st.session_state['df_return_low'] = df_return_low
+            df_trades_low = pd.DataFrame(trades)
+            st.session_state['df_trades_low'] = df_trades_low
     
 
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
     st.write(df_high)
-    st.write("Last trade")
+    st.subheader("Last trade")
+    df_trades_high.loc["ReturnPct"] = df_trades_high.loc["ReturnPct"] * 100
     st.write(df_trades_high)
     
     st.subheader("Corresponding Stocks performance for a **downtrend market**")
-    st.write(pd.read_pickle('performance_low.pkl'))
-
-    
-    """stock = st.selectbox("Choose a stock",high_volatility_df_stocks,key='kl')
-    st.write(df_return_high[stock].iloc[-1]["EntryTime"])
-    st.write(df_return_high[stock].iloc[-1]["EntryPrice"])
-    st.write(df_return_high[stock].iloc[-1]["ReturnPct"])"""
+    df_low = pd.read_pickle('performance_low.pkl')
+    st.write(df_low)
+    st.subheader("Last trade")
+    df_trades_low.loc["ReturnPct"] = df_trades_low.loc["ReturnPct"] * 100
+    st.write(df_trades_low)
     
 
