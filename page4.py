@@ -9,7 +9,6 @@ def app():
 
     st.subheader("Prediction Table")
     st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold)")
-    st.markdown("<h3 style='color: blue;'>🔄 Model is running...</h3>", unsafe_allow_html=True)
     
     # Retrieve Data
     Newdict_df = st.session_state['Newdict_df']
@@ -22,12 +21,15 @@ def app():
     #st.write(dataframes["ATW"])#verify data
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
-
+    st.write(Newdict_df.keys())
+        
     st.header("Strategy Optimization")
-    if st.button("Predict 🚀"):
+    if st.button("Predict 🔮"):
+        st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
         features_df = {}
         target_df ={}
         df_pred_tomorrow = {} #model.predict()
+        
         for key in Newdict_df.keys():
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
@@ -164,6 +166,7 @@ def app():
         final.to_pickle('final.pkl')
 
     final = pd.read_pickle('final.pkl') # Store it in local
+    st.write(final)
     # Sort the final data into high and low volatility stocks
     st.subheader("Model prediction for stocks with Beta>1")
     high_volatility_df = pd.merge(final,high_volatility_df)
