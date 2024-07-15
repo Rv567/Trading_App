@@ -158,7 +158,7 @@ def app():
 
     # Rename the columns to the first row and then drop the first row
     selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
-    df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
+    df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
     st.write(df_transposed.columns)
     st.write(df_transposed[selected_columns])
 
