@@ -161,9 +161,9 @@ def app():
     st.write(df_transposed.columns)
     # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
     selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
-    filtered_df = df_transposed[selected_columns]
+    """filtered_df = df_transposed[selected_columns]
     st.write(filtered_df)
-    
+    """
     """st.subheader("Corresponding Stocks performance for a **downtrend market**")
     df_low = pd.read_pickle('performance_low.pkl')
     st.write(df_low)
