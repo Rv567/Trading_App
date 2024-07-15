@@ -72,9 +72,12 @@ def app():
         st.session_state['df_return_high'] = {}
     if 'df_return_low' not in st.session_state:
         st.session_state['df_return_low'] = {}
+    if 'df_trades_high' not in st.session_state:
+        st.session_state['df_trades_high'] = {}
 
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
+    trades = {}
     custom_button_css = """
         <style>
         .stButton > button {
@@ -103,14 +106,17 @@ def app():
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
-                    best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
+                    best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
+                    trades[elem] = last_trade
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             df_return_high.to_pickle('performance_high.pkl')
             st.session_state['df_return_high'] = df_return_high
+            df_trades_high = pd.DataFrame(trades)
+            st.session_state['df_trades_high'] = df_trades_high
 
                     
         else :
@@ -122,6 +128,7 @@ def app():
                     best_parameters, optim = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
+
 
             df_return_low = pd.DataFrame(stock_strategy_return_low)
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
@@ -138,8 +145,9 @@ def app():
     st.write(pd.read_pickle('performance_low.pkl'))
 
     st.write("Last trade")
-    stock = st.selectbox("Choose a stock",high_volatility_df_stocks,key='kl')
+    """stock = st.selectbox("Choose a stock",high_volatility_df_stocks,key='kl')
     st.write(df_return_high[stock].iloc[-1]["EntryTime"])
     st.write(df_return_high[stock].iloc[-1]["EntryPrice"])
-    st.write(df_return_high[stock].iloc[-1]["ReturnPct"])
+    st.write(df_return_high[stock].iloc[-1]["ReturnPct"])"""
+    st.write(df_trades_high)
 

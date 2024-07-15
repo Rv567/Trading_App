@@ -283,13 +283,14 @@ def optimize_strategies(dataframe, strategies):
         if optim['Return [%]'] > best_return:
             best_return = optim['Return [%]']
             best_parameters = optim["_strategy"]
+            last_trade = optim["_trades"].iloc[-1]
             best_optim = optim
 
         # Update progress bar
         progress_bar.progress(progress / total_strategies)
 
     status_text.text("Optimization completed.")
-    return best_parameters, best_optim
+    return best_parameters, best_optim, last_trade
     #return best_strategy, best_parameters
 
 def backtest_ML(data):
