@@ -22,8 +22,9 @@ def app():
     #st.write(dataframes)
     #stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
-    del Newdict_df['CFG']
-    del Newdict_df['AKT']
+
+    Newdict_df.pop('CFG', None)
+    Newdict_df.pop('AKT', None)
 
     features_df = {}
     target_df ={}
