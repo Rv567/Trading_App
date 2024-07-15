@@ -153,6 +153,17 @@ def app():
 
     st.subheader("Last trade")
     df_trades_high = pd.read_pickle('trades_high.pkl')
+    rows_to_keep = ['EntryTime', 'EntryPrice', 'ReturnPct']
+    df_filtered = df_trades_high[df_trades_high.iloc[:, 0].isin(rows_to_keep)].set_index(df_trades_high.iloc[:, 0])
+
+    # Reorder the rows
+    df_filtered = df_filtered.loc[rows_to_keep]
+
+    # Modify the value of ReturnPct
+    df_filtered.loc['ReturnPct'] = df_filtered.loc['ReturnPct'].astype(float) * 100
+
+    # Reset index to make 'EntryTime', 'EntryPrice', and 'ReturnPct' as column names
+    df_filtered.reset_index(inplace=True)
     st.write(df_trades_high)
     
     """st.subheader("Corresponding Stocks performance for a **downtrend market**")
