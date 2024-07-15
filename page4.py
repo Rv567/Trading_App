@@ -21,6 +21,7 @@ def app():
     #stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     del Newdict_df['CFG']
+    del Newdict_df['AKT']
 
     features_df = {}
     target_df ={}
@@ -155,7 +156,7 @@ def app():
         optimal_threshold = thresholds[accuracies.index(max_accuracy)]
         threshold_combined[key] = optimal_threshold"""
 
-        # SHAP values for features importance
+        """# SHAP values for features importance
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X_test)
 
@@ -164,7 +165,7 @@ def app():
         sorted_index = np.argsort(mean_shap)[::-1]
         sorted_features = X.columns[sorted_index]
 
-        df_indicator[key] = best_indicators_category(sorted_features)
+        df_indicator[key] = best_indicators_category(sorted_features)"""
 
     df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
     df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
@@ -184,12 +185,11 @@ def app():
     df_threshold = pd.DataFrame(list(df_threshold.items()), columns=["Key", 'Median50%'])
 
     # T.Indicators
-    df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
+    #df_indicators = pd.DataFrame.from_dict(df_indicator,orient="index",columns=['momentum',"overlap","volatility","volume"])
 
     final= pd.merge(df_actualCloseYest,df_actualClose)
     final = pd.merge (final,df_prediction)
     final = pd.merge (final,df_threshold)
-
     final["Decision"] = final.apply(todo,axis=1)
 
     # Sort the final data into high and low volatility stocks
@@ -207,4 +207,4 @@ def app():
 
     st.subheader("Model Insights")
     st.write("Display the top 4 technical indicators contributing to the predictions.")
-    st.write(df_indicators)
+    #st.write(df_indicators)
