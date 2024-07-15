@@ -17,7 +17,8 @@ def app():
     target_df ={}
 
     dataframes = load_data_weekly()
-    stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
+    st.write(dataframes)
+    #stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     del Newdict_df['CFG']
 
@@ -26,7 +27,7 @@ def app():
     df_pred_tomorrow = {} #model.predict()
 
     for key in Newdict_df.keys():
-        df_ml= Newdict_df.copy()
+        df_ml= dataframes.copy()
         stock = df_ml[key]
         # Technical Indicators
         test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] 
@@ -66,14 +67,7 @@ def app():
         # Define df_target
         target_df[key] = stock[["Close","Variation%","Log_Variation"]]  
 
-    # Actual vs Prediction values
-    
-    #df_predictionYest = {}
-
-    # Technical Indicators
-    df_indicator={}
-
-        ######
+    ###########
     df_date = {}
     df_actuals = {}
     df_y_pred = {}
@@ -81,12 +75,13 @@ def app():
     df_actualClose = {}
     df_actualCloseYest = {}
     df_threshold = {}
+    df_indicator={}
     
     #Train/Test
     df_train ={}
     df_test = {}
 
-    for key in df_ml.keys():
+    for key in Newdict_df.keys():
         X = features_df[key]
         y = target_df[key]["Variation%"]
 
