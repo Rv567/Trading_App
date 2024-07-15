@@ -33,9 +33,9 @@ def app():
         1. **Percentage Change Formula**:
         The percentage change is calculated using the formula:
 
-        \[
-        \text{Percentage Change} = \left( \frac{\text{Close}_{\text{current week}} - \text{Close}_{\text{previous week}}}{\text{Close}_{\text{previous week}}} \right) \times 100
-        \]
+        $$
+        \\text{Percentage Change} = \\left( \\frac{\\text{Close}_{\\text{current week}} - \\text{Close}_{\\text{previous week}}}{\\text{Close}_{\\text{previous week}}} \\right) \\times 100
+        $$
 
         2. **Rounding the Result**: """)
     if st.button("Predict 🔮"):
