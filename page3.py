@@ -157,12 +157,12 @@ def app():
     df_transposed = df_trades_high.transpose()
 
     # Rename the columns to the first row and then drop the first row
-    
+    selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
     st.write(df_transposed.columns)
     st.write(df_transposed[selected_columns])
 
     # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
-    selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
+    
     """filtered_df = df_transposed[selected_columns]
     st.write(filtered_df)
     """
