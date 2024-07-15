@@ -6,10 +6,8 @@ from Functions.startegies import *
 def app():
     st.header("Introduction to the Trading Strategy page")
     st.write("Welcome to the Trading Strategy page. Here, you can define the best trading strategy for each stock.")
-    #st.subheader("Stock Symbol Selection")
-    dataframes = load_data()
-    stock_list = ["ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     
+    dataframes = load_data()
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     for key, df in dataframes.items():
         df.index.name = None
