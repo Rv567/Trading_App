@@ -161,7 +161,7 @@ def app():
     df_transposed = df_transposed[selected_columns]
     df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
     st.write(df_transposed.columns)
-    st.write(df_transposed)
+    st.write(df_transposed.transpose())
 
 
     # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
