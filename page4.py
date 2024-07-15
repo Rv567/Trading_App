@@ -35,21 +35,27 @@ def app():
 
         """)
     custom_button_css = """
-        <style>
-        .stButton > button {
-            background-color: yellow;
-            color: black;
-            font-size: 16px;
-            padding: 10px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .stButton > button:hover {
-            background-color: #45a049;
-        }
-        </style>
-    """
+    <style>
+    .stButton > button {
+        background-color: yellow;
+        color: black;
+        font-size: 24px;  /* Increase font size */
+        padding: 20px 40px;  /* Increase padding */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .stButton > button:hover {
+        background-color: #45a049;
+    }
+    .centered-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    </style>
+        """
 
     # Inject CSS into the Streamlit app
     st.markdown(custom_button_css, unsafe_allow_html=True)
