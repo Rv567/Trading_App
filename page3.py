@@ -75,8 +75,8 @@ def app():
 
     if 'df_trades_high' not in st.session_state:
         st.session_state['df_trades_high'] = {}
-    if 'df_trades_low' not in st.session_state:
-        st.session_state['df_trades_low'] = {}
+    """if 'df_trades_low' not in st.session_state:
+        st.session_state['df_trades_low'] = {}"""
 
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
@@ -113,14 +113,14 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
                     trades[elem] = last_trade
-                    st.write(trades[elem])
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             df_return_high.to_pickle('performance_high.pkl')
-            st.session_state['df_return_high'] = df_return_high
+            #st.session_state['df_return_high'] = df_return_high
             df_trades_high = pd.DataFrame(trades)
-            st.session_state['df_trades_high'] = df_trades_high
+            df_trades_high.to_pickle('trades_high.pkl')
+            #st.session_state['df_trades_high'] = df_trades_high
 
                     
         else :
@@ -133,23 +133,23 @@ def app():
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
                     trades[elem] = last_trade
-                    
-
+                
 
             df_return_low = pd.DataFrame(stock_strategy_return_low)
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
             df_return_low.to_pickle('performance_low.pkl')
             st.session_state['df_return_low'] = df_return_low
-            df_trades_low = pd.DataFrame(trades)
-            st.session_state['df_trades_low'] = df_trades_low
+            """df_trades_low = pd.DataFrame(trades)
+            st.session_state['df_trades_low'] = df_trades_low"""
     
 
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
+    df_trades_high = pd.read_pickle('trades_high_high.pkl')
     st.write(df_high)
     st.subheader("Last trade")
     #df_trades_high.loc["ReturnPct"] = df_trades_high.loc["ReturnPct"] * 100
-    #st.write(df_trades_high)
+    st.write(df_trades_high)
     
     """st.subheader("Corresponding Stocks performance for a **downtrend market**")
     df_low = pd.read_pickle('performance_low.pkl')
