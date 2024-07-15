@@ -17,7 +17,7 @@ def app():
     target_df ={}
 
     dataframes = load_data_weekly()
-    st.write(dataframes)
+    #st.write(dataframes)
     #stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     del Newdict_df['CFG']
@@ -65,7 +65,8 @@ def app():
         features_df[key] = stock[[col for col in stock.columns if 'Lag' in col ]]#and "Close" not in col
 
         # Define df_target
-        target_df[key] = stock[["Close","Variation%","Log_Variation"]]  
+        target_df[key] = stock[["Close","Variation%","Log_Variation"]]
+        st.write(key) 
 
     ###########
     df_date = {}
