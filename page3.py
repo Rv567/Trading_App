@@ -136,7 +136,7 @@ def app():
                     best_parameters, optim,last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
-                    trades[elem] = last_trade
+                    trades_low[elem] = last_trade
                 
 
             df_return_low = pd.DataFrame(stock_strategy_return_low)
@@ -152,7 +152,7 @@ def app():
     st.write(df_high)
 
     st.subheader("Last trade")
-    df_trades_high = pd.read_pickle('trades_high_high.pkl')
+    df_trades_high = pd.read_pickle('trades_high.pkl')
     st.write(df_trades_high)
     
     """st.subheader("Corresponding Stocks performance for a **downtrend market**")
