@@ -159,6 +159,8 @@ def app():
     # Rename the columns to the first row and then drop the first row
     
     st.write(df_transposed.columns)
+    st.write(df_transposed[selected_columns])
+
     # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
     selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
     """filtered_df = df_transposed[selected_columns]
