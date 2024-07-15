@@ -19,10 +19,8 @@ def app():
     target_df ={}
 
     dataframes = load_data_weekly()
-    
-    #st.write(dataframes)
-    #stock_list = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
+
     st.write(dataframes["ATW"])#verify data
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
