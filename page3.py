@@ -94,7 +94,7 @@ def app():
 
     # Inject CSS into the Streamlit app
     st.markdown(custom_button_css, unsafe_allow_html=True)
-    
+
     st.header("Strategy Optimization")
     if st.button("Optimize 🚀"):
         if market == "Marché Haussier":
@@ -135,4 +135,9 @@ def app():
     st.subheader("Corresponding Stocks performance for a **downtrend market**")
     st.write(pd.read_pickle('performance_low.pkl'))
 
-    
+    st.write("Last trade")
+    stock = st.selectbox("Choose a stock",high_volatility_df_stocks,key='kl')
+    st.write(df_return_high[stock].iloc[-1]["EntryTime"])
+    st.write(df_return_high[stock].iloc[-1]["EntryPrice"])
+    st.write(df_return_high[stock].iloc[-1]["ReturnPct"])
+
