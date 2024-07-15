@@ -139,15 +139,16 @@ def app():
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
     st.write(df_high)
-
+    st.write("Last trade")
+    st.write(df_trades_high)
     
     st.subheader("Corresponding Stocks performance for a **downtrend market**")
     st.write(pd.read_pickle('performance_low.pkl'))
 
-    st.write("Last trade")
+    
     """stock = st.selectbox("Choose a stock",high_volatility_df_stocks,key='kl')
     st.write(df_return_high[stock].iloc[-1]["EntryTime"])
     st.write(df_return_high[stock].iloc[-1]["EntryPrice"])
     st.write(df_return_high[stock].iloc[-1]["ReturnPct"])"""
-    st.write(df_trades_high)
+    
 
