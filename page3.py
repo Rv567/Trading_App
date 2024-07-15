@@ -68,19 +68,22 @@ def app():
     - For a **downtrend market**, stocks with a **Beta < 1** are selected.
     """)
 
-    if 'df_return_high' not in st.session_state:
+    """if 'df_return_high' not in st.session_state:
         st.session_state['df_return_high'] = {}
     if 'df_return_low' not in st.session_state:
         st.session_state['df_return_low'] = {}
 
     if 'df_trades_high' not in st.session_state:
         st.session_state['df_trades_high'] = {}
-    """if 'df_trades_low' not in st.session_state:
+    if 'df_trades_low' not in st.session_state:
         st.session_state['df_trades_low'] = {}"""
 
     stock_strategy_return_high = {}
     stock_strategy_return_low = {}
+    df_return_high = {}
+    df_return_low = {}
     trades = {}
+
     custom_button_css = """
         <style>
         .stButton > button {
@@ -118,11 +121,10 @@ def app():
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             df_return_high.to_pickle('performance_high.pkl')
-            #st.session_state['df_return_high'] = df_return_high
+            
+
             df_trades_high = pd.DataFrame(trades)
             df_trades_high.to_pickle('trades_high.pkl')
-            #st.session_state['df_trades_high'] = df_trades_high
-
                     
         else :
             st.write("Stock with a Beta < 1")
@@ -139,17 +141,17 @@ def app():
             df_return_low = pd.DataFrame(stock_strategy_return_low)
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
             df_return_low.to_pickle('performance_low.pkl')
-            st.session_state['df_return_low'] = df_return_low
-            """df_trades_low = pd.DataFrame(trades)
-            st.session_state['df_trades_low'] = df_trades_low"""
+            
+            #df_trades_low = pd.DataFrame(trades)
+            
     
 
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
-    df_trades_high = pd.read_pickle('trades_high_high.pkl')
     st.write(df_high)
+
     st.subheader("Last trade")
-    #df_trades_high.loc["ReturnPct"] = df_trades_high.loc["ReturnPct"] * 100
+    df_trades_high = pd.read_pickle('trades_high_high.pkl')
     st.write(df_trades_high)
     
     """st.subheader("Corresponding Stocks performance for a **downtrend market**")
