@@ -153,6 +153,7 @@ def app():
 
     st.subheader("Last trade")
     df_trades_high = pd.read_pickle('trades_high.pkl')
+    st.write(df_trades_high.columns)
     df_transposed = df_trades_high.transpose()
 
     # Rename the columns to the first row and then drop the first row
