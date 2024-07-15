@@ -146,14 +146,14 @@ def app():
     df_high = pd.read_pickle('performance_high.pkl')
     st.write(df_high)
     st.subheader("Last trade")
-    df_trades_high.loc["ReturnPct"] = df_trades_high.loc["ReturnPct"] * 100
+    #df_trades_high.loc["ReturnPct"] = df_trades_high.loc["ReturnPct"] * 100
     st.write(df_trades_high)
     
     st.subheader("Corresponding Stocks performance for a **downtrend market**")
     df_low = pd.read_pickle('performance_low.pkl')
     st.write(df_low)
     st.subheader("Last trade")
-    df_trades_low.loc["ReturnPct"] = df_trades_low.loc["ReturnPct"] * 100
+    #df_trades_low.loc["ReturnPct"] = df_trades_low.loc["ReturnPct"] * 100
     st.write(df_trades_low)
     
 
