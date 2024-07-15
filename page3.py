@@ -112,7 +112,6 @@ def app():
             st.write("Stock with a Beta > 1")
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
-                    st.write(elem)
                     best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
@@ -129,10 +128,8 @@ def app():
                     
         else :
             st.write("Stock with a Beta < 1")
-            #st.write(pd.read_pickle('performance_low.pkl'))
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
-                    st.write(elem)
                     best_parameters, optim,last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
@@ -143,9 +140,9 @@ def app():
             df_return_low=pd.concat([df_return_low.iloc[[-3]], df_return_low.iloc[:-3]])
             df_return_low.to_pickle('performance_low.pkl')
             
-            #df_trades_low = pd.DataFrame(trades)
+            df_trades_low = pd.DataFrame(trades_low)
+            df_trades_low.to_pickle('trades_low.pkl')
             
-    
 
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
@@ -156,16 +153,12 @@ def app():
     st.write(reorganize_trades(df_trades_high))
 
 
-    # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
-    
-    """filtered_df = df_transposed[selected_columns]
-    st.write(filtered_df)
-    """
-    """st.subheader("Corresponding Stocks performance for a **downtrend market**")
+    st.subheader("Corresponding Stocks performance for an **downtrend market**")
     df_low = pd.read_pickle('performance_low.pkl')
     st.write(df_low)
+
     st.subheader("Last trade")
-    #df_trades_low.loc["ReturnPct"] = df_trades_low.loc["ReturnPct"] * 100
-    st.write(df_trades_low)"""
+    df_trades_low = pd.read_pickle('trades_low.pkl')
+    st.write(reorganize_trades(df_trades_low))
     
 
