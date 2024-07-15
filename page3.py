@@ -150,7 +150,8 @@ def app():
     st.subheader("Corresponding Stocks performance for an **uptrend market**")
     df_high = pd.read_pickle('performance_high.pkl')
     st.write(df_high)
-    st.write(df_high.loc["ReturnPct"])
+    ty=df_high.loc["ReturnPct"]
+    st.write(ty)
 
     st.subheader("Last trade")
     df_trades_high = pd.read_pickle('trades_high.pkl')
