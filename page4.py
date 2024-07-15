@@ -34,6 +34,25 @@ def app():
         $$
 
         """)
+    custom_button_css = """
+        <style>
+        .stButton > button {
+            background-color: yellow;
+            color: white;
+            font-size: 16px;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .stButton > button:hover {
+            background-color: #45a049;
+        }
+        </style>
+    """
+
+    # Inject CSS into the Streamlit app
+    st.markdown(custom_button_css, unsafe_allow_html=True)
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
         features_df = {}
