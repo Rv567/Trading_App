@@ -23,7 +23,7 @@ def app():
     Newdict_df.pop('AKT', None)
     st.write(Newdict_df.keys())
         
-    st.header("Strategy Optimization")
+    st.header("Model Prediction")
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
         features_df = {}
@@ -166,12 +166,12 @@ def app():
         final.to_pickle('final.pkl')
 
     final = pd.read_pickle('final.pkl') # Store it in local
-    st.write(final)
+    #st.write(final)
     # Sort the final data into high and low volatility stocks
-    st.subheader("Model prediction for stocks with Beta>1")
+    st.subheader("Model prediction for stocks with Beta>1 :")
     high_volatility_df = pd.merge(final,high_volatility_df)
     st.write(high_volatility_df)
-    st.subheader("Model prediction for stocks with Beta<1")
+    st.subheader("Model prediction for stocks with Beta<1 :")
     low_volatility_df = pd.merge(final,low_volatility_df)
     st.write(low_volatility_df)
 
