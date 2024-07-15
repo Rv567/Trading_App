@@ -24,10 +24,9 @@ def app():
     st.write(Newdict_df.keys())
         
     st.header("Model Prediction")
-    st.write("We use Machine Learning Model to fit it to our data. Then we use it to predict future Weekly Prediction.")
+    st.write("We use Machine Learning Model to fit it to our data. Then we use it to predict future Weekly Variation%.")
+    st.subheader("Weekly Percentage Change")
     st.markdown("""
-        ## Weekly Percentage Change
-
         To understand the weekly variation of a stock, we calculate the percentage change in the closing price from one week to the next.
 
         **Percentage Change Formula**:
