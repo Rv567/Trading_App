@@ -82,7 +82,8 @@ def app():
     stock_strategy_return_low = {}
     df_return_high = {}
     df_return_low = {}
-    trades = {}
+    trades_high = {}
+    trades_low = {}
 
     custom_button_css = """
         <style>
@@ -115,15 +116,15 @@ def app():
                     best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
-                    trades[elem] = last_trade
-                    print(trades[elem])
+                    trades_high[elem] = last_trade
+                    print(trades_high[elem])
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             df_return_high.to_pickle('performance_high.pkl')
             
 
-            df_trades_high = pd.DataFrame(trades)
+            df_trades_high = pd.DataFrame(trades_high)
             df_trades_high.to_pickle('trades_high.pkl')
                     
         else :
