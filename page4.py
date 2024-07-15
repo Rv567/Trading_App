@@ -38,7 +38,7 @@ def app():
         <style>
         .stButton > button {
             background-color: yellow;
-            color: white;
+            color: black;
             font-size: 16px;
             padding: 10px 24px;
             border: none;
