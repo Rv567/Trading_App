@@ -144,7 +144,7 @@ def app():
     st.write(reorganize_trades(df_trades_high))
 
 
-    st.subheader("Corresponding Stocks performance for an **downtrend market**")
+    st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
     st.write(df_low)
 
