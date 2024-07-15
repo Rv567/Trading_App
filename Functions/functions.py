@@ -36,6 +36,15 @@ def reorganize(dataframe):
         'volume': 'Volume'
     }).rename_axis("Date")
 
+def reorganize_trades(df):
+    df_transposed = df.transpose()
+
+    # Rename the columns to the first row and then drop the first row
+    selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
+    df_transposed = df_transposed[selected_columns]
+    df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
+    return df_transposed
+
 def format_technical_rating(rating: float) -> str:
     if rating >= 0.5:
         return 'Strong Buy'

@@ -153,15 +153,7 @@ def app():
 
     st.subheader("Last trade")
     df_trades_high = pd.read_pickle('trades_high.pkl')
-    st.write(df_trades_high.columns)
-    df_transposed = df_trades_high.transpose()
-
-    # Rename the columns to the first row and then drop the first row
-    selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
-    df_transposed = df_transposed[selected_columns]
-    df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
-    st.write(df_transposed.columns)
-    st.write(df_transposed.transpose())
+    st.write(reorganize_trades(df_trades_high))
 
 
     # Select only the columns 'EntryTime', 'EntryPrice', 'ReturnPct'
