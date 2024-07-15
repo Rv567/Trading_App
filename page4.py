@@ -69,7 +69,6 @@ def app():
 
         # Define df_target
         target_df[key] = stock[["Close","Variation%","Log_Variation"]]
-        st.write(key) 
 
     ###########
     df_date = {}
@@ -121,7 +120,6 @@ def app():
         X_tomorrow=X_tomorrow[features_df[key].columns]
         df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
 
-        st.write(key)
         #df_predictionYest[key]=y_pred_test[-1]
         df_actualClose[key] = y_test[-1]
         df_actualCloseYest[key] = y_test[-2]
@@ -175,6 +173,7 @@ def app():
     st.write(high_volatility_df)
     st.subheader("Model prediction for stocks with Beta<1")
     low_volatility_df = pd.merge(final,low_volatility_df)
+    st.write(low_volatility_df)
 
     """high_volatility_df["Decision"] = high_volatility_df.apply(todo,axis=1)
     low_volatility_df["Decision"] = low_volatility_df.apply(todo,axis=1)
