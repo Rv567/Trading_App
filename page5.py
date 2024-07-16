@@ -94,4 +94,4 @@ def app():
     # Calculate z-score
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
 
-    st.write(df['z_score'].tail(10))
+    st.write(df['z_score'])
