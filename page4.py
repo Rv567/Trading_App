@@ -67,7 +67,6 @@ def app():
         target_df ={}
         df_pred_tomorrow = {} #model.predict()
         
-        st.write(dataframes["ATW"])
         for key in Newdict_df.keys():
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
