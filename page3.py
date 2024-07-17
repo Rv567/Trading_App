@@ -61,6 +61,7 @@ def app():
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     dff = st.session_state['Newdict_df']
     st.write(dff.keys())
+    st.write(low_volatility_df_stocks)
 
 
     
