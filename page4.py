@@ -17,6 +17,7 @@ def app():
 
     dataframes = load_data_weekly()
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
+    st.write(dataframes["ATW"])
 
     #st.write(dataframes["ATW"])#verify data
     Newdict_df.pop('CFG', None)
