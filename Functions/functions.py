@@ -8,14 +8,14 @@ tv = TvDatafeed()
 
 #Load Data
 def load_data():
-    ticker = ["MASI","ATW", "IAM", "BCP", "LHM", "BOA", "TQM", "CMA", "TMA", "ADH", "TGC", "CDM", "ATL", "BCI", "AKT", "SAH", "CFG", "ARD", "ADI", "DYT", "ATH", "RDS", "DHO", "FBR"]
+    ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
     dataframes = {}
     for ticker_symbol in ticker:
         dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_{ticker_symbol}.pkl')
     return dataframes
 
 def load_data_weekly():
-    ticker = ["MASI","ATW", "IAM", "BCP", "LHM", "BOA", "TQM", "CMA", "TMA", "ADH", "TGC", "CDM", "ATL", "BCI", "AKT", "SAH", "CFG", "ARD", "ADI", "DYT", "ATH", "RDS", "DHO", "FBR"]
+    ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
     dataframes = {}
     for ticker_symbol in ticker:
         dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_weekly_{ticker_symbol}.pkl')
