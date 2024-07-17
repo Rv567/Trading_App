@@ -72,13 +72,14 @@ def app():
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
                 # Technical Indicators
-                test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] 
+                test_indicators = [ADX,MACD,RSI,BBANDS,WR,ATR,AD,OBV] 
                 for elem in test_indicators:
                         elem(stock)
 
                 # Different periods
                 for elem in [2,4,8,16,32,64]:
                         EMA(stock,elem)
+                        SMA(stock,elem)
                         stock[f'Close_rolling_mean_{elem}'] = stock['Close'].rolling(window=elem).mean()
                         stock[f'Close_rolling_std_{elem}'] = stock['Close'].rolling(window=elem).std()
                         
