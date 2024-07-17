@@ -108,7 +108,7 @@ def app():
 
                 # Define df_target
                 target_df[key] = stock[["Close","Variation%","Log_Variation"]]
-        st.writet(target_df["ATW"]["Variation%"])
+        st.write(target_df["ATW"]["Variation%"])
         ###########
         df_date = {}
         df_actuals = {}
