@@ -14,8 +14,8 @@ def app():
         with st.spinner('In progress...'):
             time.sleep(1)
 
-            ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
-            dataframes = [masi,attijari,iam,bcp,lafarge,boa,taqa,ciment,total,addouha,tgcc,cdm,atlanta,bmci,akdital,sanlam,cfg,aradei,aliance,disty,auto,saada,delta,fenie]
+            ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
+            dataframes = [masi,attijari,iam,bcp,lafarge,boa,taqa,managem,ciment,marsa,cosumar,wafa,afriqia,label,total,cih,addouha,akdital,tgcc,cdm,bmci,sanlam,atlanta,cristal,aradei,cfg,aliance,delta,hps,risma,auto,sonasid,saada,jet,stok]
 
             for df in dataframes:
                 if df is None:
@@ -32,8 +32,8 @@ def app():
         with st.spinner('In progress...'):
             time.sleep(1)
 
-            ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM","CMA","TMA","ADH","TGC","CDM","ATL","BCI","AKT","SAH","CFG","ARD","ADI","DYT","ATH","RDS","DHO","FBR"]
-            dataframes = [masiwk,attijariwk,iamwk,bcpwk,lafargewk,boawk,taqawk,cimentwk,totalwk,addouhawk,tgccwk,cdmwk,atlantawk,bmciwk,akditalwk,sanlamwk,cfgwk,aradeiwk,aliancewk,distywk,autowk,saadawk,deltawk,feniewk]
+            ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
+            dataframes = [masiwk,attijariwk,iamwk,bcpwk,lafargewk,boawk,taqawk,managemwk,cimentwk,marsawk,cosumarwk,wafawk,afriqiawk,labelwk,totalwk,cihwk,addouhawk,akditalwk,tgccwk,cdmwk,bmciwk,sanlamwk,atlantawk,cristalwk,aradeiwk,cfgwk,aliancewk,deltawk,hpswk,rismawk,autowk,sonasidwk,saadawk,jetwk,stokwk]
 
             for df in dataframes:
                 if df is None:

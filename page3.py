@@ -107,7 +107,7 @@ def app():
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
                     best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
-                    st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+                    st.write(f"Optimized Strategy Parameters for {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
                     trades_high[elem] = last_trade
                     print(trades_high[elem])
@@ -125,7 +125,7 @@ def app():
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
                     best_parameters, optim,last_trade = optimize_strategies(dataframes[elem], strategies)
-                    st.write(f"Optimized Strategy Parameters :white_check_mark: : {best_parameters}")
+                    st.write(f"Optimized Strategy Parameters {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
                     trades_low[elem] = last_trade
                 
