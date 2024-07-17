@@ -93,7 +93,7 @@ def app():
 
 
                 # Add a new targets
-                stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
+                stock["Variation%"] = (stock['Close'].pct_change())*100
                 stock["Log_Variation"] = np.log(stock['Close']).diff() 
 
                 # Shifting the target features for logical prediction
