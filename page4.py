@@ -90,8 +90,6 @@ def app():
                 for i in range(1,10):
                         stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
 
-
-
                 # Add a new targets
                 stock["Variation%"] = (stock['Close'].pct_change())*100
                 stock["Log_Variation"] = np.log(stock['Close']).diff() 
@@ -108,7 +106,7 @@ def app():
 
                 # Define df_target
                 target_df[key] = stock[["Close","Variation%","Log_Variation"]]
-        st.write(target_df["ATW"]["Variation%"])
+        st.write(df_ml["ATW"])
         st.write(df_pred_tomorrow["ATW"])
         ###########
         df_date = {}
