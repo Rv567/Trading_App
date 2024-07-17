@@ -60,7 +60,7 @@ def app():
     high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     dff = st.session_state['Newdict_df']
-    st.write(dff)
+    st.write(dff.key())
 
 
     
