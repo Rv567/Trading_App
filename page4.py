@@ -21,6 +21,8 @@ def app():
     #st.write(dataframes["ATW"])#verify data
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
+    Newdict_df.pop('SAH', None)
+    
     st.write(Newdict_df.keys())
         
     st.header("Model Prediction")
