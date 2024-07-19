@@ -68,6 +68,7 @@ def app():
         df_pred_tomorrow = {} #model.predict()
         
         for key in Newdict_df.keys():
+                st.write(key)
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
                 # Technical Indicators
@@ -122,7 +123,7 @@ def app():
         total_keys = len(Newdict_df.keys())
 
         for i,key in enumerate(Newdict_df.keys()):
-
+                st.write(key)
                 progress_bar.progress((i + 1) / total_keys)
                 progress_text.text(f"Processing {key}... ({i + 1}/{total_keys})")
                 X = features_df[key]

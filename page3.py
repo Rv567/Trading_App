@@ -56,8 +56,11 @@ def app():
     st.header("Market Trend Selection")
     marche = ["Marché Haussier","Marché Baissier"]
     market = st.selectbox('Select Market Trend', marche,key='mar')
-    high_volatility_df = st.session_state['high_volatility_df']
-    low_volatility_df = st.session_state['low_volatility_df']
+
+    if 'high_volatility_df' in st.session_state and 'low_volatility_df' in st.session_state:
+        high_volatility_df = st.session_state['high_volatility_df']
+        low_volatility_df = st.session_state['low_volatility_df']
+
     high_volatility_df_stocks = high_volatility_df["Key"].tolist()
     high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
@@ -104,7 +107,7 @@ def app():
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
-            st.write(high_volatility_df_stocks)
+            #st.write(high_volatility_df_stocks)
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
