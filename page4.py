@@ -68,7 +68,7 @@ def app():
         df_pred_tomorrow = {} #model.predict()
         
         for key in Newdict_df.keys():
-                st.write(key)
+                #st.write(key)
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
                 # Technical Indicators
