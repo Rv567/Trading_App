@@ -155,6 +155,7 @@ def app():
 
     st.subheader("Last trade for a **:red[downtrend market]**")
     df_trades_low = pd.read_pickle('trades_low.pkl')
+    st.write(df_trades_low)
     st.write(reorganize_trades(df_trades_low))
     
 
