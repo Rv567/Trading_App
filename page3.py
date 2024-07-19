@@ -118,7 +118,7 @@ def app():
             df_trades_high = pd.DataFrame(trades_high)
             df_trades_high.to_pickle('trades_high.pkl')
                     
-        else :
+        elif market == "Marché Baissier" :
             st.write("Stock with a Beta < 1")
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
