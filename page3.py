@@ -60,8 +60,7 @@ def app():
     high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     dff = st.session_state['Newdict_df']
-    st.write(dff.keys())
-    st.write(low_volatility_df_stocks)
+    #st.write(dff.keys())
 
     
     st.markdown("""
@@ -103,8 +102,10 @@ def app():
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
+            st.write(high_volatility_df_stocks)
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
+                    st.write(elem)
                     best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters for {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
@@ -120,6 +121,7 @@ def app():
                     
         elif market == "Marché Baissier" :
             st.write("Stock with a Beta < 1")
+            st.write(low_volatility_df_stocks)
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
@@ -134,6 +136,7 @@ def app():
             df_return_low.to_pickle('performance_low.pkl')
             
             df_trades_low = pd.DataFrame(trades_low)
+            st.write(df_trades_low)
             df_trades_low.to_pickle('trades_low.pkl')
             
 
