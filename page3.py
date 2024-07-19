@@ -62,8 +62,6 @@ def app():
     dff = st.session_state['Newdict_df']
     st.write(dff.keys())
     st.write(low_volatility_df_stocks)
-    st.write(dataframes)
-
 
     
     st.markdown("""
@@ -111,7 +109,6 @@ def app():
                     st.write(f"Optimized Strategy Parameters for {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
                     trades_high[elem] = last_trade
-                    print(trades_high[elem])
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
@@ -125,6 +122,7 @@ def app():
             st.write("Stock with a Beta < 1")
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
+                    st.write(elem)
                     best_parameters, optim,last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_low[elem] = optim
