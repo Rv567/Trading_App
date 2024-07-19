@@ -136,7 +136,7 @@ def app():
             df_return_low.to_pickle('performance_low.pkl')
             
             df_trades_low = pd.DataFrame(trades_low)
-            st.write(df_trades_low)
+            #st.write(df_trades_low)
             df_trades_low.to_pickle('trades_low.pkl')
             
 
