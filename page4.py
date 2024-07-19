@@ -22,6 +22,8 @@ def app():
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
     Newdict_df.pop('SAH', None)
+    Newdict_df.pop('ATL', None)
+
     
     st.write(Newdict_df.keys())
         
