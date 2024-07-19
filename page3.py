@@ -62,6 +62,7 @@ def app():
     dff = st.session_state['Newdict_df']
     st.write(dff.keys())
     st.write(low_volatility_df_stocks)
+    st.write(dataframes)
 
 
     
