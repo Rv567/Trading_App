@@ -21,7 +21,8 @@ def app():
             'exit': 'Sell when short-term SMA crosses below long-term SMA',
             "symbol" : SmaCross,
             "optimize_params": {'n1': range(20, 110, 10),
-                                'n2': range(20, 210, 10)}
+                                'n2': range(20, 210, 10),
+                                "constraint": lambda p: p.n1<p.n2}
         },
         'SMA Cross Strategy with Stop Loss': {
             'description': 'Simple Moving Average Crossover Strategy combined with a Trailing Stop Loss',
@@ -30,6 +31,7 @@ def app():
             "symbol" : SmaCross_StopLoss,
             "optimize_params": {'n1': range(20, 110, 10),
                                 'n2': range(20, 210, 10),
+                                "constraint": lambda p: p.n1<p.n2,
                                 "trailing_stop" : range(1,11,1)}
         },
         'Multi Indicator Strategy': {
@@ -121,7 +123,7 @@ def app():
                     
         elif market == "Marché Baissier" :
             st.write("Stock with a Beta < 1")
-            st.write(low_volatility_df_stocks)
+            #st.write(low_volatility_df_stocks)
             for elem in low_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
