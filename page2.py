@@ -60,8 +60,7 @@ def app():
     ay=-40,
     font=dict(
         size=13,
-        color=stock_color[stock_symbol],
-        family="Arial, sans-serif"
+        color=stock_color[stock_symbol]
     ),
     align="center",
     arrowcolor="grey",
