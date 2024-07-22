@@ -150,8 +150,9 @@ def app():
     df_rounded=modify_big(df_high)
     #df_rounded.iloc[18,2] = remove_time(df_rounded.iloc[18,2])
     st.write(df_rounded)
-    st.write(df_rounded.iloc[18,2])
-    st.write(remove_time(df_rounded.iloc[18,2]))
+    tt = df_rounded.iloc[18,2]
+    st.write(tt)
+    st.write(remove_time(tt))
 
 
 
