@@ -147,18 +147,16 @@ def app():
 
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    df1 = modify_big(df_high)
-    st.write(df1)
+    st.write(modify_big(df_high))
 
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
-    st.write(reorganize_trades(df_trades_high))
+    st.write(modify_small(reorganize_trades(df_trades_high)))
 
 
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
-    df2 = modify_big(df_low)
-    st.write(df2)
+    st.write(modify_big(df_low))
 
     st.subheader("Last trade for a **:red[downtrend market]**")
     df_trades_low = pd.read_pickle('trades_low.pkl')
