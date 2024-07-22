@@ -47,6 +47,19 @@ def app():
         width=800,
         height=400
     )
+
+    last_close_price = dataframes[stock_symbol]["Close"].iloc[-1]
+    
+    fig.add_annotation(
+    x=dataframes[stock_symbol].index[-1],
+    y=last_close_price,
+    text=f'Last Close: {last_close_price:.2f}',
+    showarrow=True,
+    arrowhead=2,
+    ax=0,
+    ay=-40,
+    bgcolor="white"
+    )
     st.plotly_chart(fig)
 
     """st.write("Time series decompostion into (trend, seasonal, and residual)")
