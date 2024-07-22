@@ -147,7 +147,9 @@ def app():
 
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    st.write(modify_big(df_high))
+    df_rounded=modify_big(df_high)
+    st.write(df_rounded.iloc[18,2])
+
 
     # Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
@@ -159,8 +161,7 @@ def app():
 
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
-    df_rounded= modify_small(reorganize_trades(df_trades_high))
-    st.write(df_rounded.iloc[5,2])
+    st.write(modify_small(reorganize_trades(df_trades_high)))
 
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
