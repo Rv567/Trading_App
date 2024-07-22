@@ -21,8 +21,8 @@ def app():
     #st.write(dataframes["ATW"])#verify data
     Newdict_df.pop('CFG', None)
     Newdict_df.pop('AKT', None)
-    Newdict_df.pop('SAH', None)
-    Newdict_df.pop('ATL', None)
+    """Newdict_df.pop('SAH', None)# blocked at 20
+    Newdict_df.pop('ATL', None)# blocked at 20"""
 
     
     st.write(Newdict_df.keys())
@@ -206,7 +206,7 @@ def app():
         final.to_pickle('final.pkl')
         st.write(final)
 
-    """final = pd.read_pickle('final.pkl') # Store it in local
+    final = pd.read_pickle('final.pkl') # Store it in local
     #st.write(final)
     # Sort the final data into high and low volatility stocks
     st.subheader("Model prediction for stocks with Beta>1 :")
@@ -220,4 +220,4 @@ def app():
     st.subheader("Model Insights")
     st.write("Display the top 4 Technical Indicators contributing to the predictions.")
     df_indicators = pd.read_pickle('df_indicators.pkl')
-    st.write(df_indicators)"""
+    st.write(df_indicators)
