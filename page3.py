@@ -155,7 +155,8 @@ def app():
     tt = pd.Timedelta(tt)
     # Extract the number of days
     days = tt.days
-    st.write(days)
+    df_rounded.iloc[18,2] = days
+    st.write(df_rounded.iloc[18,2])
 
 
     # Defining perf metrics
