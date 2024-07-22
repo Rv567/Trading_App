@@ -49,7 +49,7 @@ def app():
     )
 
     last_close_price = dataframes[stock_symbol]["Close"].iloc[-1]
-    
+
     fig.add_annotation(
     x=dataframes[stock_symbol].index[-1],
     y=last_close_price,
@@ -57,8 +57,8 @@ def app():
     showarrow=True,
     arrowhead=2,
     ax=0,
-    ay=-40,
-    bgcolor="white"
+    ay=-40
+    #bgcolor="black"
     )
     st.plotly_chart(fig)
 
