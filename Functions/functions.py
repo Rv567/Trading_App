@@ -308,6 +308,7 @@ def modify_df(df):
     indices_to_remove = [3,4,12,16,17,25,26,27]
     df_filtered = df.drop(df.index[indices_to_remove])
     df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
+    df_rounded.iloc[:, 1] = pd.to_datetime(df_rounded.iloc[:, 1]).dt.date
     return df_rounded
 
 def backtest_ML(data):
