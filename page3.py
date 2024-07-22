@@ -155,7 +155,7 @@ def app():
     tt = pd.Timedelta(tt)
     # Extract the number of days
     days = tt.days
-    print(days)
+    st.write(days)
 
 
     # Defining perf metrics
