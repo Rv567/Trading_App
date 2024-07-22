@@ -151,6 +151,8 @@ def app():
     #df_rounded.iloc[18,2] = remove_time(df_rounded.iloc[18,2])
     st.write(df_rounded)
     st.write(df_rounded.iloc[18,2])
+    st.write(remove_time(df_rounded.iloc[18,2]))
+
 
 
     # Defining perf metrics
