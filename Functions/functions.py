@@ -306,7 +306,7 @@ def optimize_strategies(dataframe, strategies):
 def modify_df(df):
     rows_to_remove = ['Duration', 'Exposure Time [%]', 'Profit Factor', 'Expectancy [%]', 'SQN']
     indices_to_remove = [1, 2, 3, 4, 5]
-    df_filtered = df.drop(indices_to_remove)
+    df_filtered = df.drop(df.index[indices_to_remove])
     df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     return df_rounded
 
