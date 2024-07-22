@@ -14,8 +14,8 @@ class MultiApp:
         with st.sidebar:
             selected_app = option_menu(
                 menu_title=None,
-                options=["Data",'Stock Market',"Trading Strategy","Prediction" ,'Statistical Data Analysis',"Model"],
-                icons=["database-fill-up",'bank2',"clipboard2-pulse-fill","graph-up-arrow",'bar-chart-fill',"robot"],
+                options=["Data",'Stock Market',"Trading Strategy","Prediction" ,'Statistical Data Analysis',"Portfolio"],
+                icons=["database-fill-up",'bank2',"clipboard2-pulse-fill","graph-up-arrow",'bar-chart-fill',"pie-chart-fill"],
                 menu_icon='chat-text-fill',
                 default_index=0,
                 styles={
@@ -37,7 +37,7 @@ class MultiApp:
             page4.app()  
         elif selected_app == "Statistical Data Analysis":
             page5.app()
-        elif selected_app == "Model":
+        elif selected_app == "Portfolio":
             page6.app()
 
 # Create an instance of the MultiApp class and run the app
