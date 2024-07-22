@@ -311,7 +311,7 @@ def modify_big(df):
     for i in [1,2]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
     
-    df_rounded.iloc[18] = pd.to_datetime(df_rounded.iloc[18], errors='coerce').dt.date
+
 
 
     return df_rounded
