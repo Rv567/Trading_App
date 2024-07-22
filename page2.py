@@ -66,7 +66,6 @@ def app():
     arrowcolor="grey",
     arrowsize=1,
     arrowwidth=2,
-    bgcolor="lightyellow",
     bordercolor="grey",
     borderwidth=2
     )
