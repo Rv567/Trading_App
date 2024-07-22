@@ -59,8 +59,8 @@ def app():
     ax=0,
     ay=-40,
     font=dict(
-        size=15,
-        color="white"
+        size=13,
+        color=stock_color[stock_symbol]
     ),
     align="center",
     arrowcolor="grey",
