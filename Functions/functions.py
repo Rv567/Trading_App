@@ -303,6 +303,9 @@ def optimize_strategies(dataframe, strategies):
     return best_parameters, best_optim, last_trade
     #return best_strategy, best_parameters
 
+def remove_time(duration):
+        return duration.split()[0]
+
 def modify_big(df):
     rows_to_remove = ['Duration', 'Exposure Time [%]', 'Profit Factor', 'Expectancy [%]', 'SQN']
     indices_to_remove = [3,4,12,16,17,27]
@@ -311,11 +314,7 @@ def modify_big(df):
     for i in [1,2]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
     
-    def remove_time(duration):
-        return duration.split()[0]
-    i=0
-    for i in range(5):
-        df_rounded.iloc[18,i] = remove_time(df_rounded.iloc[18,i])
+    df_rounded.iloc[18,2] = remove_time(df_rounded.iloc[18,2])
     
     return df_rounded
 
