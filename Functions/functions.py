@@ -313,8 +313,9 @@ def modify_big(df):
     
     def remove_time(duration):
         return duration.split()[0]
-    
-    df_rounded.iloc[18] = remove_time(df_rounded.iloc[18])
+    i=0
+    for i in range(5):
+        df_rounded.iloc[18,i] = remove_time(df_rounded.iloc[18,i])
     
     return df_rounded
 
