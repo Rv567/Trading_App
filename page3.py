@@ -155,7 +155,7 @@ def app():
     metrics_def = ["The final equity value at the end of the backtest","Total return of the strategy over the backtest period","Return of a simple buy-and-hold strategy for comparison","Annualized return of the strategy","Annualized volatility of the strategy’s returns","Measure of risk-adjusted return","Annualized return divided by the maximum drawdown","The maximum observed loss from a peak to a trough of a portfolio before a new peak is attained","The average drawdown over the backtest period","Duration of the longest trade","The ratio of gross profit to gross loss","Average expected return per trad"]
     result_dict = dict(zip(metrics, metrics_def))
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
-    st.write(" -->" ,result_dict[mertic_name])
+    st.write(f"**{result_dict[mertic_name]}**")
 
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
