@@ -303,13 +303,19 @@ def optimize_strategies(dataframe, strategies):
     return best_parameters, best_optim, last_trade
     #return best_strategy, best_parameters
 
-def modify_df(df):
+def modify_big(df):
     rows_to_remove = ['Duration', 'Exposure Time [%]', 'Profit Factor', 'Expectancy [%]', 'SQN']
     indices_to_remove = [3,4,12,16,17,25,26,27]
     df_filtered = df.drop(df.index[indices_to_remove])
     df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     for i in [1,2,18,19]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
+
+    return df_rounded
+
+def modify_small(df):
+    df_rounded = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
+    df_rounded["Entry Time"] = pd.to_datetime(df_rounded["Entry Time"], errors='coerce').dt.date
 
     return df_rounded
 
