@@ -151,8 +151,8 @@ def app():
     #df_rounded.iloc[18,2] = remove_time(df_rounded.iloc[18,2])
     st.write(df_rounded)
     tt = df_rounded.iloc[18,2]
-    st.write(tt)
-    st.write(remove_time(tt))
+    st.write(type(tt))
+    #st.write(remove_time(tt))
 
 
 
