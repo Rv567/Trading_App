@@ -311,9 +311,10 @@ def modify_big(df):
     for i in [1,2]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
     
-
-
-
+    def remove_time(duration):
+        return duration.split()[0]
+    df_rounded.iloc[18,:] = df_rounded.iloc[18,:].apply(remove_time)
+    
     return df_rounded
 
 def modify_small(df):
