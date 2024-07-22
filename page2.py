@@ -18,6 +18,7 @@ def app():
                                                     random.randint(0, 255))
                 for symbol in stock_list}
 
+    st.write(dataframes["ATW"]["Close"])
     stock_symbol = st.selectbox('Select Stock Symbol', stock_list,key='stock1')
     
     #st.write(dataframes[stock_symbol].tail(10))
