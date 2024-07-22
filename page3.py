@@ -147,16 +147,7 @@ def app():
 
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    df_rounded=modify_big(df_high)
-    #df_rounded.iloc[18,2] = remove_time(df_rounded.iloc[18,2])
-    st.write(df_rounded)
-    tt = df_rounded.iloc[18,2]
-
-    tt = pd.Timedelta(tt)
-    # Extract the number of days
-    days = tt.days
-    df_rounded.iloc[18,2] = days
-    st.write(df_rounded.iloc[18,2])
+    st.write(modify_big(df_high))
 
 
     # Defining perf metrics
