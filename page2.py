@@ -61,8 +61,7 @@ def app():
     font=dict(
         size=13,
         color=stock_color[stock_symbol],
-        family="Arial, sans-serif",
-        bold=True
+        family="Arial, sans-serif"
     ),
     align="center",
     arrowcolor="grey",
