@@ -59,7 +59,7 @@ def app():
     ax=0,
     ay=-40,
     font=dict(
-        size=12,
+        size=15,
         color="white"
     ),
     align="center",
