@@ -57,8 +57,18 @@ def app():
     showarrow=True,
     arrowhead=2,
     ax=0,
-    ay=-40
-    #bgcolor="black"
+    ay=-40,
+    font=dict(
+        size=12,
+        color="white"
+    ),
+    align="center",
+    arrowcolor="grey",
+    arrowsize=1,
+    arrowwidth=2,
+    bgcolor="lightyellow",
+    bordercolor="grey",
+    borderwidth=2
     )
     st.plotly_chart(fig)
 
