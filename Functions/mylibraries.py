@@ -44,6 +44,7 @@ warnings.filterwarnings("ignore")
 from tradingview_screener import Query, Column
 import yaml
 from yaml.loader import SafeLoader
+import re
 
 import requests
 import os
