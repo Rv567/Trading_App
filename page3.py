@@ -150,10 +150,7 @@ def app():
     st.write(modify_big(df_high))
 
     # Defining perf metrics
-    st.markdown("""
-    ## Key Points:
-    - Performance Metrics Definition
-    """)
+    st.subheader(":light-blue[Performance Metrics Definition]")
     metrics = ["Equity Final [$]","Return [%]","Buy & Hold Return [%]","Return (Ann.) [%]","Volatility (Ann.) [%]","Sharpe Ratio","Calmar Ratio","Max. Drawdown [%]","Avg. Drawdown [%]","Max. Trade Duration","Profit Factor","Expectancy [%]"]
     metrics_def = ["The final equity value at the end of the backtest","Total return of the strategy over the backtest period","Return of a simple buy-and-hold strategy for comparison","Annualized return of the strategy","Annualized volatility of the strategy’s returns","Measure of risk-adjusted return","Annualized return divided by the maximum drawdown","The maximum observed loss from a peak to a trough of a portfolio before a new peak is attained","The average drawdown over the backtest period","Duration of the longest trade","The ratio of gross profit to gross loss","Average expected return per trad"]
     result_dict = dict(zip(metrics, metrics_def))
