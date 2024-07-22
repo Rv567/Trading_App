@@ -306,7 +306,7 @@ def optimize_strategies(dataframe, strategies):
 def modify_df(df):
     rows_to_remove = ['Duration', 'Exposure Time [%]', 'Profit Factor', 'Expectancy [%]', 'SQN']
     df_filtered = df[~df['Unnamed: 0'].isin(rows_to_remove)]
-    df_rounded = df_filtered.applymap(lambda x: f"{x:.2f}" if isinstance(x, (int, float)) else x)
+    df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     return df_rounded
 
 def backtest_ML(data):
