@@ -151,12 +151,11 @@ def app():
     #df_rounded.iloc[18,2] = remove_time(df_rounded.iloc[18,2])
     st.write(df_rounded)
     tt = df_rounded.iloc[18,2]
-    
-    match = re.search(r'(\d+) days', tt)
-    if match:
-        days = match.group(1)
-        st.write(days)
 
+    tt = pd.Timedelta(tt)
+    # Extract the number of days
+    days = tt.days
+    print(days)
 
 
     # Defining perf metrics
