@@ -149,8 +149,8 @@ def app():
     df_high = pd.read_pickle('performance_high.pkl')
     mod = modify_big(df_high)
     st.write(mod)
-    st.write(mod.iloc[18,1])
-    st.write(type(mod.iloc[18,1]))
+    st.write(mod.iloc[14,1])
+    st.write(type(mod.iloc[14,1]))
 
     # Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
