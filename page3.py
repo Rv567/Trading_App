@@ -147,8 +147,10 @@ def app():
 
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    st.write(modify_big(df_high))
-
+    mod = modify_big(df_high)
+    st.write(mod)
+    st.write(mod.iloc[18,1])
+    st.write(type(mod.iloc[18,1]))
 
     # Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
