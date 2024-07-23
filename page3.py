@@ -65,7 +65,7 @@ def app():
     high_volatility_df_stocks.remove("CFG")
     low_volatility_df_stocks = low_volatility_df["Key"].tolist()
     dff = st.session_state['Newdict_df']
-    #st.write(dff.keys())
+    st.write(dff.keys())
 
     
     st.markdown("""
@@ -169,7 +169,7 @@ def app():
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
     st.write(f"**{result_dict[mertic_name]}**")
     #########
-    
+
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
     df_trades_high_mod = modify_small(reorganize_trades(df_trades_high))
