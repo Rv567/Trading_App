@@ -173,6 +173,12 @@ def app():
     df_trades_high = pd.read_pickle('trades_high.pkl')
     st.write(modify_small(reorganize_trades(df_trades_high)))
 
+
+    ###### TEst
+    combined_stocks = high_volatility_df_stocks
+    stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
+    st.write(mod_high[stock])
+    
     # Beta<1
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
@@ -185,7 +191,7 @@ def app():
     st.write(modify_small(reorganize_trades(df_trades_low)))
     
     # Combine stock for selecting only one
-
-    mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
+    combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
+    stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
 
 
