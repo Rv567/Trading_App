@@ -154,14 +154,17 @@ def app():
     ######### Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
     metrics = ["Return [%]","Buy & Hold Return [%]","Return (Ann.) [%]","Volatility (Ann.) [%]","Sharpe Ratio","Max. Drawdown [%]","Avg. Drawdown [%]","Win Rate [%]","Avg. Trade[%]","Profit Factor","Expectancy [%]"]
-    metrics_def = ["The total percentage gain or loss on an investment over a specified period. $$ \\text{Return} = \\left( \\frac{V_f - V_i}{V_i} \\right) \\times 100 $$",
-                   "Return of a simple buy-and-hold strategy for comparison",
-                   "Annualized return of the strategy",
-                   "Annualized volatility of the strategy’s returns",
-                   "Measure of risk-adjusted return",
-                   "The maximum observed loss from a peak to a trough of a portfolio before a new peak is attained",
-                   "The average drawdown over the backtest period","Duration of the longest trade",
-                   "The ratio of gross profit to gross loss","Average expected return per trad"]
+    metrics_def = ["The total percentage gain or loss on an investment over a specified period.  $$ \\text{Return} = \\left( \\frac{V_f - V_i}{V_i} \\right) \\times 100 $$",
+                   "The return if the asset was bought at the start and held until the end of the period, without any trading.  $$ \\text{Buy & Hold Return} = \\left( \\frac{P_{end} - P_{start}}{P_{start}} \\right) \\times 100 $$",
+                   "The annualized return, representing the geometric average amount of money earned by an investment each year over a given time period.  $$ R_{ann} = \\left( \\frac{V_f}{V_i} \\right)^{\\frac{1}{T}} - 1 $$",
+                   "The annualized standard deviation of returns, measuring the dispersion of returns  $$ \\sigma_{ann} = \\sigma_{daily} \\times \\sqrt{252} $$",
+                   "A measure of risk-adjusted return, calculated as the ratio of the portfolio's excess return over the risk-free rate to its standard deviation.  $$ SR = \\frac{R_p - R_f}{\\sigma_p} $$",
+                   "The maximum observed loss from a peak to a trough of a portfolio before a new peak is attained. $$ DD_{max} = \\max \\left( \\frac{V_{peak} - V_{trough}}{V_{peak}} \\right) \\times 100 $$",
+                   "The average of all drawdowns over the specified period.  $$ DD_{avg} = \\frac{1}{N} \\sum_{i=1}^{N} DD_i \\times 100 $$",
+                   "The percentage of trades that were profitable.  $$ WR = \\left( \\frac{\\text{Number of Winning Trades}}{\\text{Total Number of Trades}} \\right) \\times 100 $$",
+                   "The average return per trade over the specified period.  $$ \\text{Avg. Trade} = \\frac{1}{N} \\sum_{i=1}^{N} \\text{Trade Return}_i \\times 100 $$",
+                   "The ratio of gross profit to gross loss.  $$ PF = \\frac{\\text{Gross Profit}}{\\text{Gross Loss}} $$",
+                   "The average expected return per trade, calculated as the product of the win probability and the average win minus the product of the loss probability and the average loss.  $$ E = P_w \\times W - P_l \\times L $$"]
     result_dict = dict(zip(metrics, metrics_def))
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
     st.write(f"**{result_dict[mertic_name]}**")
