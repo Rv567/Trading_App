@@ -314,18 +314,21 @@ def modify_big(df):
     for i in [1,2]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i]).dt.strftime("%d-%m-%Y")
-    
-    """i=1
+
+    store_endDate = df_rounded.iloc[2,1]
+    df_rounded = df_rounded.drop(df.index[2])
+
+    i=1
     for i in range(len(df_rounded.columns)):
         tt = pd.Timedelta(df_rounded.iloc[18,i])
         days = tt.days
-        df_rounded.iloc[18,i] = str(days) + " days"
+        df_rounded.iloc[13,i] = str(days) + " days"
 
         tt = pd.Timedelta(df_rounded.iloc[19,i])
         days = tt.days
-        df_rounded.iloc[19,i] = str(days) + " days"""
+        df_rounded.iloc[14,i] = str(days) + " days"
 
-    return df_rounded
+    return df_rounded,store_endDate
 
 def modify_small(df):
     df_rounded = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)

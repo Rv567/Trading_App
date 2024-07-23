@@ -147,7 +147,8 @@ def app():
 
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    mod = modify_big(df_high)
+    mod,date = modify_big(df_high)
+    st.write(date)
     st.write(mod)
     st.write(mod.iloc[14,1])
     st.write(type(mod.iloc[14,1]))
