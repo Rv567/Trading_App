@@ -155,7 +155,7 @@ def app():
     st.subheader(":blue[Performance Metrics Definition]")
     metrics = ["Return [%]","Buy & Hold Return [%]","Return (Ann.) [%]","Volatility (Ann.) [%]","Sharpe Ratio","Max. Drawdown [%]","Avg. Drawdown [%]","Win Rate [%]","Avg. Trade[%]","Profit Factor","Expectancy [%]"]
     metrics_def = ["The total percentage gain or loss on an investment over a specified period.  $$ \\text{Return} = \\left( \\frac{V_f - V_i}{V_i} \\right) \\times 100 $$",
-                   "The return if the asset was bought at the start and held until the end of the period, without any trading.  $$ \\text{Buy & Hold Return} = \\left( \\frac{P_{end} - P_{start}}{P_{start}} \\right) \\times 100 $$",
+                   "The return if the asset was bought at the start and held until the end of the period, without any trading.  $$ \\text{Buy_and_Hold_Return} = \\left( \\frac{P_{end} - P_{start}}{P_{start}} \\right) \\times 100 $$",
                    "The annualized return, representing the geometric average amount of money earned by an investment each year over a given time period.  $$ R_{ann} = \\left( \\frac{V_f}{V_i} \\right)^{\\frac{1}{T}} - 1 $$",
                    "The annualized standard deviation of returns, measuring the dispersion of returns  $$ \\sigma_{ann} = \\sigma_{daily} \\times \\sqrt{252} $$",
                    "A measure of risk-adjusted return, calculated as the ratio of the portfolio's excess return over the risk-free rate to its standard deviation.  $$ SR = \\frac{R_p - R_f}{\\sigma_p} $$",
