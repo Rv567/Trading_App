@@ -312,8 +312,7 @@ def modify_big(df):
     df_filtered = df.drop(df.index[indices_to_remove])
     df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     for i in [1,2]:
-        df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
-        df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i]).dt.strftime("%d-%m-%Y")
+        df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.strftime("%d-%m-%Y")
 
     store_endDate = df_rounded.iloc[2,1]
     df_rounded = df_rounded.drop(df.index[2])
