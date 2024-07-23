@@ -128,7 +128,7 @@ def app():
         # Progress status
         progress_bar = st.progress(0)
         progress_text = st.empty()
-        total_keys = len(Newdict_df.keys())
+        total_keys = len(filtered_dict.keys())
 
         for i,key in enumerate(filtered_dict.keys()):
                 st.write(key)
