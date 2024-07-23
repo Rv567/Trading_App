@@ -333,6 +333,7 @@ def modify_big(df):
 def modify_small(df):
     df_rounded = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     df_rounded["Entry Time"] = pd.to_datetime(df_rounded["Entry Time"], errors='coerce').dt.date
+    df_rounded["Entry Time"] = pd.to_datetime(df_rounded["Entry Time"]).dt.strftime("%d-%m-%Y")
 
     return df_rounded
 

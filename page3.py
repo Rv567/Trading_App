@@ -144,12 +144,12 @@ def app():
             #st.write(df_trades_low)
             df_trades_low.to_pickle('trades_low.pkl')
             
-
+    # Beta>1
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    mod,date = modify_big(df_high)
-    st.write(f"The backtest begins from from the start date of each stock to {modify_big(df_high)[1]}")
-    st.write(modify_big(df_high)[0])
+    mod_high,date = modify_big(df_high)
+    st.write(f"The backtest begins from from the start date of each stock to {date}")
+    st.write(mod_high)
 
     # Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
@@ -163,9 +163,12 @@ def app():
     df_trades_high = pd.read_pickle('trades_high.pkl')
     st.write(modify_small(reorganize_trades(df_trades_high)))
 
+    # Beta<1
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
-    st.write(modify_big(df_low))
+    mod_low,date = modify_big(df_high)
+    st.write(f"The backtest begins from from the start date of each stock to {date}")
+    st.write(mod_low)
 
     st.subheader("Last trade for a **:red[downtrend market]**")
     df_trades_low = pd.read_pickle('trades_low.pkl')
