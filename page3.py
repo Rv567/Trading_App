@@ -147,9 +147,9 @@ def app():
     # Beta>1
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    mod_high,date = modify_big(df_high)
+    df_high_mod,date = modify_big(df_high)
     st.write(f"The backtest begins from from the start date of each stock to {date}")
-    st.write(mod_high)
+    st.write(df_high_mod)
 
     ######### Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
@@ -171,27 +171,31 @@ def app():
     #########
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
-    st.write(modify_small(reorganize_trades(df_trades_high)))
+    df_trades_high_mod = modify_small(reorganize_trades(df_trades_high))
+    st.write(df_trades_high_mod)
 
 
     ###### TEst
     combined_stocks = high_volatility_df_stocks
     stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
-    st.write(mod_high[stock])
-    
+    st.write(df_trades_high_mod.loc[stock])
+
     # Beta<1
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
-    mod_low,date = modify_big(df_low)
+    df_low_mod,date = modify_big(df_low)
     st.write(f"The backtest begins from from the start date of each stock to {date}")
-    st.write(mod_low)
+    st.write(df_low_mod)
 
     st.subheader("Last trade for a **:red[downtrend market]**")
     df_trades_low = pd.read_pickle('trades_low.pkl')
     st.write(modify_small(reorganize_trades(df_trades_low)))
     
     # Combine stock for selecting only one
-    combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
+    """combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
     stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
+    if stock in high_volatility_df_stocks:
+        st.write(df_high_mod[stock])
+        st.write(df_trades_high_mod[stock])"""
 
 
