@@ -169,16 +169,12 @@ def app():
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
     st.write(f"**{result_dict[mertic_name]}**")
     #########
+    
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
     df_trades_high_mod = modify_small(reorganize_trades(df_trades_high))
     st.write(df_trades_high_mod)
 
-
-    ###### TEst
-    combined_stocks = high_volatility_df_stocks
-    stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
-    st.write(df_trades_high_mod.loc[stock])
 
     # Beta<1
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
@@ -189,13 +185,17 @@ def app():
 
     st.subheader("Last trade for a **:red[downtrend market]**")
     df_trades_low = pd.read_pickle('trades_low.pkl')
-    st.write(modify_small(reorganize_trades(df_trades_low)))
+    df_trades_low_mod = modify_small(reorganize_trades(df_trades_low))
+    st.write(df_trades_low_mod)
     
     # Combine stock for selecting only one
-    """combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
+    combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
     stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
     if stock in high_volatility_df_stocks:
         st.write(df_high_mod[stock])
-        st.write(df_trades_high_mod[stock])"""
+        st.write(df_trades_high_mod.loc[stock])
 
+    elif stock in low_volatility_df_stocks:
+        st.write(df_low_mod[stock])
+        st.write(df_trades_low_mod.loc[stock])
 
