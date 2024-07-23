@@ -189,6 +189,7 @@ def app():
     st.write(df_trades_low_mod)
     
     # Combine stock for selecting only one
+    st.header("Individual Stock Selection")
     combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
     stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
     if stock in high_volatility_df_stocks:
