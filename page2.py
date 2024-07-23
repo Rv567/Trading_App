@@ -227,5 +227,5 @@ def app():
 
     df.drop(columns=["ticker",'Recommend.All'],inplace=True)
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","beta_1_year":"Beta 1Y","price_earnings_ttm":"P/E","price_book_ratio":"P/B","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","volume":"Volume"})
-
+    df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     st.write(df)
