@@ -151,14 +151,21 @@ def app():
     st.write(f"The backtest begins from from the start date of each stock to {date}")
     st.write(mod_high)
 
-    # Defining perf metrics
+    ######### Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
-    metrics = ["Equity Final [$]","Return [%]","Buy & Hold Return [%]","Return (Ann.) [%]","Volatility (Ann.) [%]","Sharpe Ratio","Calmar Ratio","Max. Drawdown [%]","Avg. Drawdown [%]","Max. Trade Duration","Profit Factor","Expectancy [%]"]
-    metrics_def = ["The final equity value at the end of the backtest","Total return of the strategy over the backtest period","Return of a simple buy-and-hold strategy for comparison","Annualized return of the strategy","Annualized volatility of the strategy’s returns","Measure of risk-adjusted return","Annualized return divided by the maximum drawdown","The maximum observed loss from a peak to a trough of a portfolio before a new peak is attained","The average drawdown over the backtest period","Duration of the longest trade","The ratio of gross profit to gross loss","Average expected return per trad"]
+    metrics = ["Return [%]","Buy & Hold Return [%]","Return (Ann.) [%]","Volatility (Ann.) [%]","Sharpe Ratio","Max. Drawdown [%]","Avg. Drawdown [%]","Win Rate [%]","Avg. Trade[%]","Profit Factor","Expectancy [%]"]
+    metrics_def = ["The total percentage gain or loss on an investment over a specified period.\n$$\n\\text{Return} = \\left( \\frac{V_f - V_i}{V_i} \\right) \\times 100\n$$",
+                   "Return of a simple buy-and-hold strategy for comparison",
+                   "Annualized return of the strategy",
+                   "Annualized volatility of the strategy’s returns",
+                   "Measure of risk-adjusted return",
+                   "The maximum observed loss from a peak to a trough of a portfolio before a new peak is attained",
+                   "The average drawdown over the backtest period","Duration of the longest trade",
+                   "The ratio of gross profit to gross loss","Average expected return per trad"]
     result_dict = dict(zip(metrics, metrics_def))
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
     st.write(f"**{result_dict[mertic_name]}**")
-
+    #########
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
     st.write(modify_small(reorganize_trades(df_trades_high)))
@@ -166,7 +173,7 @@ def app():
     # Beta<1
     st.subheader("Corresponding Stocks performance for a **:red[downtrend market]**")
     df_low = pd.read_pickle('performance_low.pkl')
-    mod_low,date = modify_big(df_high)
+    mod_low,date = modify_big(df_low)
     st.write(f"The backtest begins from from the start date of each stock to {date}")
     st.write(mod_low)
 
