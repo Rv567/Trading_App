@@ -317,13 +317,14 @@ def modify_big(df):
     
     i=1
     for i in range(len(df_rounded.columns)):
-        tt = pd.Timedelta(df_rounded.iloc[18,i])
-        days = tt.days
-        df_rounded.iloc[18,i] = str(days) + " days"
-
-        tt = pd.Timedelta(df_rounded.iloc[19,i])
-        days = tt.days
-        df_rounded.iloc[19,i] = str(days) + " days"
+        for row in [18, 19]:
+            value = df_rounded.iloc[row, i]
+            try:
+                tt = pd.Timedelta(value)
+                days = tt.days
+                df_rounded.iloc[row, i] = str(days) + " days"
+            except ValueError:
+                df_rounded.iloc[row, i] = value
 
     return df_rounded
 
