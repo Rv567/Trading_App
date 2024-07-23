@@ -320,8 +320,8 @@ def modify_big(df):
 
     i=1
     for i in range(len(df_rounded.columns)):
-        tt = pd.Timedelta(df_rounded.iloc[13,i])
-        days = tt.days
+        days = pd.Timedelta(df_rounded.iloc[13,i]).days
+        #days = tt.days
         df_rounded.iloc[13,i] = str(days) + " days"
 
         tt = pd.Timedelta(df_rounded.iloc[14,i])
@@ -332,10 +332,7 @@ def modify_big(df):
 
 def modify_small(df):
     df_rounded = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
-    """df_rounded["Entry Time"] = pd.to_datetime(df_rounded["Entry Time"], errors='coerce').dt.date
-    df_rounded["Entry Time"] = pd.to_datetime(df_rounded["Entry Time"]).dt.strftime("%d-%m-%Y")"""
     df_rounded["Entry Time"] = pd.to_datetime(df_rounded["Entry Time"], errors='coerce').dt.strftime("%d-%m-%Y")
-
 
     return df_rounded
 
