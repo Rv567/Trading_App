@@ -320,11 +320,11 @@ def modify_big(df):
 
     i=1
     for i in range(len(df_rounded.columns)):
-        tt = pd.Timedelta(df_rounded.iloc[18,i])
+        tt = pd.Timedelta(df_rounded.iloc[13,i])
         days = tt.days
         df_rounded.iloc[13,i] = str(days) + " days"
 
-        tt = pd.Timedelta(df_rounded.iloc[19,i])
+        tt = pd.Timedelta(df_rounded.iloc[14,i])
         days = tt.days
         df_rounded.iloc[14,i] = str(days) + " days"
 
