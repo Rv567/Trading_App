@@ -154,7 +154,7 @@ def app():
     ######### Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
     metrics = ["Return [%]","Buy & Hold Return [%]","Return (Ann.) [%]","Volatility (Ann.) [%]","Sharpe Ratio","Max. Drawdown [%]","Avg. Drawdown [%]","Win Rate [%]","Avg. Trade[%]","Profit Factor","Expectancy [%]"]
-    metrics_def = ["The total percentage gain or loss on an investment over a specified period.\n$$\n\\text{Return} = \\left( \\frac{V_f - V_i}{V_i} \\right) \\times 100\n$$",
+    metrics_def = ["The total percentage gain or loss on an investment over a specified period. $$ \\text{Return} = \\left( \\frac{V_f - V_i}{V_i} \\right) \\times 100 $$",
                    "Return of a simple buy-and-hold strategy for comparison",
                    "Annualized return of the strategy",
                    "Annualized volatility of the strategy’s returns",
