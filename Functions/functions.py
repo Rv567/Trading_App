@@ -315,7 +315,7 @@ def modify_big(df):
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i]).dt.strftime("%d-%m-%Y")
     
-    i=1
+    """i=1
     for i in range(len(df_rounded.columns)):
         tt = pd.Timedelta(df_rounded.iloc[18,i])
         days = tt.days
@@ -323,7 +323,7 @@ def modify_big(df):
 
         tt = pd.Timedelta(df_rounded.iloc[19,i])
         days = tt.days
-        df_rounded.iloc[19,i] = str(days) + " days"
+        df_rounded.iloc[19,i] = str(days) + " days"""
 
     return df_rounded
 
