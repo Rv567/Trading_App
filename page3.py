@@ -148,8 +148,8 @@ def app():
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
     mod,date = modify_big(df_high)
-    st.write(f"The backtest is done from the start date of each stock to {date}")
-    st.write(mod)
+    st.write(f"The backtest begins from from the start date of each stock to {modify_big(df_high)[1]}")
+    st.write(modify_big(df_high)[0])
 
     # Defining perf metrics
     st.subheader(":blue[Performance Metrics Definition]")
