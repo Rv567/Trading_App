@@ -308,11 +308,12 @@ def remove_time(duration):
 
 def modify_big(df):
     rows_to_remove = ['Duration', 'Exposure Time [%]', 'Profit Factor', 'Expectancy [%]', 'SQN']
-    indices_to_remove = [3,4,12,16,17,27]
+    indices_to_remove = [3,4,5,6,12,13,15,16,17,27]
     df_filtered = df.drop(df.index[indices_to_remove])
     df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     for i in [1,2]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
+        df_rounded.iloc[i] = df_rounded.iloc[i].dt.strftime("%d-%m-%Y")
     
     i=1
     for i in range(len(df_rounded.columns)):
