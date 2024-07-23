@@ -60,6 +60,10 @@ def app():
     }
     </style>
         """
+    
+    keys_to_keep = list(Newdict_df.keys())[:15] # 15 stocks
+    # Create a new dictionary with only these keys
+    filtered_dict = {key: Newdict_df[key] for key in keys_to_keep}
 
     # Inject CSS into the Streamlit app
     st.markdown(custom_button_css, unsafe_allow_html=True)
@@ -71,7 +75,7 @@ def app():
         target_df ={}
         df_pred_tomorrow = {} #model.predict()
         
-        for key in Newdict_df.keys():
+        for key in filtered_dict.keys():
                 #st.write(key)
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
@@ -126,7 +130,7 @@ def app():
         progress_text = st.empty()
         total_keys = len(Newdict_df.keys())
 
-        for i,key in enumerate(Newdict_df.keys()):
+        for i,key in enumerate(filtered_dict.keys()):
                 st.write(key)
                 progress_bar.progress((i + 1) / total_keys)
                 progress_text.text(f"Processing {key}... ({i + 1}/{total_keys})")
