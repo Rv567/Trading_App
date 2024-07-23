@@ -313,7 +313,7 @@ def modify_big(df):
     df_rounded = df_filtered.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     for i in [1,2]:
         df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i], errors='coerce').dt.date
-        df_rounded.iloc[i] = df_rounded.iloc[i].dt.strftime("%d-%m-%Y")
+        df_rounded.iloc[i] = pd.to_datetime(df_rounded.iloc[i]).dt.strftime("%d-%m-%Y")
     
     i=1
     for i in range(len(df_rounded.columns)):
