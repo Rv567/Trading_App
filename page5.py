@@ -14,10 +14,11 @@ def app():
     df.index = pd.to_datetime(df.index)
     correlation_matrix = df.corr()
     #Heatmap
-    #st.write(correlation_matrix)
+    mask = np.zeros_like(correlation_matrix, dtype=bool)
+    mask[np.triu_indices_from(mask)] = True
     st.header("Correlation Calculation")    
     plt.figure(figsize=(10, 6))
-    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
+    sns.heatmap(correlation_matrix, annot=True, mask=mask, cmap='coolwarm', vmin=-1, vmax=1)
     plt.title('Correlation Matrix Heatmap')
     st.pyplot(plt)
 
