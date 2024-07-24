@@ -129,8 +129,6 @@ def app():
             # Save each DataFrame to disk
             for i, df in zip(ticker, dataframes):
                 df.to_pickle(f'dataframe_weekly_{i}.pkl')
-
-            st.write(attijariwk)
         
         st.success('Data updated!')
         st.write(f"We successfully created and updated {len(dataframes)} dataframes")
