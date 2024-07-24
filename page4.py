@@ -16,7 +16,6 @@ def app():
     low_volatility_df = st.session_state['low_volatility_df']
 
     dataframes = load_data_weekly()
-    st.write(dataframes["ATW"])
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
 
     #st.write(dataframes["ATW"])#verify data
