@@ -139,7 +139,6 @@ def app():
 
                 # Train/Test the model
                 X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,test_size=0.2, shuffle=False)
-                st.write(y_test)
                 model = XGBRegressor()
                 model.fit(X_train, y_train)
 
