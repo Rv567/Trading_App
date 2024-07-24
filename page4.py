@@ -139,6 +139,7 @@ def app():
 
                 # Train/Test the model
                 X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,test_size=0.2, shuffle=False)
+                st.write(y_test)
                 model = XGBRegressor()
                 model.fit(X_train, y_train)
 
@@ -162,7 +163,6 @@ def app():
                 df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
 
                 #df_predictionYest[key]=y_pred_test[-1]
-                st.write(y_test)
                 df_actualClose[key] = y_test[-1]
                 df_actualCloseYest[key] = y_test[-2]
 
