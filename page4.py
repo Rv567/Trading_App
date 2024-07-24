@@ -162,6 +162,7 @@ def app():
                 df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
 
                 #df_predictionYest[key]=y_pred_test[-1]
+                st.write(y_test)
                 df_actualClose[key] = y_test[-1]
                 df_actualCloseYest[key] = y_test[-2]
 
