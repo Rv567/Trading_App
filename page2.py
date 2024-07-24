@@ -122,7 +122,7 @@ def app():
         individual_returns = Newdict_df[symbol]["Close"].pct_change()
         individual_cumsum[symbol] = ((1+individual_returns).cumprod()-1)*100
         annualized_volatility[symbol] = (individual_returns.std()*np.sqrt(252) )*100
-        individual_ex_returns = individual_returns - 0.001 / 252
+        individual_ex_returns = individual_returns - 0.01 / 252
         sharp_ratio[symbol] = individual_ex_returns.mean()*252/ (individual_returns.std()*np.sqrt(252))
 
     fig = go.Figure()
