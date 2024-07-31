@@ -97,10 +97,10 @@ def app():
                         
                 # Lagg all features
                 for col in stock.columns:
-                        for i in range(1,10):
+                        for i in range(1,5):
                                 stock[f"{col}_Lag{i}"] = stock[col].shift(i)
 
-                for i in range(1,10):
+                for i in range(1,5):
                         stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
 
                 # Add a new targets
