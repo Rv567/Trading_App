@@ -79,8 +79,12 @@ def app():
                 #st.write(key)
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
+
+                stock["high_low_ratio"] = stock["High"] / stock["Low"] 
+                stock["open_close_ratio"] = stock["Open"] / stock["Close"] 
+
                 # Technical Indicators
-                test_indicators = [ADX,MACD,RSI,BBANDS,WR,ATR,AD,OBV] 
+                test_indicators = [ADX,MACD,RSI,BBANDS,SAR,ATR,AD] 
                 for elem in test_indicators:
                         elem(stock)
 
@@ -100,7 +104,7 @@ def app():
                         stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
 
                 # Add a new targets
-                stock["Variation%"] = (stock['Close'].pct_change())*100
+                stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
                 stock["Log_Variation"] = np.log(stock['Close']).diff() 
 
                 # Shifting the target features for logical prediction
