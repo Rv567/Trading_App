@@ -162,6 +162,7 @@ def app():
                 X_tomorrow=X_tomorrow[features_df[key].columns]
                 st.write(X_tomorrow)
                 df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
+                st.write(df_prediction[key])
 
                 #df_predictionYest[key]=y_pred_test[-1]
                 df_actualClose[key] = y_test[-1]
