@@ -89,7 +89,7 @@ class MultiIndicatorStrategy(Strategy):
         if self.ad[-1] > self.ad[-2]:
             buy_signals += 1
         
-        if buy_signals >= 3 and not self.position:
+        if buy_signals == 4 and not self.position:
             self.buy()
             self.highest_price = self.data.High[-1] # Highest price is initialized at entry
 
