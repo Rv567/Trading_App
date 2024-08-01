@@ -40,10 +40,11 @@ def app():
             
             cum_returns = {}
             for elem in df.columns:
-                individual_cumsum = ((1+df[elem]).cumprod()-1)*100
-                cum_returns[elem] = individual_cumsum[-1]
+                if elem != "MASI":
+                    individual_cumsum = ((1+df[elem]).cumprod()-1)*100
+                    cum_returns[elem] = individual_cumsum[-1]
 
             df_cum_returns = pd.DataFrame(list(cum_returns.items()), columns=['Stock', 'Cumulative Return%']).set_index('Stock')
             df_cum_returns.sort_values(by="Cumulative Return%", ascending=False)
-            st.write(df_cum_returns.drop(columns="MASI"))
+            st.write(df_cum_returns)
     
