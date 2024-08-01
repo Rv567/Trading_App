@@ -6,7 +6,7 @@ from Functions.indicators import *
 def app():
 
     st.header("Portfolio Analysis, Build, and Optimization")
-    st.subheaderheader("Calculate Portfolio Metrics")
+    st.subheader("Calculate Portfolio Metrics")
     st.write("""
     - **Cumulative Return%**
     - **Standard Deviation**
