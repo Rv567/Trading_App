@@ -142,8 +142,9 @@ def best_indicators_category(liste):
 
 #Liquidity
 def measure_liquidity(df):
-    window=30
-    volume = df["Volume"].rolling(window=window).mean()
+    window=252 # yearly
+    total = df["Close"] * df["Volume"]
+    volume = total.rolling(window=window).mean()
     average_volume = volume.mean()
     return average_volume
 

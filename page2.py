@@ -79,7 +79,7 @@ def app():
     st.header('Liquidity Filtering')
     st.write("We filter our list of stocks by liquidity")
     st.write("Select the liquidity threshold")
-    threshold = st.slider('Threshold', min_value=0, max_value=100000, value=10000, step=10)
+    threshold = st.slider('Threshold', min_value=100000, max_value=40000000, value=2000000, step=100000)
     fst = filter_stocks(dataframes, 0.7, threshold)
     Newdict_df = {key:value for key,value in dataframes.items() if key in fst}# our working df came for liquidity threshold
     st.session_state['Newdict_df'] = Newdict_df # store it for page2
