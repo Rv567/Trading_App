@@ -5,7 +5,8 @@ from Functions.indicators import *
 
 def app():
     st.header("Introduction to the prediction page and the model")
-    st.write("you can view the predicted weekly variation along with trading decisions.")
+    st.write("You can view the predicted weekly variation along with trading decisions. This page can be loaded weekly.")
+
 
     st.subheader("Prediction Table")
     st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold)")

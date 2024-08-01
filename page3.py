@@ -5,7 +5,7 @@ from Functions.startegies import *
 
 def app():
     st.header("Introduction to the Trading Strategy page")
-    st.write("Welcome to the Trading Strategy page. Here, you can define the best trading strategy for each stock.")
+    st.write("Welcome to the Trading Strategy page. Here, you can define the best trading strategy for each stock. This page can be loaded daily or weekly.")
     
     dataframes = load_data()
     dataframes = {key: reorganize(df) for key, df in dataframes.items()}
