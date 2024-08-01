@@ -7,6 +7,7 @@ from streamlit_authenticator.utilities.hasher import Hasher
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import seaborn as sns
 import mplfinance as mpf
 import pandas_ta as ta

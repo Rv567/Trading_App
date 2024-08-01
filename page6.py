@@ -135,6 +135,29 @@ def app():
             df_poids["Poids %"] *= 100
             st.write(df_poids)
 
+            df_poids_filtered = df_poids[df_poids['Poids %'] > 0]
+
+            # Plotting
+            fig, ax = plt.subplots(figsize=(12, 8))
+            colors = cm.tab20c(range(len(df_poids_filtered)))
+
+            wedges, texts, autotexts = ax.pie(
+                df_poids_filtered['Poids %'], labels=df_poids_filtered['Stock'], autopct='%1.1f%%',
+                startangle=140, colors=colors, wedgeprops={'edgecolor': 'black', 'linewidth': 1.5}
+            )
+
+            # Styling the plot
+            plt.setp(autotexts, size=10, weight='bold', color='white')
+            plt.setp(texts, size=12, weight='bold')
+
+            ax.set_title('Stock Weights in Portfolio for max Sharpe', fontsize=16, weight='bold')
+            plt.axis('equal')  # Equal aspect ratio ensures the pie is drawn as a circle.
+
+            # Adding a legend
+            ax.legend(wedges, df_poids_filtered['Stock'], title="Stocks", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), fontsize=12)
+
+            plt.show()
+
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
 
