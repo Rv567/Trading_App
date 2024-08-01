@@ -168,7 +168,9 @@ def app():
                     y=-0.2,
                     xanchor="center",
                     x=0.5
-                )
+                ),
+                    height=700,  # Set the height of the figure
+                    width=700 
             )
 
             # Display the plot using Streamlit
