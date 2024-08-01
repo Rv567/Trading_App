@@ -45,6 +45,5 @@ def app():
                     cum_returns[elem] = individual_cumsum[-1]
 
             df_cum_returns = pd.DataFrame(list(cum_returns.items()), columns=['Stock', 'Cumulative Return%']).set_index('Stock')
-            df_cum_returns.sort_values(by="Cumulative Return%", ascending=False)
-            st.write(df_cum_returns)
+            st.write(df_cum_returns.sort_values(by="Cumulative Return%", ascending=False))
     
