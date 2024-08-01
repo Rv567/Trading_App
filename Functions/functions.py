@@ -36,6 +36,20 @@ def reorganize(dataframe):
         'volume': 'Volume'
     }).rename_axis("Date")
 
+def reorganize2(dataframe,ticker):
+    if 'symbol' in dataframe.columns:
+        dataframe = dataframe.drop('symbol', axis=1)
+        dataframe.index = pd.to_datetime(dataframe.index).date
+        dataframe.index = pd.to_datetime(dataframe.index)
+    # Rename columns
+    return dataframe.rename(columns={
+        'open': 'Open',
+        'high': 'High',
+        'low': 'Low',
+        'close': f'{ticker}',
+        'volume': 'Volume'
+    }).rename_axis("Date")
+
 def reorganize_trades(df):
     df_transposed = df.transpose()
 
