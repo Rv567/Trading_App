@@ -17,6 +17,7 @@ from statsmodels.tsa.seasonal import STL
 from collections import Counter
 import time
 from xgboost import XGBRegressor, plot_importance,XGBClassifier
+from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve, StratifiedKFold, cross_val_score
 from sklearn.decomposition import PCA
 from sklearn.metrics import mean_squared_error, f1_score,accuracy_score,classification_report, roc_auc_score,precision_recall_curve,roc_curve, confusion_matrix

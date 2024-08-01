@@ -8,7 +8,7 @@ def app():
     st.header("Portfolio Analysis, Build, and Optimization")
     st.subheader("Calculate Portfolio Metrics")
     st.write("""
-    - **Cumulative Return%**
+    - **Cumulative Return%** : 
     - **Standard Deviation**
     - **Beta**
     - **Sharpe Ratio**
@@ -31,9 +31,8 @@ def app():
 
     df.dropna(inplace=True)
   
-    st.write(df["MASI"])
     st.write("Choose a metric to apply to your stocks and see the results:")
-    metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation", "Beta", "Sharpe Ratio"])
+    metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation","Alpha","Beta", "Sharpe Ratio"])
 
     if st.button("Apply Metric"):
         if metric_choice == "Cumulative Return%":
@@ -53,6 +52,21 @@ def app():
                 std[elem] = round(df[elem].std(), 3)
             df_std = pd.DataFrame(list(std.items()), columns=['Stock', 'Standard Deviation']).set_index('Stock')
             st.write(df_std.sort_values(by="Standard Deviation", ascending=True))
+
+        elif metric_choice == "Alpha":
+
+            alpha = {}
+            for elem in df.columns:
+                 if elem != "MASI":
+                 
+                    X = df["MASI"].values.reshape(-1, 1)
+                    y = df[elem].values.reshape(-1, 1)
+                    model = LinearRegression()
+                    linreg = model.fit(X,y)
+                    alpha[elem] = linreg.intercept_
+
+            df_alpha = pd.DataFrame(list(alpha.items()), columns=['Stock', 'Alpha']).set_index('Stock')
+            st.write(df_alpha.sort_values(by="Alpha", ascending=False))
 
         elif metric_choice == "Beta":
             
