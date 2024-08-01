@@ -121,11 +121,11 @@ def app():
 
     if obj_choice == "Maximize the Sharp Ratio of the portfolio":
 
-        contra = st.selectbox("Choose a contraint or not", ["Yes", "No"])
+        contra = st.selectbox("Add a contraint or not", ["Yes", "No"])
         if contra == "Yes":
-            choice = st.number_input("Pick a maximum weight allocation",0,40)
+            #choice = st.number_input("Pick a maximum weight allocation",0,40)
             ef = EfficientFrontier(mu,S)
-            ef.add_constraint(lambda w: w <= choice/100)
+            ef.add_constraint(lambda w: w <= 20/100)
 
             weights = ef.max_sharpe()
 
