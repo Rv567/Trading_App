@@ -160,7 +160,7 @@ def app():
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
 
-            weights = ef.max_sharpe()
+            weights = ef.min_volatility()
 
             clean_weights = ef.clean_weights()
 
@@ -173,8 +173,9 @@ def app():
     else :
         contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
         if contra == "Yes":
-            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
             target = st.slider('Choose a target retun', min_value=0.2, max_value=2, value=0.7, step=0.1)
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
             ef.efficient_return(target_return=target)
@@ -188,9 +189,10 @@ def app():
         
 
         elif contra == "No" :
+            target = st.slider('Choose a target retun', min_value=0.2, max_value=2, value=0.7, step=0.1)
             ef = EfficientFrontier(mu,S)
 
-            weights = ef.max_sharpe()
+            ef.efficient_return(target_return=target)
 
             clean_weights = ef.clean_weights()
 
