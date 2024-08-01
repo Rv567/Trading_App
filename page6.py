@@ -139,7 +139,7 @@ def app():
             trace_pie(df_poids)
 
     ################## Second objective
-    if obj_choice == "Minimize the Volatility of the portfolio":
+    elif obj_choice == "Minimize the Volatility of the portfolio":
         contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
