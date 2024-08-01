@@ -89,3 +89,47 @@ def app():
 
             df_shap = pd.DataFrame(list(shap.items()), columns=['Stock', 'Sharpe_Ratio']).set_index('Stock')
             st.write(df_shap.sort_values(by="Sharpe_Ratio", ascending=False))
+
+
+    # Markowitz Optimization
+    st.header("Portfolio Markowitz Optimization")  
+
+    df_close = pd.concat([dataframes[elem][elem] for elem in ticker],join="outer",axis=1,sort=True)
+    df_close.index = pd.to_datetime(df_close.index)
+    df_close=df_close.drop(columns=["MASI","SNA","LES"])
+    df_close = df_close[df_close.index >= "2020-12-01"]
+    df_close = df_close.fillna(method='ffill')
+    df_close = df_close[df_close.index >= "2022-12-15"]
+
+    mu = expected_returns.mean_historical_return(df_close)
+    S = risk_models.sample_cov(df_close)
+
+    st.write("Choose an Optimization Objective")
+    obj_choice = st.selectbox("Select Objective", ["Maximize the Sharp Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
+
+    if obj_choice == "Maximize the Sharp Ratio of the portfolio":
+
+        contra = st.selectbox("Choose a contraint or not", ["Yes", "No"])
+        if contra == "Yes":
+            choice = st.number_input("Pick a maximum weight allocation",0,40)
+            ef = EfficientFrontier(mu,S)
+            ef.add_constraint(lambda w: w <= choice/100)
+
+            weights = ef.max_sharpe()
+
+            clean_weights = ef.clean_weights()
+
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
+            df_poids
+
+        else :
+            ef = EfficientFrontier(mu,S)
+
+            weights = ef.max_sharpe()
+
+            clean_weights = ef.clean_weights()
+
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
+            df_poids

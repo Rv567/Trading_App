@@ -35,6 +35,10 @@ from backtesting.test import GOOG, SMA
 
 import quantstats as qs
 
+from pypfopt.efficient_frontier import EfficientFrontier
+from pypfopt import risk_models
+from pypfopt import expected_returns
+
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart

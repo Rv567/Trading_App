@@ -14,6 +14,7 @@ xgboost
 scikit-learn
 shap
 QuantStats
+pyportfolioopt
 plotly
 backtesting
 tradingview-screener
