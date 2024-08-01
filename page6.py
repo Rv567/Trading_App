@@ -171,7 +171,7 @@ def app():
 
     ##################### Third objective
     else :
-        contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
+        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
         if contra == "Yes":
             target = st.slider('Choose a target retun', min_value=0.2, max_value=2, value=0.7, step=0.1)
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
