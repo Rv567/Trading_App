@@ -120,12 +120,12 @@ def app():
 
             clean_weights = ef.clean_weights()
 
-            df_poids_contr_sharp = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
-            df_poids_contr_sharp["Poids %"] *= 100
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
             st.subheader("Optimized Portfolio Weights")
-            st.write(df_poids_contr_sharp.sort_values(by="Poids %", ascending=False))
+            st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
-            trace_pie(df_poids_contr_sharp)
+            trace_pie(df_poids)
         
 
         elif contra == "No" :
@@ -135,12 +135,12 @@ def app():
 
             clean_weights = ef.clean_weights()
 
-            df_poids_sharp = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
-            df_poids_sharp["Poids %"] *= 100
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
             st.subheader("Optimized Portfolio Weights")
-            st.write(df_poids_sharp.sort_values(by="Poids %", ascending=False))
+            st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
-            trace_pie(df_poids_sharp)
+            trace_pie(df_poids)
 
     ################## Second objective
     elif obj_choice == "Minimize the Volatility of the portfolio":
@@ -224,5 +224,3 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
-
-    st.write(df_poids_sharp)
