@@ -134,7 +134,6 @@ def app():
             df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids["Poids %"] *= 100
             st.write(df_poids)
-
             trace_pie(df_poids)
         
 
@@ -148,3 +147,4 @@ def app():
             df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids["Poids %"] *= 100
             st.write(df_poids)
+            trace_pie(df_poids)
