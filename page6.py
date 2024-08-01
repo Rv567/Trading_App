@@ -137,13 +137,41 @@ def app():
 
             df_poids_filtered = df_poids[df_poids['Poids %'] > 0]
 
-            fig = px.pie(df_poids_filtered, values='Poids %', names='Stock', title='Stock Weights in Portfolio',
-             color_discrete_sequence=px.colors.qualitative.Pastel)
+            fig = px.pie(
+            df_poids_filtered, 
+            values='Poids %', 
+            names='Stock', 
+            title='Stock Weights in Portfolio',
+            color_discrete_sequence=px.colors.sequential.Plasma
+            )
 
-            # Update the layout for better readability and aesthetics
-            fig.update_traces(textposition='inside', textinfo='percent+label')
-            fig.update_layout(uniformtext_minsize=12, uniformtext_mode='hide', title_font_size=18, legend_title_text='Stocks')
+            # Update the pie chart layout for better readability and aesthetics
+            fig.update_traces(
+                textposition='inside', 
+                textinfo='percent+label'
+            )
+            fig.update_layout(
+                uniformtext_minsize=12, 
+                uniformtext_mode='hide', 
+                title_font_size=18, 
+                legend_title_text='Stocks',
+                title={
+                    'text': "Stock Weights in Portfolio",
+                    'y': 0.9,
+                    'x': 0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'
+                },
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=-0.2,
+                    xanchor="center",
+                    x=0.5
+                )
+            )
 
+            # Display the plot using Streamlit
             st.plotly_chart(fig)
 
         elif contra == "No" :
