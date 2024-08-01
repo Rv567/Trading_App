@@ -27,6 +27,7 @@ from sklearn.model_selection import ParameterGrid
 import optuna
 import shap
 import plotly.graph_objects as go
+import plotly.express as px
 from plotly.subplots import make_subplots
 import statsmodels.api as sm
 

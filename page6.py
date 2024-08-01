@@ -137,26 +137,14 @@ def app():
 
             df_poids_filtered = df_poids[df_poids['Poids %'] > 0]
 
-            # Plotting
-            fig, ax = plt.subplots(figsize=(12, 8))
-            colors = cm.tab20c(range(len(df_poids_filtered)))
+            fig = px.pie(df_poids_filtered, values='Poids %', names='Stock', title='Stock Weights in Portfolio',
+             color_discrete_sequence=px.colors.qualitative.Pastel)
 
-            wedges, texts, autotexts = ax.pie(
-                df_poids_filtered['Poids %'], labels=df_poids_filtered['Stock'], autopct='%1.1f%%',
-                startangle=140, colors=colors, wedgeprops={'edgecolor': 'black', 'linewidth': 1.5}
-            )
+            # Update the layout for better readability and aesthetics
+            fig.update_traces(textposition='inside', textinfo='percent+label')
+            fig.update_layout(uniformtext_minsize=12, uniformtext_mode='hide', title_font_size=18, legend_title_text='Stocks')
 
-            # Styling the plot
-            plt.setp(autotexts, size=10, weight='bold', color='white')
-            plt.setp(texts, size=12, weight='bold')
-
-            ax.set_title('Stock Weights in Portfolio for max Sharpe', fontsize=16, weight='bold')
-            plt.axis('equal')  # Equal aspect ratio ensures the pie is drawn as a circle.
-
-            # Adding a legend
-            ax.legend(wedges, df_poids_filtered['Stock'], title="Stocks", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), fontsize=12)
-
-            st.pyplot(fig)
+            st.plotly_chart(fig)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
