@@ -143,7 +143,18 @@ def app():
             with open("quantstats-report.html", "r") as f:
                 report_html = f.read()
     
-            st.components.v1.html(report_html, height=800, scrolling=True)
+            report_html = report_html.replace("background-color: #ffffff;", "background-color: #f0f0f0;")
+            report_html = report_html.replace("color: #000000;", "color: #333333;")
+            
+            # Save the modified HTML report
+            with open("quantstats-report-modified.html", "w") as f:
+                f.write(report_html)
+
+            # Display the modified HTML report in Streamlit
+            with open("quantstats-report-modified.html", "r") as f:
+                modified_report_html = f.read()
+            
+            st.components.v1.html(modified_report_html, height=800, scrolling=True)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
