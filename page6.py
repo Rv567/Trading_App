@@ -114,7 +114,7 @@ def app():
 
     df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
     df_poids["Poids %"] *= 100
-    df_poids
+    st.write(df_poids)
 
     st.write("Choose an Optimization Objective")
     obj_choice = st.selectbox("Select Objective", ["Maximize the Sharp Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
