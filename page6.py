@@ -123,7 +123,7 @@ def app():
 
         contra = st.selectbox("Add a contraint or not", ["Yes", "No"])
         if contra == "Yes":
-            choice = st.number_input("Insert a number", value=None, placeholder="Type a number...")
+            choice = st.slider('Threshold', min_value=10, max_value=50, value=50, step=10)
             st.write(choice)
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
