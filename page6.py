@@ -63,7 +63,7 @@ def app():
                     y = df[elem].values.reshape(-1, 1)
                     model = LinearRegression()
                     linreg = model.fit(X,y)
-                    alpha[elem] = linreg.intercept_
+                    alpha[elem] = np.round(linreg.intercept_,4)
 
             df_alpha = pd.DataFrame(list(alpha.items()), columns=['Stock', 'Alpha']).set_index('Stock')
             st.write(df_alpha.sort_values(by="Alpha", ascending=False))
