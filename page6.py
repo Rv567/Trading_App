@@ -170,7 +170,7 @@ def app():
             trace_pie(df_poids)
 
     ##################### Third objective
-    else :
+    elif obj_choice == "Target Return with Minimum Risk" :
         contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
         if contra == "Yes":
             target = st.slider('Choose a target retun', min_value=0.2, max_value=2, value=0.7, step=0.1)
