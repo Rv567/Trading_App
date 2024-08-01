@@ -106,10 +106,20 @@ def app():
     mu = expected_returns.mean_historical_return(df_close)
     S = risk_models.sample_cov(df_close)
 
+    ef = EfficientFrontier(mu,S)
+
+    weights = ef.max_sharpe()
+
+    clean_weights = ef.clean_weights()
+
+    df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+    df_poids["Poids %"] *= 100
+    df_poids
+
     st.write("Choose an Optimization Objective")
     obj_choice = st.selectbox("Select Objective", ["Maximize the Sharp Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
 
-    if obj_choice == "Maximize the Sharp Ratio of the portfolio":
+    """if obj_choice == "Maximize the Sharp Ratio of the portfolio":
 
         contra = st.selectbox("Choose a contraint or not", ["Yes", "No"])
         if contra == "Yes":
@@ -134,4 +144,4 @@ def app():
 
             df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids["Poids %"] *= 100
-            df_poids
+            df_poids"""
