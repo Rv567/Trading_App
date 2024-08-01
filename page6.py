@@ -56,6 +56,7 @@ def app():
 
         elif metric_choice == "Beta":
             
+            beta = {}
             for elem in df.columns:
                 if elem != "MASI":
                     beta[elem] = newbeta(df[elem], df["MASI"])
