@@ -6,7 +6,7 @@ from Functions.indicators import *
 def app():
 
     st.header("Portfolio Analysis, Build, and Optimization")
-    st.subheader("Meet the Finantial Superheroes")
+    st.subheader("Meet the Finantial Tools 🔭")
     st.write("""
     - **Cumulative Return%** : total return of an investment over a set period.
     - **Standard Deviation** : measures the amount of variation of a set of values.
