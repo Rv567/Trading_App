@@ -107,9 +107,8 @@ def app():
 
     mu = expected_returns.mean_historical_return(df_close)
     S = risk_models.sample_cov(df_close)
-    
+    ################### First objective
     if obj_choice == "Maximize the Sharp Ratio of the portfolio":
-
         contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
@@ -118,6 +117,67 @@ def app():
             ef.add_constraint(lambda w: w <= choice/100)
 
             weights = ef.max_sharpe()
+
+            clean_weights = ef.clean_weights()
+
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
+            st.write(df_poids.sort_values(by="Poids %", ascending=False))
+            trace_pie(df_poids)
+        
+
+        elif contra == "No" :
+            ef = EfficientFrontier(mu,S)
+
+            weights = ef.max_sharpe()
+
+            clean_weights = ef.clean_weights()
+
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
+            st.write(df_poids.sort_values(by="Poids %", ascending=False))
+            trace_pie(df_poids)
+
+    ################## Second objective
+    if obj_choice == "Minimize the Volatility of the portfolio":
+        contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
+        if contra == "Yes":
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            
+            ef = EfficientFrontier(mu,S)
+            ef.add_constraint(lambda w: w <= choice/100)
+
+            weights = ef.min_volatility()
+
+            clean_weights = ef.clean_weights()
+
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
+            st.write(df_poids.sort_values(by="Poids %", ascending=False))
+            trace_pie(df_poids)
+        
+
+        elif contra == "No" :
+            ef = EfficientFrontier(mu,S)
+
+            weights = ef.max_sharpe()
+
+            clean_weights = ef.clean_weights()
+
+            df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+            df_poids["Poids %"] *= 100
+            st.write(df_poids.sort_values(by="Poids %", ascending=False))
+            trace_pie(df_poids)
+
+    ##################### Third objective
+    else :
+        contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
+        if contra == "Yes":
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            target = st.slider('Choose a target retun', min_value=0.2, max_value=2, value=0.7, step=0.1)
+            ef = EfficientFrontier(mu,S)
+            ef.add_constraint(lambda w: w <= choice/100)
+            ef.efficient_return(target_return=target)
 
             clean_weights = ef.clean_weights()
 
