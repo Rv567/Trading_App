@@ -14,9 +14,7 @@ def app():
     - **Sharpe Ratio**
     """)
 
-    st.write("Choose a metric to apply to your stocks and see the results:")
-    metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation", "Beta", "Sharpe Ratio"])
-    
+    #### df definition
     #We load our entire data from pickle files
     dataframes = load_data()
     ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
@@ -32,8 +30,12 @@ def app():
         df[elem] = df[elem].pct_change()
 
     df.dropna(inplace=True)
+    df.drop(columns="MASI")
+
 
     st.write(df)
+    st.write("Choose a metric to apply to your stocks and see the results:")
+    metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation", "Beta", "Sharpe Ratio"])
 
     if st.button("Apply Metric"):
         if metric_choice == "Cumulative Return%":
