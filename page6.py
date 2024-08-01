@@ -127,6 +127,8 @@ def app():
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
         
+            st.subheader("Optimized Portfolio Performance")
+            st.write(df_cum_returns)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
