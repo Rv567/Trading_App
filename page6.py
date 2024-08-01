@@ -103,13 +103,13 @@ def app():
 
 
     st.write("Choose an Optimization Objective")
-    obj_choice = st.selectbox("Select Objective", ["Maximize the Sharp Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
+    obj_choice = st.selectbox("Select Objective", ["Maximize the Sharpe Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
 
     mu = expected_returns.mean_historical_return(df_close)
     S = risk_models.sample_cov(df_close)
     ################### First objective
-    if obj_choice == "Maximize the Sharp Ratio of the portfolio":
-        contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
+    if obj_choice == "Maximize the Sharpe Ratio of the portfolio":
+        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
             
@@ -140,7 +140,7 @@ def app():
 
     ################## Second objective
     if obj_choice == "Minimize the Volatility of the portfolio":
-        contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
+        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
             
