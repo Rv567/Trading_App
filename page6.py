@@ -30,10 +30,9 @@ def app():
         df[elem] = df[elem].pct_change()
 
     df.dropna(inplace=True)
-    df.drop(columns="MASI")
+    #df.drop(columns="MASI")
 
-
-    st.write(df)
+    st.write(df.drop(columns="MASI"))
     st.write("Choose a metric to apply to your stocks and see the results:")
     metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation", "Beta", "Sharpe Ratio"])
 
