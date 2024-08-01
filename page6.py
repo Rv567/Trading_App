@@ -20,7 +20,7 @@ def app():
     #We load our entire data from pickle files
     dataframes = load_data()
     ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
-    dataframes = {key: reorganize2(df) for key, df in dataframes.items()}
+    dataframes = {key: reorganize2(df,ticker) for key, df,ticker in zip(dataframes.items(),ticker)}
 
     df = pd.concat([dataframes[elem][elem] for elem in ticker],join="outer",axis=1,sort=True)
     # Remove NA
@@ -33,7 +33,7 @@ def app():
 
     df.dropna(inplace=True)
     st.write(df)
-    
+
     if st.button("Apply Metric"):
         if metric_choice == "Cumulative Return%":
             st.write(f"Results for {metric_choice}:")
