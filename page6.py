@@ -133,10 +133,11 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             st.write(df_poids_opt)
             optimized_portfolio=0
-            exclude_columns = ["MASI", "SNA","LES"]
+            exclude_columns = ["MASI", "SNA","LES","CFG"]
             for elem in df.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
+                    st.write(elem)
                     st.write(poids)
                     optimized_portfolio += poids/100 * df[elem]
 
