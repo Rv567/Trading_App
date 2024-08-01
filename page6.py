@@ -169,6 +169,7 @@ def app():
 
             df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids["Poids %"] *= 100
+            st.subheader("Optimized Portfolio Weights")
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             trace_pie(df_poids)
 
