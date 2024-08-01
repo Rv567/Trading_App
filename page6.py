@@ -123,7 +123,7 @@ def app():
 
         contra = st.selectbox("Add a contraint or not", ["Yes", "No"])
         if contra == "Yes":
-            choice = st.number_input("Pick a maximum weight allocation %", min_value=0, max_value=40, step=10)
+            choice = st.number_input("Pick a maximum weight allocation %", min_value=20, max_value=40, step=10)
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
 
