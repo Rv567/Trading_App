@@ -122,7 +122,7 @@ def app():
     if obj_choice == "Maximize the Sharp Ratio of the portfolio":
 
         contra = st.selectbox("Choose a contraint or not", ["Yes", "No"])
-        """if contra == "Yes":
+        if contra == "Yes":
             choice = st.number_input("Pick a maximum weight allocation",0,40)
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
@@ -133,9 +133,9 @@ def app():
 
             df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids["Poids %"] *= 100
-            df_poids"""
+            st.write(df_poids)
 
-        if contra == "No" :
+        elif contra == "No" :
             ef = EfficientFrontier(mu,S)
 
             weights = ef.max_sharpe()
