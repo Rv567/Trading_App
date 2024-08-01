@@ -183,6 +183,15 @@ def beta(df, df_marketIndex): #3-Year Beta
     beta = covariance / variance
     return beta
 
+def newbeta(stock_returns, index_returns):
+
+    combined = pd.DataFrame({"stock": stock_returns, "index": index_returns})
+    covariance_matrix  = np.cov(combined["stock"], combined["index"])
+    covariance = covariance_matrix[0, 1] # covariance(stock,index)
+    variance = np.var(combined["index"])
+    beta = covariance / variance
+    
+    return beta
 
 def filter_stocks(df, volatility_threshold, liquidity_threshold):
     selected_keys = []

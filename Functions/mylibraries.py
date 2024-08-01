@@ -32,6 +32,7 @@ from backtesting import Backtest, Strategy
 from backtesting.lib import crossover
 from backtesting.test import GOOG, SMA
 
+import quantstats as qs
 
 import smtplib
 from email.mime.text import MIMEText

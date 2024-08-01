@@ -12,8 +12,8 @@ mplfinance
 statsmodels
 xgboost
 scikit-learn
-optuna
 shap
+QuantStats
 plotly
 backtesting
 tradingview-screener

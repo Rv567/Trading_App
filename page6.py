@@ -36,14 +36,39 @@ def app():
 
     if st.button("Apply Metric"):
         if metric_choice == "Cumulative Return%":
-            st.write(f"Results for {metric_choice}:")
             
             cum_returns = {}
             for elem in df.columns:
-                if elem != "MASI":
-                    individual_cumsum = ((1+df[elem]).cumprod()-1)*100
-                    cum_returns[elem] = individual_cumsum[-1]
-
+                individual_cumsum = ((1+df[elem]).cumprod()-1)*100
+                cum_returns[elem] = individual_cumsum[-1]
             df_cum_returns = pd.DataFrame(list(cum_returns.items()), columns=['Stock', 'Cumulative Return%']).set_index('Stock')
             st.write(df_cum_returns.sort_values(by="Cumulative Return%", ascending=False))
     
+
+        elif metric_choice == "Standard Deviation" :
+
+            std = {}
+            for elem in df.columns:
+                std[elem] = round(df[elem].std(), 3)
+            df_std = pd.DataFrame(list(std.items()), columns=['Stock', 'Standard Deviation']).set_index('Stock')
+            st.write(df_std.sort_values(by="Standard Deviation", ascending=True))
+
+        elif metric_choice == "Beta":
+            
+            for elem in df.columns:
+                if elem != "MASI":
+                    beta[elem] = newbeta(df[elem], df["MASI"])
+
+            df_beta = pd.DataFrame(list(beta.items()), columns=['Stock', 'Beta']).set_index('Stock')
+            st.write(df_beta.sort_values(by="Beta", ascending=False))
+        
+        elif metric_choice == "Sharpe Ratio":
+            
+            risk_free_rate = 0.01 / 252 # 1% en daily devient ceci en annually
+            shap = {}
+            for elem in df.columns:
+                if elem != "MASI":
+                    shap[elem] = qs.stats.sharpe(df[elem], rf=risk_free_rate)
+
+            df_shap = pd.DataFrame(list(shap.items()), columns=['Stock', 'Sharpe_Ratio']).set_index('Stock')
+            st.write(df_shap.sort_values(by="Sharp_Ratio", ascending=False))
