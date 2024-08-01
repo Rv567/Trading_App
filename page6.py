@@ -71,4 +71,4 @@ def app():
                     shap[elem] = qs.stats.sharpe(df[elem], rf=risk_free_rate)
 
             df_shap = pd.DataFrame(list(shap.items()), columns=['Stock', 'Sharpe_Ratio']).set_index('Stock')
-            st.write(df_shap.sort_values(by="Sharp_Ratio", ascending=False))
+            st.write(df_shap.sort_values(by="Sharpe_Ratio", ascending=False))
