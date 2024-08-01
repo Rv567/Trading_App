@@ -31,6 +31,7 @@ def app():
 
     df.dropna(inplace=True)
   
+    st.write(df["MASI"])
     st.write("Choose a metric to apply to your stocks and see the results:")
     metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation", "Beta", "Sharpe Ratio"])
 
