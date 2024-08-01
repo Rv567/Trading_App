@@ -142,22 +142,8 @@ def app():
             qs.reports.html(optimized_portfolio, benchmark=df["MASI"], output="quantstats-report.html")
             with open("quantstats-report.html", "r") as f:
                 report_html = f.read()
-
-            # Modify the CSS styles for dark mode
-            report_html = report_html.replace("background-color: #ffffff;", "background-color: #1e1e1e;")
-            report_html = report_html.replace("color: #000000;", "color: #e0e0e0;")
-            report_html = report_html.replace("color: #333333;", "color: #e0e0e0;")
-            report_html = report_html.replace("color: #666666;", "color: #cccccc;")
-            report_html = report_html.replace("border-color: #dddddd;", "border-color: #444444;")
-
-            # Save the modified HTML file
-            with open("quantstats-report-modified.html", "w") as f:
-                f.write(report_html)
-                    
-            with open("quantstats-report-modified.html", "r") as f:
-                modified_report_html = f.read()
-
-            st.components.v1.html(modified_report_html, height=800, scrolling=True)
+        
+            st.components.v1.html(report_html, height=800, scrolling=True)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
