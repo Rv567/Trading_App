@@ -101,6 +101,8 @@ def app():
     df_close = df_close.fillna(method='ffill')
     df_close = df_close[df_close.index >= "2022-12-15"]
 
+    st.write(df_close)
+
     mu = expected_returns.mean_historical_return(df_close)
     S = risk_models.sample_cov(df_close)
 
