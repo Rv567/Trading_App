@@ -287,7 +287,7 @@ def optimize_strategies(dataframe, strategies):
         progress += 1
         status_text.text(f"Optimizing strategy: {strategy_name} ({progress}/{total_strategies})")
     
-        bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0044)
+        bt = Backtest(dataframe, strategy["symbol"], cash=1_000_000, commission=0.0088)
         optim = bt.optimize(maximize="Return [%]", **strategy["optimize_params"])
 
         if optim['Return [%]'] > best_return:
