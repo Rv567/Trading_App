@@ -124,7 +124,6 @@ def app():
         contra = st.selectbox("Add a contraint fo maximum wight allocation", ["Yes", "No"])
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
-            st.write(choice)
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
 
