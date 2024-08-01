@@ -139,7 +139,11 @@ def app():
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
 
-            st.write(qs.reports.full(optimized_portfolio, benchmark=df["MASI"]))
+            qs.reports.html(optimized_portfolio, benchmark=df["MASI"], output="quantstats-report.html")
+            with open("quantstats-report.html", "r") as f:
+                report_html = f.read()
+    
+            st.components.v1.html(report_html, height=800, scrolling=True)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
