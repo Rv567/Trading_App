@@ -144,4 +144,4 @@ def app():
 
             df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids["Poids %"] *= 100
-            df_poids
+            st.write(df_poids)
