@@ -31,18 +31,19 @@ def app():
         df[elem] = df[elem].pct_change()
 
     df.dropna(inplace=True)
-  
+    #cum return
+    cum_returns = {}
+    for elem in df.columns:
+        individual_cumsum = ((1+df[elem]).cumprod()-1)*100
+        cum_returns[elem] = individual_cumsum[-1]
+    df_cum_returns = pd.DataFrame(list(cum_returns.items()), columns=['Stock', 'Cumulative Return%']).set_index('Stock')
+    
     st.write("Choose a metric to apply to your stocks and see the results:")
     metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation","Alpha","Beta", "Sharpe Ratio"])
 
     if st.button("Apply Metric"):
         if metric_choice == "Cumulative Return%":
-            
-            cum_returns = {}
-            for elem in df.columns:
-                individual_cumsum = ((1+df[elem]).cumprod()-1)*100
-                cum_returns[elem] = individual_cumsum[-1]
-            df_cum_returns = pd.DataFrame(list(cum_returns.items()), columns=['Stock', 'Cumulative Return%']).set_index('Stock')
+
             st.write(df_cum_returns.sort_values(by="Cumulative Return%", ascending=False))
     
 
