@@ -156,7 +156,7 @@ def app():
             # Adding a legend
             ax.legend(wedges, df_poids_filtered['Stock'], title="Stocks", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1), fontsize=12)
 
-            plt.show()
+            st.pyplot(fig)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
