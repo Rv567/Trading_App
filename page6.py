@@ -138,7 +138,7 @@ def app():
             df_poids_sharp = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
             df_poids_sharp["Poids %"] *= 100
             st.subheader("Optimized Portfolio Weights")
-            st.write(df_poids.sort_values(by="Poids %", ascending=False))
+            st.write(df_poids_sharp.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids_sharp)
 
