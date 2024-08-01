@@ -134,12 +134,13 @@ def app():
             st.write(df_poids_opt)
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            """for elem in df.columns:
+            for elem in df.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
+                    st.write(poids)
                     optimized_portfolio += poids/100 * df[elem]
 
-            qs.reports.full(optimized_portfolio, benchmark=df["MASI"])"""
+            #qs.reports.full(optimized_portfolio, benchmark=df["MASI"])
 
 
 
