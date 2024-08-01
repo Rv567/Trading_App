@@ -30,9 +30,7 @@ def app():
         df[elem] = df[elem].pct_change()
 
     df.dropna(inplace=True)
-    #df.drop(columns="MASI")
-
-    st.write(df.drop(columns="MASI"))
+  
     st.write("Choose a metric to apply to your stocks and see the results:")
     metric_choice = st.selectbox("Select Metric", ["Cumulative Return%", "Standard Deviation", "Beta", "Sharpe Ratio"])
 
@@ -47,5 +45,5 @@ def app():
 
             df_cum_returns = pd.DataFrame(list(cum_returns.items()), columns=['Stock', 'Cumulative Return%']).set_index('Stock')
             df_cum_returns.sort_values(by="Cumulative Return%", ascending=False)
-            st.write(df_cum_returns)
+            st.write(df_cum_returns.drop(columns="MASI"))
     
