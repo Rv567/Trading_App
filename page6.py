@@ -6,12 +6,13 @@ from Functions.indicators import *
 def app():
 
     st.header("Portfolio Analysis, Build, and Optimization")
-    st.subheader("Calculate Portfolio Metrics")
+    st.subheader("Meet the Finantial Superheroes")
     st.write("""
-    - **Cumulative Return%** : 
-    - **Standard Deviation**
-    - **Beta**
-    - **Sharpe Ratio**
+    - **Cumulative Return%** : Total return of an investment over a set period.
+    - **Standard Deviation** : Measures the amount of variation of a set of values.
+    - **Alpha** : Measures excess returns relative to benchmark MASI.
+    - **Beta** : Quantifies an asset's volatility compared to the market.
+    - **Sharpe Ratio** : Evaluates risk-adjusted performance.
     """)
 
     #### df definition
