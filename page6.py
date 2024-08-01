@@ -180,7 +180,7 @@ def app():
                                 value=0.7, 
                                 step=0.1
                             )
-            #choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
             
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= 20/100)
@@ -195,7 +195,13 @@ def app():
         
 
         elif contra == "No" :
-            target = st.slider('Choose a target return', min_value=0.2, max_value=2, value=0.7, step=0.1)
+            target = st.slider(
+                                'Choose a target return',
+                                min_value=0.2, 
+                                max_value=2.0, 
+                                value=0.7, 
+                                step=0.1
+                            )
             ef = EfficientFrontier(mu,S)
 
             ef.efficient_return(target_return=target)
