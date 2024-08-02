@@ -85,7 +85,7 @@ def app():
             risk_free_rate = 0.01 / 252 # 1% en daily devient ceci en annually
             shap = {}
             for elem in df.columns:
-                if elem != "MASI":
+                #if elem != "MASI":
                     shap[elem] = qs.stats.sharpe(df[elem], rf=risk_free_rate)
 
             df_shap = pd.DataFrame(list(shap.items()), columns=['Stock', 'Sharpe_Ratio']).set_index('Stock')
@@ -155,7 +155,7 @@ def app():
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
 
-            st.write(qs.stats.sharpe(df["MASI"], periods=252))
+            st.write(qs.stats.sharpe(df["MASI"]))
             st.write(df["MASI"])
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
