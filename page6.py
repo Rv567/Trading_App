@@ -99,7 +99,7 @@ def app():
 
     df_close = pd.concat([dataframes[elem][elem] for elem in ticker],join="outer",axis=1,sort=True)
     df_close.index = pd.to_datetime(df_close.index)
-    df_close=df_close.drop(columns=["MASI","SNA","LES","CFG"])
+    df_close=df_close.drop(columns=["MASI","SNA","LES"])
     df_close = df_close[df_close.index >= "2020-12-01"]
     df_close = df_close.fillna(method='ffill')
     df_close = df_close[df_close.index >= "2022-12-15"]
