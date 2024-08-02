@@ -84,9 +84,13 @@ def app():
     Newdict_df = {key:value for key,value in dataframes.items() if key in fst}# our working df came for liquidity threshold
     st.session_state['Newdict_df'] = Newdict_df # store it for page2
     st.markdown("""
-    **Volume Calculation:**
-    - The average volume of a stock is calculated using a 252-day rolling mean (dynamic average of previous 252 days).
-    """)
+        **Volume Calculation:**
+        - The average volume of a stock is calculated using a 252-day rolling mean (dynamic average of previous 252 days).
+        - The formula for volume is given by:
+        $$
+        \\text{Volume} = \\text{Quantity} \\times \\text{Close Price}
+        $$
+        """)
 
     st.subheader("Stocks meeting the liquidity criteria")
     st.write(Newdict_df.keys())
