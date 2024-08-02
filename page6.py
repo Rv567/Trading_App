@@ -106,7 +106,7 @@ def app():
     st.write("Choose an Optimization Objective")
     st.markdown("""
         #### Minimize Volatility
-        The objective of minimizing volatility is to find the portfolio with the lowest possible risk (volatility) for a given set of assets. This approach focuses solely on reducing the portfolio's risk without explicitly considering returns. It is often referred to as the minimum variance portfolio.
+        The objective of minimizing volatility is to find the portfolio with the lowest possible risk (volatility) for a given set of assets. This approach focuses solely on reducing the portfolio's risk without explicitly considering returns.
 
         - **Goal:** Achieve the lowest possible portfolio volatility.
 
@@ -116,7 +116,7 @@ def app():
         - **Goal:** Maximize the portfolio's Sharpe ratio, balancing returns and risk.
 
         #### Target Return
-        The efficient return objective seeks to achieve a specific target return with the least amount of risk. By setting a target return, the optimizer finds the portfolio that meets this return requirement while minimizing the associated risk. This approach is useful for investors with specific return goals.
+        The efficient return objective seeks to achieve a specific target return with the least amount of risk. This approach is useful for investors with specific return goals.
 
         - **Goal:** Minimize risk for a specified target return.""")
 
