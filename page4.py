@@ -112,9 +112,9 @@ def app():
                 stock["Variation%"] = stock["Variation%"].shift(-1)
                 stock["Log_Variation"] = stock["Log_Variation"].shift(-1)
 
-                for col in df_pred_tomorrow.columns:
+                for col in stock.columns:
                     if "SAR" in col:
-                        df_pred_tomorrow[col] = df_pred_tomorrow[col].ffill()
+                        stock[col] = stock[col].ffill()
 
                 df_pred_tomorrow[key] = stock.copy() # Copy to be used to predict tomorrow variation
                 stock.dropna(inplace=True)
