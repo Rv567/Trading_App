@@ -157,8 +157,6 @@ def app():
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
 
-            st.write(qs.stats.sharpe(df["MASI"]))
-            st.write(df["MASI"])
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
 
@@ -175,6 +173,19 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
+
+            st.subheader("Optimized Portfolio Performance")
+            # Portfolio Construction
+            df_poids_opt = df_poids.set_index("Stock")
+            optimized_portfolio=0
+            exclude_columns = ["MASI", "SNA","LES"]
+            for elem in df.columns:
+                if elem not in  exclude_columns:
+                    poids = df_poids_opt.loc[elem].values
+                    optimized_portfolio += poids/100 * df[elem]
+
+            #Plot
+            trace_perf(optimized_portfolio,df["MASI"])
 
     ################## Second objective
     elif obj_choice == "Minimize the Volatility of the portfolio":
@@ -195,6 +206,19 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
+
+            st.subheader("Optimized Portfolio Performance")
+            # Portfolio Construction
+            df_poids_opt = df_poids.set_index("Stock")
+            optimized_portfolio=0
+            exclude_columns = ["MASI", "SNA","LES"]
+            for elem in df.columns:
+                if elem not in  exclude_columns:
+                    poids = df_poids_opt.loc[elem].values
+                    optimized_portfolio += poids/100 * df[elem]
+
+            #Plot
+            trace_perf(optimized_portfolio,df["MASI"])
         
 
         elif contra == "No" :
@@ -210,6 +234,19 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
+
+            st.subheader("Optimized Portfolio Performance")
+            # Portfolio Construction
+            df_poids_opt = df_poids.set_index("Stock")
+            optimized_portfolio=0
+            exclude_columns = ["MASI", "SNA","LES"]
+            for elem in df.columns:
+                if elem not in  exclude_columns:
+                    poids = df_poids_opt.loc[elem].values
+                    optimized_portfolio += poids/100 * df[elem]
+
+            #Plot
+            trace_perf(optimized_portfolio,df["MASI"])
 
     ##################### Third objective
     elif obj_choice == "Target Return with Minimum Risk" :
@@ -236,6 +273,19 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
+
+            st.subheader("Optimized Portfolio Performance")
+            # Portfolio Construction
+            df_poids_opt = df_poids.set_index("Stock")
+            optimized_portfolio=0
+            exclude_columns = ["MASI", "SNA","LES"]
+            for elem in df.columns:
+                if elem not in  exclude_columns:
+                    poids = df_poids_opt.loc[elem].values
+                    optimized_portfolio += poids/100 * df[elem]
+
+            #Plot
+            trace_perf(optimized_portfolio,df["MASI"])
         
 
         elif contra == "No" :
@@ -258,3 +308,16 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
+
+            st.subheader("Optimized Portfolio Performance")
+            # Portfolio Construction
+            df_poids_opt = df_poids.set_index("Stock")
+            optimized_portfolio=0
+            exclude_columns = ["MASI", "SNA","LES"]
+            for elem in df.columns:
+                if elem not in  exclude_columns:
+                    poids = df_poids_opt.loc[elem].values
+                    optimized_portfolio += poids/100 * df[elem]
+
+            #Plot
+            trace_perf(optimized_portfolio,df["MASI"])
