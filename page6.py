@@ -18,7 +18,8 @@ def app():
     #### df definition
     #We load our entire data from pickle files
     dataframes = load_data()
-    ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
+    dataframes.pop('CFG', None)
+    ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
     dataframes = {key: reorganize2(df, ticker[idx]) for idx, (key, df) in enumerate(dataframes.items())}
 
     df = pd.concat([dataframes[elem][elem] for elem in ticker],join="outer",axis=1,sort=True)
