@@ -155,7 +155,7 @@ def app():
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
 
-            qs.stats.sharpe(df["MASI"], periods=252)
+            st.write(qs.stats.sharpe(df["MASI"], periods=252))
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
 
