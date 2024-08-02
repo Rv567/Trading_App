@@ -9,7 +9,8 @@ def app():
 
 
     st.subheader("Prediction Table")
-    st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold)")
+    st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold).")
+    st.write("The predictions should be done every Friday.")
     
     # Retrieve Data
     Newdict_df = st.session_state['Newdict_df']
@@ -98,14 +99,15 @@ def app():
                         
                 # Lagg all features
                 for col in stock.columns:
-                        for i in range(1,10):
+                        for i in range(1,15):
                                 stock[f"{col}_Lag{i}"] = stock[col].shift(i)
 
-                for i in range(1,10):
+                for i in range(1,15):
                         stock[f"Close_Lag{i}_ratio"] = stock["Close"] / stock[f"Close_Lag{i}"]
 
                 # Add a new targets
-                stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
+                #stock["Variation%"] = np.round((stock['Close'].pct_change())*100,2)
+                stock["Variation%"] = np.round((stock['Close'] - stock['Open'])/stock['Open'] *100,2)
                 stock["Log_Variation"] = np.log(stock['Close']).diff() 
 
                 # Shifting the target features for logical prediction
