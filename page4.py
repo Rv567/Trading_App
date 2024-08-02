@@ -89,7 +89,7 @@ def app():
                         elem(stock)
 
                 # Different periods
-                for elem in [2,4,8,16,32,64]:
+                for elem in [2,4,8,16,32]:
                         EMA(stock,elem)
                         SMA(stock,elem)
                         stock[f'Close_rolling_mean_{elem}'] = stock['Close'].rolling(window=elem).mean()
@@ -111,6 +111,10 @@ def app():
                 # Shifting the target features for logical prediction
                 stock["Variation%"] = stock["Variation%"].shift(-1)
                 stock["Log_Variation"] = stock["Log_Variation"].shift(-1)
+
+                for col in df_pred_tomorrow.columns:
+                    if "SAR" in col:
+                        df_pred_tomorrow[col] = df_pred_tomorrow[col].ffill()
 
                 df_pred_tomorrow[key] = stock.copy() # Copy to be used to predict tomorrow variation
                 stock.dropna(inplace=True)
