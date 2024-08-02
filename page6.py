@@ -31,6 +31,7 @@ def app():
         df[elem] = df[elem].pct_change()
 
     df.dropna(inplace=True)
+    st.write(df)
     #cum return
     cum_returns = {}
     for elem in df.columns:
