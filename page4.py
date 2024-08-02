@@ -77,7 +77,6 @@ def app():
         df_pred_tomorrow = {} #model.predict()
         
         for key in filtered_dict.keys():
-                #st.write(key)
                 df_ml= dataframes.copy()
                 stock = df_ml[key]
 
@@ -166,9 +165,7 @@ def app():
                 # Prediction tomorrow's close
                 X_tomorrow = df_pred_tomorrow[key].tail(1)
                 X_tomorrow=X_tomorrow[features_df[key].columns]
-                st.write(X_tomorrow)
                 df_prediction[key]= float(model.predict(X_tomorrow)) #Predicting tomorrow close
-                st.write(df_prediction[key])
 
                 #df_predictionYest[key]=y_pred_test[-1]
                 df_actualClose[key] = y_test[-1]
