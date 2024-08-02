@@ -452,8 +452,8 @@ def trace_perf(portfolio,benchmark):
     benchmark_volatility = qs.stats.volatility(benchmark, periods=252) * 100
     portfolio_returns = qs.stats.compsum(portfolio)[-1] * 100
     benchmark_returns = qs.stats.compsum(benchmark)[-1] * 100
-    portfolio_sharpe = qs.stats.sharpe(portfolio, periods=252)
-    benchmark_sharpe = qs.stats.sharpe(benchmark, periods=252)
+    portfolio_sharpe = qs.stats.sharpe(portfolio)
+    benchmark_sharpe = qs.stats.sharpe(benchmark)
 
     # Create figure
     fig = go.Figure()
