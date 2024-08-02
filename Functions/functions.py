@@ -483,7 +483,7 @@ def trace_perf(portfolio,benchmark):
 
     # Configuring layout
     fig.update_layout(
-        title={'text': '<b>Portfolio vs Benchmark</b>', 'x': 0.5, 'xanchor': 'center','yanchor': 'top'},
+        title={'text': '<b>Portfolio vs Benchmark</b> : Risk-Return Profils', 'x': 0.5, 'xanchor': 'center','yanchor': 'top'},
         template='plotly_white',
         height=700,
         width=1000,
