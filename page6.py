@@ -151,7 +151,7 @@ def app():
             # Portfolio Construction
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
-            exclude_columns = ["MASI", "SNA","LES","CFG"]
+            exclude_columns = ["MASI", "SNA","LES"]
             for elem in df.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
