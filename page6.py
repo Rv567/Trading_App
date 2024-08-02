@@ -104,6 +104,24 @@ def app():
 
 
     st.write("Choose an Optimization Objective")
+    st.markdown("""
+        ## Optimization Objectives
+
+        ### Minimize Volatility
+        The objective of minimizing volatility is to find the portfolio with the lowest possible risk (volatility) for a given set of assets. This approach focuses solely on reducing the portfolio's risk without explicitly considering returns. It is often referred to as the minimum variance portfolio.
+
+        - **Goal:** Achieve the lowest possible portfolio volatility.
+
+        ### Maximize Sharpe Ratio
+        Maximizing the Sharpe ratio aims to achieve the highest risk-adjusted return. The Sharpe ratio is calculated as the ratio of the portfolio's excess return over the risk-free rate to its volatility. This objective balances the trade-off between return and risk, aiming to optimize the overall performance of the portfolio.
+
+        - **Goal:** Maximize the portfolio's Sharpe ratio, balancing returns and risk.
+
+        ### Target Return
+        The efficient return objective seeks to achieve a specific target return with the least amount of risk. By setting a target return, the optimizer finds the portfolio that meets this return requirement while minimizing the associated risk. This approach is useful for investors with specific return goals.
+
+        - **Goal:** Minimize risk for a specified target return.""")
+
     obj_choice = st.selectbox("Select Objective", ["Maximize the Sharpe Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
 
     mu = expected_returns.mean_historical_return(df_close)
@@ -139,11 +157,6 @@ def app():
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
 
-            qs.reports.html(optimized_portfolio, benchmark=df["MASI"], output="quantstats-report.html")
-            with open("quantstats-report.html", "r") as f:
-                report_html = f.read()
-        
-            st.components.v1.html(report_html, height=800, scrolling=True)
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
