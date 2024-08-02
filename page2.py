@@ -85,11 +85,11 @@ def app():
     st.session_state['Newdict_df'] = Newdict_df # store it for page2
     st.markdown("""
         **Volume Calculation:**
-        - The average volume of a stock is calculated using a 252-day rolling mean (dynamic average of previous 252 days).
         - The formula for volume is given by:
         $$
         \\text{Volume} = \\text{Quantity} \\times \\text{Close Price}
         $$
+        - The average volume of a stock is calculated using a 252-day rolling mean (dynamic average of previous 252 days).
         """)
 
     st.subheader("Stocks meeting the liquidity criteria")
