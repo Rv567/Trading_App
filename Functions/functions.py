@@ -438,7 +438,7 @@ def trace_pie(df_poids):
             xanchor="center",
             x=0.5
         ),
-            height=550,  # Set the height of the figure
+            height=650,  # Set the height of the figure
             width=650 
     )
 
