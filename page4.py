@@ -10,7 +10,6 @@ def app():
 
     st.subheader("Prediction Table")
     st.write("DataFrame showing Week Before Last Variation %, Last Week Variation %, Predicted Next Week Variation %, Median 50% Value, and Decision (Buy/Sell/Hold).")
-    st.write("The predictions should be done every Friday.")
     
     # Retrieve Data
     Newdict_df = st.session_state['Newdict_df']
@@ -70,7 +69,7 @@ def app():
     # Inject CSS into the Streamlit app
     st.markdown(custom_button_css, unsafe_allow_html=True)
     #st.markdown('<div class="centered-button">', unsafe_allow_html=True)
-
+    st.write("The predictions should be done every Friday.")
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
         features_df = {}
