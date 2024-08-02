@@ -146,8 +146,7 @@ def app():
             trace_pie(df_poids)
         
             st.subheader("Optimized Portfolio Performance")
-            #st.write(df_cum_returns)
-
+            # Portfolio Construction
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES","CFG"]
@@ -156,6 +155,8 @@ def app():
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
 
+            #Plot
+            trace_perf(optimized_portfolio,df["MASI"])
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)

@@ -443,3 +443,55 @@ def trace_pie(df_poids):
     )
 
     st.plotly_chart(fig)
+
+
+def trace_perf(portfolio,benchmark):
+
+    # Calculate necessary metrics
+    portfolio_volatility = qs.stats.volatility(portfolio, periods=252) * 100
+    benchmark_volatility = qs.stats.volatility(benchmark, periods=252) * 100
+    portfolio_returns = qs.stats.compsum(portfolio)[-1] * 100
+    benchmark_returns = qs.stats.compsum(benchmark)[-1] * 100
+    portfolio_sharpe = qs.stats.sharpe(portfolio, periods=252)
+    benchmark_sharpe = qs.stats.sharpe(benchmark, periods=252)
+
+    # Create figure
+    fig2 = go.Figure()
+
+    # Create scatter trace
+    scatter_trace = go.Scatter(
+        x=[portfolio_volatility, benchmark_volatility],
+        y=[portfolio_returns, benchmark_returns],
+        mode='markers+text',
+        marker=dict(
+            size=75,
+            color=[portfolio_sharpe, benchmark_sharpe],
+            colorscale='Bluered_r',
+            colorbar=dict(title='Sharpe Ratio'),
+            showscale=True
+        ),
+        name='Returns',
+        text=['Portfolio', 'Benchmark'],
+        textposition='middle center',
+        textfont=dict(color='white'),
+        hovertemplate='%{y:.2f}%<br>Annualized Volatility: %{x:.2f}%<br>Sharpe Ratio: %{marker.color:.2f}',
+        showlegend=False
+    )
+
+    # Add trace to figure
+    fig2.add_trace(scatter_trace)
+
+    # Configuring layout
+    fig2.update_layout(
+        title={'text': '<b>Portfolio vs Benchmark</b>'},
+        template='plotly_white',
+        height=700,
+        width=1000,
+        hovermode='x unified'
+    )
+
+    fig2.update_yaxes(title_text='Cumulative Returns (%)')
+    fig2.update_xaxes(title_text='Annualized Volatility (%)')
+
+    # Show the figure
+    fig2.show()
