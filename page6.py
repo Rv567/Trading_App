@@ -105,7 +105,7 @@ def app():
 
     st.subheader("Optimization Objectives Descriptive")
     st.markdown("""
-        Minimize Volatility
+        ##### Minimize Volatility
         The objective of minimizing volatility is to find the portfolio with the lowest possible risk (volatility) for a given set of assets. This approach focuses solely on reducing the portfolio's risk without explicitly considering returns.
 
         - **Goal:** Achieve the lowest possible portfolio volatility.
