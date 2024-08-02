@@ -120,6 +120,7 @@ def app():
 
         - **Goal:** Minimize risk for a specified target return.""")
 
+    st.subheader("Optimized Portfolio Management")
     obj_choice = st.selectbox("Select Objective", ["Maximize the Sharpe Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"])
 
     mu = expected_returns.mean_historical_return(df_close)
