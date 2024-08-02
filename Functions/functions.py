@@ -434,7 +434,7 @@ def trace_pie(df_poids):
         legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=-0.2,
+            y=-0.5,
             xanchor="center",
             x=0.5
         ),
