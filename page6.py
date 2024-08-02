@@ -103,7 +103,7 @@ def app():
     df_close = df_close[df_close.index >= "2022-12-15"]
 
 
-    st.write("Choose an Optimization Objective")
+    st.subheader("Optimization Objectives Descriptive")
     st.markdown("""
         #### Minimize Volatility
         The objective of minimizing volatility is to find the portfolio with the lowest possible risk (volatility) for a given set of assets. This approach focuses solely on reducing the portfolio's risk without explicitly considering returns.
