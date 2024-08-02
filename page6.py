@@ -110,12 +110,12 @@ def app():
 
         - **Goal:** Achieve the lowest possible portfolio volatility.
 
-        #### Maximize Sharpe Ratio
+        ##### Maximize Sharpe Ratio
         Maximizing the Sharpe ratio aims to achieve the highest risk-adjusted return. This objective balances the trade-off between return and risk, aiming to optimize the overall performance of the portfolio.
 
         - **Goal:** Maximize the portfolio's Sharpe ratio, balancing returns and risk.
 
-        #### Target Return
+        ##### Target Return
         The efficient return objective seeks to achieve a specific target return with the least amount of risk. This approach is useful for investors with specific return goals.
 
         - **Goal:** Minimize risk for a specified target return.""")
