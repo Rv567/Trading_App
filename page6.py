@@ -111,7 +111,7 @@ def app():
         - **Goal:** Achieve the lowest possible portfolio volatility.
 
         #### Maximize Sharpe Ratio
-        Maximizing the Sharpe ratio aims to achieve the highest risk-adjusted return. The Sharpe ratio is calculated as the ratio of the portfolio's excess return over the risk-free rate to its volatility. This objective balances the trade-off between return and risk, aiming to optimize the overall performance of the portfolio.
+        Maximizing the Sharpe ratio aims to achieve the highest risk-adjusted return. This objective balances the trade-off between return and risk, aiming to optimize the overall performance of the portfolio.
 
         - **Goal:** Maximize the portfolio's Sharpe ratio, balancing returns and risk.
 
