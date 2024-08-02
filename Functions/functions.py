@@ -456,7 +456,7 @@ def trace_perf(portfolio,benchmark):
     benchmark_sharpe = qs.stats.sharpe(benchmark, periods=252)
 
     # Create figure
-    fig2 = go.Figure()
+    fig = go.Figure()
 
     # Create scatter trace
     scatter_trace = go.Scatter(
@@ -479,10 +479,10 @@ def trace_perf(portfolio,benchmark):
     )
 
     # Add trace to figure
-    fig2.add_trace(scatter_trace)
+    fig.add_trace(scatter_trace)
 
     # Configuring layout
-    fig2.update_layout(
+    fig.update_layout(
         title={'text': '<b>Portfolio vs Benchmark</b>'},
         template='plotly_white',
         height=700,
@@ -490,8 +490,7 @@ def trace_perf(portfolio,benchmark):
         hovermode='x unified'
     )
 
-    fig2.update_yaxes(title_text='Cumulative Returns (%)')
-    fig2.update_xaxes(title_text='Annualized Volatility (%)')
+    fig.update_yaxes(title_text='Cumulative Returns (%)')
+    fig.update_xaxes(title_text='Annualized Volatility (%)')
 
-    # Show the figure
-    fig2.show()
+    st.plotly_chart(fig)
