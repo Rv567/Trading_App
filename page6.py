@@ -105,19 +105,19 @@ def app():
 
     st.write("Choose an Optimization Objective")
     st.markdown("""
-        ## Optimization Objectives
+        ### Optimization Objectives
 
-        ### Minimize Volatility
+        #### Minimize Volatility
         The objective of minimizing volatility is to find the portfolio with the lowest possible risk (volatility) for a given set of assets. This approach focuses solely on reducing the portfolio's risk without explicitly considering returns. It is often referred to as the minimum variance portfolio.
 
         - **Goal:** Achieve the lowest possible portfolio volatility.
 
-        ### Maximize Sharpe Ratio
+        #### Maximize Sharpe Ratio
         Maximizing the Sharpe ratio aims to achieve the highest risk-adjusted return. The Sharpe ratio is calculated as the ratio of the portfolio's excess return over the risk-free rate to its volatility. This objective balances the trade-off between return and risk, aiming to optimize the overall performance of the portfolio.
 
         - **Goal:** Maximize the portfolio's Sharpe ratio, balancing returns and risk.
 
-        ### Target Return
+        #### Target Return
         The efficient return objective seeks to achieve a specific target return with the least amount of risk. By setting a target return, the optimizer finds the portfolio that meets this return requirement while minimizing the associated risk. This approach is useful for investors with specific return goals.
 
         - **Goal:** Minimize risk for a specified target return.""")
