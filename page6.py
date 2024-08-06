@@ -161,7 +161,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrcis
-            metrics(optimized_portfolio,df["MASI"])
+            st.write(metrics(optimized_portfolio,df["MASI"]))
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
@@ -191,7 +191,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrcis
-            metrics(optimized_portfolio,df["MASI"])
+            st.write(metrics(optimized_portfolio,df["MASI"]))
 
     ################## Second objective
     elif obj_choice == "Minimize the Volatility of the portfolio":
