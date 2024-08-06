@@ -510,3 +510,5 @@ def metrics(portfolio,masi):
             }
     df = pd.DataFrame(metrics_masi, index=["MASI"])
     df.loc["Portfolio"]=metrics_portfolio
+
+    st.write(df)
