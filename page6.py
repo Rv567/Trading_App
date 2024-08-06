@@ -162,6 +162,7 @@ def app():
 
             #Addictional metrcis
             metrics(optimized_portfolio,df["MASI"])
+            st.write("ABC")
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
