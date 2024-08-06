@@ -1,11 +1,7 @@
 from Functions.functions import *
 from Functions.mylibraries import *
 
-st.set_page_config(page_title="Home", layout="wide",menu_items={
-        'Get Help': None,
-        'Report a bug': None,
-        'About': None
-    })
+st.set_page_config(page_title="Home", layout="wide")
 
 def app():
 
