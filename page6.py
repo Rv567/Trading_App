@@ -146,7 +146,7 @@ def app():
             st.write(df_poids.sort_values(by="Poids %", ascending=False))
             st.subheader("Optimized Portfolio Allocation")
             trace_pie(df_poids)
-        
+            st.write("ABC")
             st.subheader("Optimized Portfolio Performance")
             # Portfolio Construction
             df_poids_opt = df_poids.set_index("Stock")
