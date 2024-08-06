@@ -192,6 +192,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrcis
+            st.write("ABC")
             metrics(optimized_portfolio,df["MASI"])
 
             st.write("ABC")
