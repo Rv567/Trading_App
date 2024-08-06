@@ -1,16 +1,14 @@
 from Functions.functions import *
 from Functions.mylibraries import *
 
-st.set_page_config(page_title="Home", layout="wide")
+st.set_page_config(page_title="Home", layout="wide",menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    })
 
 def app():
-    hide_github_icon = """
-    #GithubIcon {
-    visibility: hidden;
-    }
-    """
-    st.markdown(hide_github_icon, unsafe_allow_html=True)
-    
+
     st.header("Introduction to the Data page")
     st.write("Welcome to the Data Management page. Here, you update stock dataframes with real-time data.")
     st.subheader("Update Real-Time Data")
