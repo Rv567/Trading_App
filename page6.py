@@ -194,6 +194,8 @@ def app():
             #Addictional metrcis
             metrics(optimized_portfolio,df["MASI"])
 
+            st.write("ABC")
+
     ################## Second objective
     elif obj_choice == "Minimize the Volatility of the portfolio":
         contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
