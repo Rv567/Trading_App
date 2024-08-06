@@ -160,6 +160,9 @@ def app():
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
 
+            #Addictional metrcis
+            metrics(optimized_portfolio,df["MASI"])
+
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
 
@@ -186,6 +189,9 @@ def app():
 
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
+
+            #Addictional metrcis
+            metrics(optimized_portfolio,df["MASI"])
 
     ################## Second objective
     elif obj_choice == "Minimize the Volatility of the portfolio":
@@ -219,7 +225,9 @@ def app():
 
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
-        
+
+            #Addictional metrcis
+            metrics(optimized_portfolio,df["MASI"])
 
         elif contra == "No" :
             ef = EfficientFrontier(mu,S)
@@ -248,6 +256,8 @@ def app():
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
 
+            #Addictional metrcis
+            metrics(optimized_portfolio,df["MASI"])
     ##################### Third objective
     elif obj_choice == "Target Return with Minimum Risk" :
         contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
@@ -286,7 +296,9 @@ def app():
 
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
-        
+
+            #Addictional metrcis
+            metrics(optimized_portfolio,df["MASI"])
 
         elif contra == "No" :
             target = st.slider(
@@ -321,3 +333,6 @@ def app():
 
             #Plot
             trace_perf(optimized_portfolio,df["MASI"])
+
+            #Addictional metrcis
+            metrics(optimized_portfolio,df["MASI"])

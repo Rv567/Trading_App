@@ -494,3 +494,19 @@ def trace_perf(portfolio,benchmark):
     fig.update_xaxes(title_text='Annualized Volatility (%)')
 
     st.plotly_chart(fig)
+
+
+def metrics(portfolio,masi):
+    metrics_masi = {
+                "Win Rate%": np.round(qs.stats.win_rate(masi)*100,2),
+                "Max Drawdown%": np.round(qs.stats.max_drawdown(masi)*100,2),
+                "VaR at 95%": np.round(qs.stats.var(masi) * -10e6,2)
+            }
+    
+    metrics_portfolio = {
+                "Win Rate%": np.round(qs.stats.win_rate(portfolio)*100,2),
+                "Max Drawdown%": np.round(qs.stats.max_drawdown(portfolio)*100,2),
+                "VaR at 95%": np.round(qs.stats.var(portfolio) * -10e6,2)
+            }
+    df = pd.DataFrame(metrics_masi, index=["MASI"])
+    df.loc["Portfolio"]=metrics_portfolio
