@@ -1,15 +1,6 @@
 from Functions.functions import *
 import page2,page5,page4,page3,page1,page6
 
-st.set_page_config(page_title="Home", layout="wide")
-
-hide_github_icon = """
-#GithubIcon {
-  visibility: hidden;
-}
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
-
 class MultiApp:
     def __init__(self):
         self.apps = []
