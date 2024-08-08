@@ -54,9 +54,9 @@ def reorganize_trades(df):
     df_transposed = df.transpose()
 
     # Rename the columns to the first row and then drop the first row
-    selected_columns = ['EntryTime', 'EntryPrice', 'ReturnPct']
+    selected_columns = ['EntryTime',"ExitTime", 'EntryPrice', 'ReturnPct']
     df_transposed = df_transposed[selected_columns]
-    df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
+    df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","ExitTime":"Exit Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
     df_transposed["Perf %"]=df_transposed["Perf %"]*100
     return df_transposed
 
