@@ -334,7 +334,7 @@ def app():
     industry = df.set_index("Name").loc[stock_symbol]["Sector"]
     industry_value = df[df["Sector"]==industry]["P/E"].mean()
 
-
+    st.write(f"How does {stock_symbol}'s P/E Ratio compare to its peers?")
     if company_value < industry_value:
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
