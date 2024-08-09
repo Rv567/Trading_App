@@ -161,7 +161,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrics
-            st.write("Additional Metrics")
+            st.write("Additional Metrics :")
             metrics(optimized_portfolio,df["MASI"])
 
         elif contra == "No" :
@@ -192,7 +192,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrics
-            st.write("Additional Metrics")
+            st.write("Additional Metrics :")
             metrics(optimized_portfolio,df["MASI"])
 
     ################## Second objective
@@ -229,7 +229,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrics
-            st.write("Additional Metrics")
+            st.write("Additional Metrics :")
             metrics(optimized_portfolio,df["MASI"])
 
         elif contra == "No" :
@@ -260,7 +260,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrics
-            st.write("Additional Metrics")
+            st.write("Additional Metrics :")
             metrics(optimized_portfolio,df["MASI"])
     ##################### Third objective
     elif obj_choice == "Target Return with Minimum Risk" :
@@ -302,7 +302,7 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
             
             #Addictional metrics
-            st.write("Additional Metrics")
+            st.write("Additional Metrics :")
             metrics(optimized_portfolio,df["MASI"])
 
         elif contra == "No" :
@@ -340,5 +340,5 @@ def app():
             trace_perf(optimized_portfolio,df["MASI"])
 
             #Addictional metrics
-            st.write("Additional Metrics")
+            st.write("Additional Metrics :")
             metrics(optimized_portfolio,df["MASI"])

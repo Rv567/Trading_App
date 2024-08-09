@@ -29,8 +29,8 @@ def app():
     - **No Correlation**: When there is no discernible pattern in the price movements of two stocks.
     """)
     st.header("Couples with Strong Correlation")
-    st.write("Select the correlation threshold")
-    threshold = st.slider('Threshold', min_value=80, max_value=100, value=80, step=1)
+    st.write("Select the correlation threshold.")
+    threshold = st.slider('Threshold :', min_value=80, max_value=100, value=80, step=1)
     st.write("List of stock pairs with high correlation values :")
     threshold = threshold/100
     high_corr_pairs = []

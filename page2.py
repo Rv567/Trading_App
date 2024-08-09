@@ -255,7 +255,7 @@ def app():
 
     # Adding title and labels
     fig.update_layout(
-        title=f'P/E Ratio of {sector}',
+        title=f'P/E Ratios of {sector}',
         xaxis_title='Stock',
         yaxis_title='P/E Ratio'
     )
