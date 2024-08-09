@@ -242,14 +242,14 @@ def app():
 
     random_color = generate_random_color()
     fig = go.Figure(data=[
-    go.Bar(x=df_sec['Name'], y=df_sec['P/E'], text=df_sec['P/E'], textposition='auto',marker=dict(color=random_color))
+    go.Bar(x=df_sec['Name'], y=df_sec['P/E'], text=df_sec['P/E'], textposition='auto',name='P/E Ratios',marker=dict(color=random_color))
     ])
     fig.add_trace(go.Scatter(
     x=df_sec['Name'], 
     y=[df_sec["P/E"].mean()] * len(df_sec['Name']),  # Repeat the mean value
     mode='lines',
     line=dict(color='red', dash='dash'),  # Customize line color and style
-    name=f'Mean P/E ({df_sec["P/E"].mean():.2f})'
+    name=f'Mean P/E = {df_sec["P/E"].mean():.2f}'
 ))
 
     # Adding title and labels
