@@ -235,13 +235,22 @@ def app():
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
     st.write(df)
 
+
+    st.subheader("PE Valuation")
     sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
-    df_PE = df[df["Sector"]==sector]
+    df_sec = df[df["Sector"]==sector]
 
     random_color = generate_random_color()
     fig = go.Figure(data=[
-    go.Bar(x=df_PE['Name'], y=df_PE['P/E'], text=df_PE['P/E'], textposition='auto',marker=dict(color=random_color))
+    go.Bar(x=df_sec['Name'], y=df_sec['P/E'], text=df_sec['P/E'], textposition='auto',marker=dict(color=random_color))
     ])
+    fig.add_trace(go.Scatter(
+    x=df['Index'], 
+    y=[df_sec["P/E"].mean()] * len(df_sec['Name']),  # Repeat the mean value
+    mode='lines',
+    line=dict(color='red', dash='dash'),  # Customize line color and style
+    name=f'Mean P/E ({df_sec["P/E"].mean():.2f})'
+))
 
     # Adding title and labels
     fig.update_layout(
