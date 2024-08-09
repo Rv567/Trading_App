@@ -236,5 +236,17 @@ def app():
     st.write(df)
 
     sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
-    st.write(df[df["Sector"]==sector])
+    df_PE = df[df["Sector"]==sector]
 
+    fig = go.Figure(data=[
+    go.Bar(x=df_PE['Name'], y=df_PE['P/E'], text=df_PE['P/E'], textposition='auto')
+    ])
+
+    # Adding title and labels
+    fig.update_layout(
+        title=f'P/E Ratio of {sector}',
+        xaxis_title='Stock',
+        yaxis_title='P/E Ratio'
+    )
+
+    st.plotly_chart(fig,use_container_width=True)
