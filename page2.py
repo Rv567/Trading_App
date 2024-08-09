@@ -213,8 +213,8 @@ def app():
     # Display the plot in Streamlit
     st.plotly_chart(fig3,use_container_width=True)
 
-    st.header("Stock Screener")
-    st.subheader("Fundamental Analysis Tool")
+    st.header("Fundamental Analysis ⚙️")
+    st.subheader("Stock Screener")
     st.write("Filter and identify stocks based on various fundamental criteria")
 
     morocco_url = 'https://scanner.tradingview.com/morocco/scan'
