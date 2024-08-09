@@ -238,8 +238,9 @@ def app():
     sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
     df_PE = df[df["Sector"]==sector]
 
+    random_color = generate_random_color()
     fig = go.Figure(data=[
-    go.Bar(x=df_PE['Name'], y=df_PE['P/E'], text=df_PE['P/E'], textposition='auto',marker=dict(color='Bluered_r'))
+    go.Bar(x=df_PE['Name'], y=df_PE['P/E'], text=df_PE['P/E'], textposition='auto',marker=dict(color=random_color))
     ])
 
     # Adding title and labels

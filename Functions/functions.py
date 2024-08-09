@@ -513,3 +513,8 @@ def metrics(portfolio,masi):
     df.loc["Portfolio"]=metrics_portfolio
 
     st.write(df)
+
+def generate_random_color():
+    return "#{:02x}{:02x}{:02x}".format(random.randint(0, 255),
+                                        random.randint(0, 255),
+                                        random.randint(0, 255))
