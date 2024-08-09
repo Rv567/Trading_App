@@ -260,3 +260,67 @@ def app():
     )
 
     st.plotly_chart(fig,use_container_width=True)
+
+    ######## Gauge
+    # Define the values for the gauges
+    company_value = df_sec.set_index("Name").loc["ATW"]["P/E"]
+    industry_value = df_sec["P/E"].mean()
+
+    # Create the gauge charts as subplots
+    fig = make_subplots(
+        rows=1, cols=2,
+        specs=[[{'type': 'indicator'}, {'type': 'indicator'}]],
+        horizontal_spacing=0.2
+    )
+
+    # Add the gauge for the company value
+    fig.add_trace(go.Indicator(
+        mode="gauge+number",
+        value=company_value,
+        title={'text': "Company ROE"},
+        gauge={
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
+            'bar': {'color': "lightblue"},
+            'bgcolor': "white",
+            'borderwidth': 2,
+            'bordercolor': "gray",
+            'steps': [
+                {'range': [0, 10], 'color': "red"},
+                {'range': [10, 20], 'color': "orange"},
+                {'range': [20, 30], 'color': "yellow"},
+                {'range': [30, 40], 'color': "green"}],
+            'threshold': {
+                'line': {'color': "blue", 'width': 4},
+                'thickness': 0.75,
+                'value': company_value}}),
+        row=1, col=1)
+
+    # Add the gauge for the industry value
+    fig.add_trace(go.Indicator(
+        mode="gauge+number",
+        value=industry_value,
+        title={'text': "Industry ROE"},
+        gauge={
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
+            'bar': {'color': "lightblue"},
+            'bgcolor': "white",
+            'borderwidth': 2,
+            'bordercolor': "gray",
+            'steps': [
+                {'range': [0, 10], 'color': "red"},
+                {'range': [10, 20], 'color': "orange"},
+                {'range': [20, 30], 'color': "yellow"},
+                {'range': [30, 40], 'color': "green"}],
+            'threshold': {
+                'line': {'color': "blue", 'width': 4},
+                'thickness': 0.75,
+                'value': industry_value}}),
+        row=1, col=2)
+
+    # Update the layout
+    fig.update_layout(
+        title="ROE - Company vs Industry",
+        font={'color': "darkblue", 'family': "Arial"},
+        paper_bgcolor="white",
+        plot_bgcolor="black"
+    )
