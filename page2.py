@@ -280,9 +280,9 @@ def app():
         value=company_value,
         title={'text': "Company PE"},
         gauge={
-            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "lightblue"},
-            'bar': {'color': "lightblue"},
-            'bgcolor': "white",
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
+            'bar': {'color': "lightcyan"},
+            'bgcolor': "black",
             'borderwidth': 2,
             'bordercolor': "gray",
             'steps': [
@@ -302,9 +302,9 @@ def app():
         value=industry_value,
         title={'text': "Industry PE"},
         gauge={
-            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "lightblue"},
-            'bar': {'color': "lightblue"},
-            'bgcolor': "white",
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
+            'bar': {'color': "lightcyan"},
+            'bgcolor': "black",
             'borderwidth': 2,
             'bordercolor': "gray",
             'steps': [
@@ -321,7 +321,7 @@ def app():
     # Update the layout
     fig.update_layout(
         title="PE - Company vs Industry",
-        font={'color': "darkblue", 'family': "Arial"},
+        font={'color': "white", 'family': "Arial"},
         paper_bgcolor="#0E1117",
         plot_bgcolor="#0E1117"
     )
