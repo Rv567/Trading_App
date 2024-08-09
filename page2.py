@@ -338,7 +338,7 @@ def app():
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
             f"✅ {stock_symbol} is a good value based on its Price-To-Earnings Ratio: "
-            f"<strong>{company_value}x</strong> compared to the sector average <strong>{industry_value}x</strong>"
+            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>"
             f"</div>",
             unsafe_allow_html=True
         )
@@ -346,7 +346,7 @@ def app():
         st.markdown(
             f"<div style='color:red; font-size: 18px;'>"
             f"❌ {stock_symbol} is expensive based on its Price-To-Earnings Ratio: "
-            f"<strong>{company_value}x</strong> compared to the sector average <strong>{industry_value}x</strong>"
+            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>"
             f"</div>",
             unsafe_allow_html=True
         )
