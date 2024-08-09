@@ -264,8 +264,9 @@ def app():
     ######## Gauge
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
     # Define the values for the gauges
-    company_value = df_sec.set_index("Name").loc[stock_symbol]["P/E"]
-    industry_value = df_sec["P/E"].mean()
+    company_value = df.set_index("Name").loc[stock_symbol]["P/E"]
+    industry = df.set_index("Name").loc[stock_symbol]["Sector"]
+    industry_value = df[df["Sector"]==industry]["P/E"].mean()
 
     # Create the gauge charts as subplots
     fig = make_subplots(
