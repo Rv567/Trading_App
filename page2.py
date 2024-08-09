@@ -328,3 +328,14 @@ def app():
     )
 
     st.plotly_chart(fig,use_container_width=True)
+
+    company_value = df.set_index("Name").loc[stock_symbol]["P/E"]
+    industry = df.set_index("Name").loc[stock_symbol]["Sector"]
+    industry_value = df[df["Sector"]==industry]["P/E"].mean()
+
+
+    if company_value < industry_value:
+        st.write(f"{stock_symbol} is good value based on its Price-To-Earnings Ratio {company_value}x compared to the sector average {industry_value}x ✅")
+    
+    else:
+        st.write(f"{stock_symbol} is expensive based on its Price-To-Earnings Ratio {company_value}x compared to the sector average {industry_value}x ❌")
