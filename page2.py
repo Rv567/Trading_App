@@ -236,7 +236,8 @@ def app():
     st.write(df)
 
 
-    st.subheader("PE Valuation")
+    st.subheader("P/E Valuation")
+    st.write("The P/E ratio is used to compare companies within the same industry. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued")
     sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
     df_sec = df[df["Sector"]==sector]
 
