@@ -320,9 +320,9 @@ def app():
 
     # Update the layout
     fig.update_layout(
-        title="ROE - Company vs Industry",
+        title="PE - Company vs Industry",
         font={'color': "darkblue", 'family': "Arial"},
-        paper_bgcolor="white",
+        paper_bgcolor="black",
         plot_bgcolor="black"
     )
 
