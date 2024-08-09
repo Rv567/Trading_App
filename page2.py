@@ -322,8 +322,8 @@ def app():
     fig.update_layout(
         title="PE - Company vs Industry",
         font={'color': "darkblue", 'family': "Arial"},
-        paper_bgcolor="#262730",
-        plot_bgcolor="#262730"
+        paper_bgcolor="#0E1117",
+        plot_bgcolor="#0E1117"
     )
 
     st.plotly_chart(fig,use_container_width=True)
