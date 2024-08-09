@@ -284,7 +284,7 @@ def app():
             'bar': {'color': "lightcyan"},
             'bgcolor': "black",
             'borderwidth': 2,
-            'bordercolor': "gray",
+            'bordercolor': "white",
             'steps': [
                 {'range': [0, 10], 'color': "red"},
                 {'range': [10, 20], 'color': "orange"},
@@ -306,7 +306,7 @@ def app():
             'bar': {'color': "lightcyan"},
             'bgcolor': "black",
             'borderwidth': 2,
-            'bordercolor': "gray",
+            'bordercolor': "white",
             'steps': [
                 {'range': [0, 10], 'color': "red"},
                 {'range': [10, 20], 'color': "orange"},
