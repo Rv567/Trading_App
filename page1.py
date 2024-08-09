@@ -1,8 +1,6 @@
 from Functions.functions import *
 from Functions.mylibraries import *
 
-st.set_page_config(page_title="Home", layout="wide")
-
 def app():
 
     st.header("Introduction to the Data page")
