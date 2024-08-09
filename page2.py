@@ -324,3 +324,5 @@ def app():
         paper_bgcolor="white",
         plot_bgcolor="black"
     )
+
+    st.plotly_chart(fig,use_container_width=True)
