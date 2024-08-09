@@ -262,8 +262,9 @@ def app():
     st.plotly_chart(fig,use_container_width=True)
 
     ######## Gauge
+    stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
     # Define the values for the gauges
-    company_value = df_sec.set_index("Name").loc["ATW"]["P/E"]
+    company_value = df_sec.set_index("Name").loc[stock_symbol]["P/E"]
     industry_value = df_sec["P/E"].mean()
 
     # Create the gauge charts as subplots
@@ -277,7 +278,7 @@ def app():
     fig.add_trace(go.Indicator(
         mode="gauge+number",
         value=company_value,
-        title={'text': "Company ROE"},
+        title={'text': "Company PE"},
         gauge={
             'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
             'bar': {'color': "lightblue"},
