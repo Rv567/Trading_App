@@ -280,7 +280,7 @@ def app():
         value=company_value,
         title={'text': "Company PE"},
         gauge={
-            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "lightblue"},
             'bar': {'color': "lightblue"},
             'bgcolor': "white",
             'borderwidth': 2,
@@ -291,7 +291,7 @@ def app():
                 {'range': [20, 30], 'color': "yellow"},
                 {'range': [30, 40], 'color': "green"}],
             'threshold': {
-                'line': {'color': "blue", 'width': 4},
+                'line': {'color': "lightblue", 'width': 4},
                 'thickness': 0.75,
                 'value': company_value}}),
         row=1, col=1)
@@ -302,7 +302,7 @@ def app():
         value=industry_value,
         title={'text': "Industry PE"},
         gauge={
-            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "lightblue"},
             'bar': {'color': "lightblue"},
             'bgcolor': "white",
             'borderwidth': 2,
@@ -313,7 +313,7 @@ def app():
                 {'range': [20, 30], 'color': "yellow"},
                 {'range': [30, 40], 'color': "green"}],
             'threshold': {
-                'line': {'color': "blue", 'width': 4},
+                'line': {'color': "lightblue", 'width': 4},
                 'thickness': 0.75,
                 'value': industry_value}}),
         row=1, col=2)
