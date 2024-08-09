@@ -280,7 +280,7 @@ def app():
     fig.add_trace(go.Indicator(
         mode="gauge+number",
         value=company_value,
-        title={'text': "Company PE"},
+        title={'text': "Company P/E"},
         gauge={
             'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
             'bar': {'color': "lightcyan"},
@@ -302,7 +302,7 @@ def app():
     fig.add_trace(go.Indicator(
         mode="gauge+number",
         value=industry_value,
-        title={'text': "Industry PE"},
+        title={'text': "Industry P/E"},
         gauge={
             'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
             'bar': {'color': "lightcyan"},
@@ -322,7 +322,7 @@ def app():
 
     # Update the layout
     fig.update_layout(
-        title="PE - Company vs Industry",
+        title="P/E - Company vs Industry",
         font={'color': "white", 'family': "Arial"},
         paper_bgcolor="#0E1117",
         plot_bgcolor="#0E1117"
