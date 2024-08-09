@@ -300,7 +300,7 @@ def app():
     fig.add_trace(go.Indicator(
         mode="gauge+number",
         value=industry_value,
-        title={'text': "Industry ROE"},
+        title={'text': "Industry PE"},
         gauge={
             'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "darkblue"},
             'bar': {'color': "lightblue"},
