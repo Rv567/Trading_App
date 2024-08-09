@@ -239,7 +239,7 @@ def app():
     df_PE = df[df["Sector"]==sector]
 
     fig = go.Figure(data=[
-    go.Bar(x=df_PE['Name'], y=df_PE['P/E'], text=df_PE['P/E'], textposition='auto')
+    go.Bar(x=df_PE['Name'], y=df_PE['P/E'], text=df_PE['P/E'], textposition='auto',marker=dict(color='Bluered_r'))
     ])
 
     # Adding title and labels
