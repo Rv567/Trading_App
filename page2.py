@@ -302,7 +302,7 @@ def app():
     fig.add_trace(go.Indicator(
         mode="gauge+number",
         value=industry_value,
-        title={'text': "Industry P/E"},
+        title={'text': "Sector P/E"},
         gauge={
             'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
             'bar': {'color': "lightcyan"},
@@ -322,7 +322,7 @@ def app():
 
     # Update the layout
     fig.update_layout(
-        title="P/E - Company vs Industry",
+        title="P/E - Company vs Sector",
         font={'color': "white", 'family': "Arial"},
         paper_bgcolor="#0E1117",
         plot_bgcolor="#0E1117"
@@ -335,7 +335,7 @@ def app():
     industry_value = df[df["Sector"]==industry]["P/E"].mean()
 
     st.write(f"How does {stock_symbol}'s P/E Ratio compare to its peers?")
-    if company_value < industry_value:
+    if company_value <= industry_value:
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
             f"✅ {stock_symbol} is a good value based on its Price-To-Earnings Ratio: "
