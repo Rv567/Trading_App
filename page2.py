@@ -95,7 +95,7 @@ def app():
     st.subheader("Stocks meeting the liquidity criteria")
     st.write(Newdict_df.keys())
     st.header("Beta Classification")
-    st.write("We split the selected stocks into High/Low volatility stocks")
+    st.write("We split the selected stocks into High/Low volatility stocks.")
     list_df = high_low_volat(Newdict_df,dataframes["MASI"])
 
     st.subheader('Stocks with Beta > 1')
@@ -237,7 +237,7 @@ def app():
 
 
     st.subheader("P/E Valuation")
-    st.write("The P/E ratio is used to compare companies within the same industry. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued")
+    st.write("The P/E ratio is used to compare companies within the same sector. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued.")
     sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
     df_sec = df[df["Sector"]==sector]
 
@@ -339,7 +339,7 @@ def app():
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
             f"✅ {stock_symbol} is a good value based on its Price-To-Earnings Ratio: "
-            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>"
+            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>."
             f"</div>",
             unsafe_allow_html=True
         )
@@ -347,7 +347,7 @@ def app():
         st.markdown(
             f"<div style='color:red; font-size: 18px;'>"
             f"❌ {stock_symbol} is expensive based on its Price-To-Earnings Ratio: "
-            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>"
+            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>."
             f"</div>",
             unsafe_allow_html=True
         )
