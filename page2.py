@@ -335,7 +335,18 @@ def app():
 
 
     if company_value < industry_value:
-        st.write(f"{stock_symbol} is good value based on its Price-To-Earnings Ratio {company_value}x compared to the sector average {industry_value}x ✅")
-    
+        st.markdown(
+            f"<div style='color:green; font-size: 18px;'>"
+            f"✅ {stock_symbol} is a good value based on its Price-To-Earnings Ratio: "
+            f"<strong>{company_value}x</strong> compared to the sector average <strong>{industry_value}x</strong>"
+            f"</div>",
+            unsafe_allow_html=True
+        )
     else:
-        st.write(f"{stock_symbol} is expensive based on its Price-To-Earnings Ratio {company_value}x compared to the sector average {industry_value}x ❌")
+        st.markdown(
+            f"<div style='color:red; font-size: 18px;'>"
+            f"❌ {stock_symbol} is expensive based on its Price-To-Earnings Ratio: "
+            f"<strong>{company_value}x</strong> compared to the sector average <strong>{industry_value}x</strong>"
+            f"</div>",
+            unsafe_allow_html=True
+        )
