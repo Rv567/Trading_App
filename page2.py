@@ -227,9 +227,14 @@ def app():
     query.url = morocco_url
     count, df = query.get_scanner_data()
     # apply the formatting function to the column
-    df['Rating'] = df['Recommend.All'].apply(format_technical_rating)
+    #df['Rating'] = df['Recommend.All'].apply(format_technical_rating)
 
     df.drop(columns=["ticker",'Recommend.All'],inplace=True)
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","beta_1_year":"Beta 1Y","price_earnings_ttm":"P/E","price_book_ratio":"P/B","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","volume":"Volume"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
+    df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
     st.write(df)
+
+    sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
+    st.write(df[df["Sector"]==sector])
+
