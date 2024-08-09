@@ -215,7 +215,7 @@ def app():
 
     st.header("Fundamental Analysis ⚙️")
     st.subheader("Stock Screener")
-    st.write("Filter and identify stocks based on various fundamental criteria")
+    st.write("Filter and identify stocks based on various fundamental criteria Beta, P/E, P/B, Div Yield % ...")
 
     morocco_url = 'https://scanner.tradingview.com/morocco/scan'
 
