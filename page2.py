@@ -249,14 +249,29 @@ def app():
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
     ################################Profitability
     st.subheader("Profitability:")
-    st.write("""#### Net Income Growth %""")
+    #Net Income Growth%
     company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
     industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
     industry_value = df[df["Sector"]==industry]["Net Income Growth %"].mean()
     df_sec = df[df["Sector"]==industry]
 
     trace_fundamental(df_sec,industry,"Net Income Growth %")
-
+    if company_value <= industry_value:
+        st.markdown(
+            f"<div style='color:red; font-size: 18px;'>"
+            f"❌ {stock_symbol} is underperforming in terms of Net Income Growth: "
+            f"<strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>."
+            f"</div>",
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            f"<div style='color:green; font-size: 18px;'>"
+            f"✅ {stock_symbol} is outperforming in terms of Net Income Growth: "
+            f"<strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>."
+            f"</div>",
+            unsafe_allow_html=True
+        )
     ###############################PE
     st.subheader("P/E Valuation")
     st.write("The P/E ratio is used to compare companies within the same sector. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued.")
