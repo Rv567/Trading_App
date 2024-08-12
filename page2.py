@@ -235,7 +235,15 @@ def app():
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
     st.write(df)
 
+    ################################Net Income Growth
+    st.subheader("Net Income Growth")
+    stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
+    company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
+    industry = df.set_index("Name").loc[stock_symbol]["Sector"]
+    industry_value = df[df["Sector"]==industry]["Net Income Growth %"].mean()
+    st.write(f"the mean is {industry_value}")
 
+    ###############################PE
     st.subheader("P/E Valuation")
     st.write("The P/E ratio is used to compare companies within the same sector. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued.")
     sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
