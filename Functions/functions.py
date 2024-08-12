@@ -59,18 +59,6 @@ def reorganize_trades(df):
     df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","ExitTime":"Exit Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
     df_transposed["Perf %"]=df_transposed["Perf %"]*100
     return df_transposed
-
-def format_technical_rating(rating: float) -> str:
-    if rating >= 0.5:
-        return 'Strong Buy'
-    elif rating >= 0.2:
-        return 'Buy'
-    elif rating >= -0.1:
-        return 'Neutral'
-    elif rating >= -0.5:
-        return 'Sell'
-    else:
-        return 'Strong Sell'
     
 #Time series decompostion into (trend, seasonal, and residual)
 def decompose(dataframe):

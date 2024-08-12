@@ -95,7 +95,7 @@ def app():
     st.subheader("Stocks meeting the liquidity criteria")
     st.write(Newdict_df.keys())
     st.header("Beta Classification")
-    st.write("We split the selected stocks into High/Low volatility stocks.")
+    st.write("We split the selected stocks into High/Low volatility stocks. The Beta is calculated on 3-Year.")
     list_df = high_low_volat(Newdict_df,dataframes["MASI"])
 
     st.subheader('Stocks with Beta > 1')
@@ -286,10 +286,10 @@ def app():
         )
     #ROE
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROE %")
-
     trace_gauge("ROE %",company_value,industry_value)
     #ROA
-
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROA %")
+    trace_gauge("ROA %",company_value,industry_value)
 
     ################################Profitability
     st.subheader("Liquidity:")
