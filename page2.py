@@ -213,8 +213,7 @@ def app():
     # Display the plot in Streamlit
     st.plotly_chart(fig3,use_container_width=True)
 
-    st.header("Fundamental Analysis ⚙️")
-    st.subheader("Stock Screener")
+    st.header("Stock Screener")
     st.write("Filter and identify stocks based on various fundamental criteria Beta, P/E, P/B, Div Yield % ...")
 
     morocco_url = 'https://scanner.tradingview.com/morocco/scan'
@@ -235,6 +234,27 @@ def app():
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
     st.write(df)
 
+    st.header("Fundamental Analysis ⚙️")
+    st.write("""
+        We assess the financial health of a stock based on five key categories: 
+        Profitability, Liquidity, Solvency, Efficiency, and Valuation.
+        """)
+    st.markdown("""
+    ### Profitability:
+    Higher margins and returns generally indicate a more profitable and efficient business.
+
+    ### Liquidity:
+    A higher ratio suggests that the company has enough liquidity to cover its near-term liabilities.
+
+    ### Solvency:
+    Measures a company's ability to meet its long-term debt obligations.
+
+    ### Efficiency:
+    Measures how effectively a company manages its assets to generate sales.
+
+    ### Valuation:
+    Lower ratios may indicate that the stock is undervalued, while higher ratios may suggest that it is overvalued.
+    """)
     ################################Net Income Growth
     st.subheader("Net Income Growth")
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
