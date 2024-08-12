@@ -280,7 +280,7 @@ def app():
             border-radius: 8px; 
             box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
             margin: 20px auto; 
-            width: 230px;  /* Set the width of the box */
+            width: 240px;  /* Set the width of the box */
             text-align: center;">
             <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
         </div>
