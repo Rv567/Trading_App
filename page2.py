@@ -250,24 +250,33 @@ def app():
     ################################Profitability
     st.subheader("Profitability:")
     st.write("""#### Net Income Growth %""")
-    st.markdown(
-    """
-    <div style="
-        background-color: #f0f8ff; 
-        padding: 10px; 
-        border-radius: 5px; 
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
-        margin-bottom: 15px;
-        text-align: center;">
-        <h4 style="color: #2c3e50; font-family: Arial, sans-serif;">🚀 Net Income Growth % 🚀</h4>
-    </div>
-    """, 
-    unsafe_allow_html=True
-    )
     company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
-    industry = df.set_index("Name").loc[stock_symbol]["Sector"]
+    industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
     industry_value = df[df["Sector"]==industry]["Net Income Growth %"].mean()
     st.write(f"the mean is {industry_value}")
+    df_sec = df[df["Sector"]==industry]
+
+    random_color = generate_random_color()
+    fig = go.Figure(data=[
+    go.Bar(x=df_sec['Name'], y=df_sec['Net Income Growth %'], text=df_sec['Net Income Growth %'], textposition='auto',name='Net Income Growth %',marker=dict(color=random_color))
+    ])
+    fig.add_trace(go.Scatter(
+    x=df_sec['Name'], 
+    y=[df_sec["Net Income Growth %"].mean()] * len(df_sec['Name']),  # Repeat the mean value
+    mode='lines',
+    line=dict(color='red', dash='dash'),  # Customize line color and style
+    name=f'Mean P/E = {df_sec["Net Income Growth %"].mean():.2f}'
+))
+
+    # Adding title and labels
+    fig.update_layout(
+        title=f'P/E Ratios of {sector}',
+        xaxis_title='Stock',
+        yaxis_title='P/E Ratio'
+    )
+
+    st.plotly_chart(fig,use_container_width=True)
+
 
     ###############################PE
     st.subheader("P/E Valuation")
