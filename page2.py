@@ -287,18 +287,17 @@ def app():
     #ROE
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROE %")
     trace_gauge("ROE %",company_value,industry_value)
-    #ROA
+    """#ROA
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROA %")
-    trace_gauge("ROA %",company_value,industry_value)
+    trace_gauge("ROA %",company_value,industry_value)"""
 
     ################################Profitability
     st.subheader("Liquidity:")
     trace_fundamental(df_sec,industry,"Current Ratio")
 
-
-
-
-
+    ################################Solvency
+    st.subheader("Solvency:")
+    trace_fundamental(df_sec,industry,"Current Ratio")
 
 
 
