@@ -256,6 +256,7 @@ def app():
     df_sec = df[df["Sector"]==industry]
 
     trace_fundamental(df_sec,industry,"Net Income Growth %")
+    score=0
     if company_value <= industry_value:
         st.markdown(
             f"<div style='color:red; font-size: 18px;'>"
@@ -265,6 +266,7 @@ def app():
             unsafe_allow_html=True
         )
     else:
+        score += 1
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
             f"✅ {stock_symbol} is outperforming in terms of Net Income Growth: "
