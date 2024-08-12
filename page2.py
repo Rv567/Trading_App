@@ -249,7 +249,7 @@ def app():
     ################################Profitability
     st.subheader("Profitability")
     st.write("""
-        # Net Income Growth %
+        #### Net Income Growth %
         """)
     company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
     industry = df.set_index("Name").loc[stock_symbol]["Sector"]
