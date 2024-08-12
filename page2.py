@@ -247,7 +247,7 @@ def app():
     #Stock Selection
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
     ################################Profitability
-    st.subheader("Profitability")
+    st.subheader("**Profitability**")
     st.write("""
         #### Net Income Growth %
         """)
