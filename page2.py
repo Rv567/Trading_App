@@ -253,7 +253,6 @@ def app():
     company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
     industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
     industry_value = df[df["Sector"]==industry]["Net Income Growth %"].mean()
-    st.write(f"the mean is {industry_value}")
     df_sec = df[df["Sector"]==industry]
 
     trace_fundamental(df_sec,industry,"Net Income Growth %")

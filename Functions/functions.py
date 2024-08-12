@@ -534,7 +534,7 @@ def trace_fundamental(df_sec,industry,metric):
 
         # Adding title and labels
     fig.update_layout(
-            title=f'{metric} of {industry}',
+            title=f'{metric} of {industry} stocks',
             xaxis_title='Stock',
             yaxis_title=f'{metric}'
         )
