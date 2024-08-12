@@ -245,12 +245,25 @@ def app():
     st.write(pd.DataFrame(dico, index=["Interpretation"]).transpose())
 
     #Stock Selection
+    st.write("First choose a Stock to see it Financial Health Assessment.")
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
     ################################Profitability
-    st.subheader("**Profitability**")
-    st.write("""
-        #### Net Income Growth %
-        """)
+    st.subheader("Profitability:")
+    st.write("""#### Net Income Growth %""")
+    st.markdown(
+    """
+    <div style="
+        background-color: #f0f8ff; 
+        padding: 10px; 
+        border-radius: 5px; 
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); 
+        margin-bottom: 15px;
+        text-align: center;">
+        <h4 style="color: #2c3e50; font-family: Arial, sans-serif;">🚀 Net Income Growth % 🚀</h4>
+    </div>
+    """, 
+    unsafe_allow_html=True
+    )
     company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
     industry = df.set_index("Name").loc[stock_symbol]["Sector"]
     industry_value = df[df["Sector"]==industry]["Net Income Growth %"].mean()
