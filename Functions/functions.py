@@ -518,3 +518,25 @@ def generate_random_color():
     return "#{:02x}{:02x}{:02x}".format(random.randint(0, 255),
                                         random.randint(0, 255),
                                         random.randint(0, 255))
+
+def trace_fundamental(df_sec,industry,metric):
+    random_color = generate_random_color()
+    fig = go.Figure(data=[
+        go.Bar(x=df_sec['Name'], y=df_sec[metric], text=df_sec[metric], textposition='auto',name=f"{metric}",marker=dict(color=random_color))
+        ])
+    fig.add_trace(go.Scatter(
+        x=df_sec['Name'], 
+        y=[df_sec[metric].mean()] * len(df_sec['Name']),  # Repeat the mean value
+        mode='lines',
+        line=dict(color='red', dash='dash'),  # Customize line color and style
+        name=f'Mean {metric} = {df_sec[metric].mean():.2f}'
+    ))
+
+        # Adding title and labels
+    fig.update_layout(
+            title=f'{metric} of {industry}',
+            xaxis_title='Stock',
+            yaxis_title=f'{metric}'
+        )
+
+    st.plotly_chart(fig,use_container_width=True)

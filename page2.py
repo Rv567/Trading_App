@@ -256,27 +256,7 @@ def app():
     st.write(f"the mean is {industry_value}")
     df_sec = df[df["Sector"]==industry]
 
-    random_color = generate_random_color()
-    fig = go.Figure(data=[
-    go.Bar(x=df_sec['Name'], y=df_sec['Net Income Growth %'], text=df_sec['Net Income Growth %'], textposition='auto',name='Net Income Growth %',marker=dict(color=random_color))
-    ])
-    fig.add_trace(go.Scatter(
-    x=df_sec['Name'], 
-    y=[df_sec["Net Income Growth %"].mean()] * len(df_sec['Name']),  # Repeat the mean value
-    mode='lines',
-    line=dict(color='red', dash='dash'),  # Customize line color and style
-    name=f'Mean P/E = {df_sec["Net Income Growth %"].mean():.2f}'
-))
-
-    # Adding title and labels
-    fig.update_layout(
-        title=f'P/E Ratios of {industry}',
-        xaxis_title='Stock',
-        yaxis_title='P/E Ratio'
-    )
-
-    st.plotly_chart(fig,use_container_width=True)
-
+    trace_fundamental(df_sec,industry,"Net Income Growth %")
 
     ###############################PE
     st.subheader("P/E Valuation")
