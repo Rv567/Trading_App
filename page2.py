@@ -240,19 +240,19 @@ def app():
         Profitability, Liquidity, Solvency, Efficiency, and Valuation.
         """)
     st.markdown("""
-    ### Profitability:
+    # Profitability:
     Higher margins and returns generally indicate a more profitable and efficient business.
 
-    ### Liquidity:
+    # Liquidity:
     A higher ratio suggests that the company has enough liquidity to cover its near-term liabilities.
 
-    ### Solvency:
+    # Solvency:
     Measures a company's ability to meet its long-term debt obligations.
 
-    ### Efficiency:
+    # Efficiency:
     Measures how effectively a company manages its assets to generate sales.
 
-    ### Valuation:
+    # Valuation:
     Lower ratios may indicate that the stock is undervalued, while higher ratios may suggest that it is overvalued.
     """)
     ################################Net Income Growth
