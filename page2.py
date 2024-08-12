@@ -281,8 +281,11 @@ def app():
             box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
             margin: 20px auto; 
             width: 300px;  /* Set the width of the box */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;">
-            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif; margin: 0;">🌟 Score +1 🌟</h4>
         </div>
         """, 
         unsafe_allow_html=True
