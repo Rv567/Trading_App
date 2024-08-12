@@ -540,3 +540,66 @@ def trace_fundamental(df_sec,industry,metric):
         )
 
     st.plotly_chart(fig,use_container_width=True)
+
+
+def trace_gauge(metric,company_value,industry_value):
+    # Create the gauge charts as subplots
+    fig = make_subplots(
+        rows=1, cols=2,
+        specs=[[{'type': 'indicator'}, {'type': 'indicator'}]],
+        horizontal_spacing=0.2
+    )
+
+    # Add the gauge for the company value
+    fig.add_trace(go.Indicator(
+        mode="gauge+number",
+        value=company_value,
+        title={'text': f"Company {metric}"},
+        gauge={
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
+            'bar': {'color': "lightcyan"},
+            'bgcolor': "black",
+            'borderwidth': 2,
+            'bordercolor': "white",
+            'steps': [
+                {'range': [0, 10], 'color': "red"},
+                {'range': [10, 20], 'color': "orange"},
+                {'range': [20, 30], 'color': "yellow"},
+                {'range': [30, 40], 'color': "green"}],
+            'threshold': {
+                'line': {'color': "lightblue", 'width': 4},
+                'thickness': 0.75,
+                'value': company_value}}),
+        row=1, col=1)
+
+    # Add the gauge for the industry value
+    fig.add_trace(go.Indicator(
+        mode="gauge+number",
+        value=industry_value,
+        title={'text': f"Sector {metric}"},
+        gauge={
+            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
+            'bar': {'color': "lightcyan"},
+            'bgcolor': "black",
+            'borderwidth': 2,
+            'bordercolor': "white",
+            'steps': [
+                {'range': [0, 10], 'color': "red"},
+                {'range': [10, 20], 'color': "orange"},
+                {'range': [20, 30], 'color': "yellow"},
+                {'range': [30, 40], 'color': "green"}],
+            'threshold': {
+                'line': {'color': "lightblue", 'width': 4},
+                'thickness': 0.75,
+                'value': industry_value}}),
+        row=1, col=2)
+
+    # Update the layout
+    fig.update_layout(
+        title=f"{metric} - Company vs Sector",
+        font={'color': "white", 'family': "Arial"},
+        paper_bgcolor="#0E1117",
+        plot_bgcolor="#0E1117"
+    )
+
+    st.plotly_chart(fig,use_container_width=True)

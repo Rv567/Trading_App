@@ -220,16 +220,16 @@ def app():
 
     # Create a query for the Moroccan stock exchange
     query = (Query()
-            .select('name', 'close', "Change %", "beta_1_year", "Price to Earnings Ratio (TTM)", 'Price to Book (FY)','dividends_yield',
-                    "Net Income (Annual YoY Growth)", "Perf.YTD", 'volume', 'Recommend.All')
+            .select('name', 'close', "Change %","Net Income (Annual YoY Growth)", "Return on Equity (TTM)", "Return on Assets (TTM)","current_ratio", "Price to Earnings Ratio (TTM)", 'Price to Book (FY)','dividends_yield',
+                "Perf.YTD")
             .order_by('market_cap_basic', ascending=False))  # Sort by market cap in descending order
     query.url = morocco_url
     count, df = query.get_scanner_data()
     # apply the formatting function to the column
     #df['Rating'] = df['Recommend.All'].apply(format_technical_rating)
 
-    df.drop(columns=["ticker",'Recommend.All'],inplace=True)
-    df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","beta_1_year":"Beta 1Y","price_earnings_ttm":"P/E","price_book_ratio":"P/B","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","volume":"Volume"})
+    df.drop(columns=["ticker"],inplace=True)
+    df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","price_book_ratio":"P/B","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","return_on_assets":"ROA %","current_ratio":"Current Ratio"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank aside","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank aside","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
     st.write(df)
@@ -289,6 +289,30 @@ def app():
         """, 
         unsafe_allow_html=True
         )
+    #ROE
+    company_value = df.set_index("Name").loc[stock_symbol]["ROE %"]
+    industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
+    industry_value = df[df["Sector"]==industry]["ROE %"].mean()
+
+    trace_gauge("ROE %",company_value,industry_value)
+    #ROA
+
+
+    ################################Profitability
+    st.subheader("Liquidity:")
+    trace_fundamental(df_sec,industry,"Current Ratio")
+
+
+
+
+
+
+
+
+
+
+
+
     ###############################PE
     st.subheader("P/E Valuation")
     st.write("The P/E ratio is used to compare companies within the same sector. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued.")
