@@ -269,6 +269,7 @@ def app():
             f"<div style='color:green; font-size: 18px;'>"
             f"✅ {stock_symbol} is outperforming in terms of Net Income Growth: "
             f"<strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>."
+            f"<span style='color: green; font-weight: bold;'>Score +1</span>"
             f"</div>",
             unsafe_allow_html=True
         )
