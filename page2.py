@@ -297,7 +297,7 @@ def app():
 
     ################################Solvency
     st.subheader("Solvency:")
-    trace_fundamental(df_sec,industry,"Current Ratio")
+    #trace_fundamental(df_sec,industry,"Current Ratio")
 
 
 
