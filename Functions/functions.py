@@ -603,3 +603,12 @@ def trace_gauge(metric,company_value,industry_value):
     )
 
     st.plotly_chart(fig,use_container_width=True)
+
+def metric_definition(df,stock_symbol,metric):
+
+        company_value = df.set_index("Name").loc[stock_symbol][metric]
+        industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
+        industry_value = df[df["Sector"]==industry][metric].mean()
+        df_sec = df[df["Sector"]==industry]
+
+        return company_value,industry,industry_value,df_sec

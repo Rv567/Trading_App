@@ -225,8 +225,6 @@ def app():
             .order_by('market_cap_basic', ascending=False))  # Sort by market cap in descending order
     query.url = morocco_url
     count, df = query.get_scanner_data()
-    # apply the formatting function to the column
-    #df['Rating'] = df['Recommend.All'].apply(format_technical_rating)
 
     df.drop(columns=["ticker"],inplace=True)
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","price_book_ratio":"P/B","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","return_on_assets":"ROA %","current_ratio":"Current Ratio"})
@@ -250,10 +248,7 @@ def app():
     ################################Profitability
     st.subheader("Profitability:")
     #Net Income Growth%
-    company_value = df.set_index("Name").loc[stock_symbol]["Net Income Growth %"]
-    industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
-    industry_value = df[df["Sector"]==industry]["Net Income Growth %"].mean()
-    df_sec = df[df["Sector"]==industry]
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Net Income Growth %")
 
     trace_fundamental(df_sec,industry,"Net Income Growth %")
     score=0
@@ -290,9 +285,7 @@ def app():
         unsafe_allow_html=True
         )
     #ROE
-    company_value = df.set_index("Name").loc[stock_symbol]["ROE %"]
-    industry = df.set_index("Name").loc[stock_symbol]["Sector"] # get the sector automaticly
-    industry_value = df[df["Sector"]==industry]["ROE %"].mean()
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROE %")
 
     trace_gauge("ROE %",company_value,industry_value)
     #ROA
