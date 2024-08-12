@@ -269,9 +269,22 @@ def app():
             f"<div style='color:green; font-size: 18px;'>"
             f"✅ {stock_symbol} is outperforming in terms of Net Income Growth: "
             f"<strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>."
-            f"<span style='color: green; font-weight: bold;'>Score +1</span>"
             f"</div>",
             unsafe_allow_html=True
+        )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin-bottom: 20px;
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
         )
     ###############################PE
     st.subheader("P/E Valuation")
