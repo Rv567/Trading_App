@@ -230,7 +230,7 @@ def app():
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover_current":"Asset Turnover"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank aside","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank aside","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
-    st.write(df.drop(columns=["Close","Change %"]))
+    st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
     st.header("Fundamental Analysis ⚙️")
     st.write("""
@@ -400,41 +400,46 @@ def app():
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Asset Turnover")
     trace_fundamental(df_sec,industry,"Asset Turnover")
 
-
-
+    if company_value < industry_value:
+        st.markdown(
+        f"<div style='color:red; font-size: 18px;'>"
+        f"❌ {stock_symbol} has an Asset Turnover Ratio of <strong>{company_value}</strong>, which is below the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"This suggests that {stock_symbol} may not be utilizing its assets as effectively as its peers to generate revenue, indicating potential inefficiencies in asset management."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+    else:
+        score += 1
+        st.markdown(
+        f"<div style='color:green; font-size: 18px;'>"
+        f"✅ {stock_symbol} has an Asset Turnover Ratio of <strong>{company_value}</strong>, which is higher or equal to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"This indicates that {stock_symbol} is efficiently utilizing its assets to generate revenue, outperforming its peers in terms of asset management."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin: 20px auto; 
+            width: 240px;  /* Set the width of the box */
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
+        )
 
     ###############################Valuation
     #PE
-    st.subheader("P/E Valuation")
-    st.write("The P/E ratio is used to compare companies within the same sector. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued.")
-    
+    st.subheader("Valuation")
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,'P/E')
     trace_fundamental(df_sec,industry,'P/E')
-    """sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
-    df_sec = df[df["Sector"]==sector]
-
-    random_color = generate_random_color()
-    fig = go.Figure(data=[
-    go.Bar(x=df_sec['Name'], y=df_sec['P/E'], text=df_sec['P/E'], textposition='auto',name='P/E Ratios',marker=dict(color=random_color))
-    ])
-    fig.add_trace(go.Scatter(
-    x=df_sec['Name'], 
-    y=[df_sec["P/E"].mean()] * len(df_sec['Name']),  # Repeat the mean value
-    mode='lines',
-    line=dict(color='red', dash='dash'),  # Customize line color and style
-    name=f'Mean P/E = {df_sec["P/E"].mean():.2f}'
-))
-
-    # Adding title and labels
-    fig.update_layout(
-        title=f'P/E Ratios of {sector}',
-        xaxis_title='Stock',
-        yaxis_title='P/E Ratio'
-    )
-
-    st.plotly_chart(fig,use_container_width=True)"""
-
-    ######## Gauge
+    trace_gauge('P/E',company_value,industry_value)
+    """######## Gauge
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"],key='tt')
     # Define the values for the gauges
     company_value = df.set_index("Name").loc[stock_symbol]["P/E"]
@@ -500,7 +505,7 @@ def app():
         plot_bgcolor="#0E1117"
     )
 
-    st.plotly_chart(fig,use_container_width=True)
+    st.plotly_chart(fig,use_container_width=True)"""
 
     company_value = df.set_index("Name").loc[stock_symbol]["P/E"]
     industry = df.set_index("Name").loc[stock_symbol]["Sector"]
