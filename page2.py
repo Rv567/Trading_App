@@ -512,7 +512,7 @@ def app():
 
     #Conclusion
     st.subheader("Financial Health Score")
-    if score < 3:
+    if score <= 3:
         st.markdown(
             f"""
             <div style="
@@ -527,7 +527,7 @@ def app():
             """, 
             unsafe_allow_html=True
         )
-    elif score >= 3 and score < 5:
+    elif score > 3 and score <= 5:
         st.markdown(
             f"""
             <div style="
@@ -542,7 +542,7 @@ def app():
             """, 
             unsafe_allow_html=True
         )
-    elif score >= 5:
+    elif score > 5:
         st.markdown(
             f"""
             <div style="
