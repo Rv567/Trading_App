@@ -254,7 +254,7 @@ def app():
 
     trace_fundamental(df_sec,industry,"Net Income Growth %")
     score=0
-    if company_value <= industry_value:
+    if company_value < industry_value:
         st.markdown(
             f"<div style='color:red; font-size: 18px;'>"
             f"❌ {stock_symbol} is underperforming in terms of Net Income Growth: "
@@ -290,7 +290,7 @@ def app():
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROE %")
     trace_gauge("ROE %",company_value,industry_value)
 
-    if company_value <= industry_value:
+    if company_value < industry_value:
         st.markdown(
             f"<div style='color:red; font-size: 18px;'>"
             f"❌ {stock_symbol} has a lower Return on Equity (ROE) of <strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>. "
