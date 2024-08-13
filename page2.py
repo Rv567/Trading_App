@@ -220,14 +220,14 @@ def app():
 
     # Create a query for the Moroccan stock exchange
     query = (Query()
-            .select('name', 'close', "Change %","Net Income (Annual YoY Growth)", "Return on Equity (TTM)","current_ratio", "debt_to_equity","Price to Earnings Ratio (TTM)",'dividends_yield',
+            .select('name', 'close', "Change %","Net Income (Annual YoY Growth)", "Return on Equity (TTM)","current_ratio", "debt_to_equity","asset_turnover","Price to Earnings Ratio (TTM)",'dividends_yield',
                 "Perf.YTD",)
             .order_by('market_cap_basic', ascending=False))  # Sort by market cap in descending order
     query.url = morocco_url
     count, df = query.get_scanner_data()
 
     df.drop(columns=["ticker"],inplace=True)
-    df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity"})
+    df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover":"Asset Turnover"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank aside","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank aside","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
     st.write(df)
@@ -395,17 +395,22 @@ def app():
         """, 
         unsafe_allow_html=True
         )
+    ###############################Efficiency
+    st.subheader("Efficiency:")
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Asset Turnover")
+    trace_fundamental(df_sec,industry,"Asset Turnover")
 
 
 
 
-
-
-
-    ###############################PE
+    ###############################Valuation
+    #PE
     st.subheader("P/E Valuation")
     st.write("The P/E ratio is used to compare companies within the same sector. A company with a higher P/E ratio compared to its peers might be overrvalued and a company with a lower P/E ratio compared to its peers might be undervalued.")
-    sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
+    
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,'P/E')
+    trace_fundamental(df_sec,industry,'P/E')
+    """sector = st.selectbox('Select a Sector', ["Bank","Capital Goods","Consumer Retailing","Diversified Financials","Energy","Food,Beverage","Healthcare","Insurance","Materials","Pharmaceuticals","Real Estate","Retail","Transportation","Tech","Telecom","Utilities",])
     df_sec = df[df["Sector"]==sector]
 
     random_color = generate_random_color()
@@ -427,7 +432,7 @@ def app():
         yaxis_title='P/E Ratio'
     )
 
-    st.plotly_chart(fig,use_container_width=True)
+    st.plotly_chart(fig,use_container_width=True)"""
 
     ######## Gauge
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"],key='tt')
