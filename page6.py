@@ -344,13 +344,22 @@ def app():
             metrics(optimized_portfolio,df["MASI"])
 
     st.header("Own Portfolio Optimization") 
-    stock_data = {
-    "Stock": df_close.columns.tolist(),
-    }
-    data_df = pd.DataFrame(stock_data)
-    data_df["Choice"] = False
+    if "favorite" not in st.session_state:
+        st.session_state["favorite"] = [False] * len(df_close.columns)
 
-    st.data_editor(
+    # Prepare stock data
+    stock_data = {
+        "Stock": df_close.columns.tolist(),
+    }
+
+    # Create the DataFrame
+    data_df = pd.DataFrame(stock_data)
+
+    # Add the 'Choice' column from session state
+    data_df["Choice"] = st.session_state["favorite"]
+
+    # Display the data editor
+    edited_df = st.data_editor(
         data_df,
         column_config={
             "Choice": st.column_config.CheckboxColumn(
@@ -363,7 +372,11 @@ def app():
         hide_index=True,
     )
 
-    favorite_stocks = data_df[data_df["Choice"]]
+    # Update session state with the new choices
+    st.session_state["favorite"] = edited_df["Choice"].tolist()
+
+    # Filter the DataFrame to get only the selected favorite stocks
+    favorite_stocks = edited_df[edited_df["Choice"]]
 
     # Display the list of selected favorite stocks
     st.write("Your favorite stocks:")
