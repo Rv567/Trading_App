@@ -388,7 +388,6 @@ def app():
         ef.add_constraint(lambda w: w <= choice/100)
 
         weights = ef.min_volatility()
-
         clean_weights = ef.clean_weights()
 
         df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
@@ -418,7 +417,6 @@ def app():
         ef = EfficientFrontier(mu,S)
 
         weights = ef.min_volatility()
-
         clean_weights = ef.clean_weights()
 
         df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
