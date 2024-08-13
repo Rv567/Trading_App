@@ -374,4 +374,4 @@ def app():
 
 
     st.write("Your favorite stocks:")
-    st.dataframe(favorite_stocks.tolist())
+    st.write(favorite_stocks.tolist())
