@@ -439,92 +439,37 @@ def app():
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,'P/E')
     trace_fundamental(df_sec,industry,'P/E')
     trace_gauge('P/E',company_value,industry_value)
-    """######## Gauge
-    stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"],key='tt')
-    # Define the values for the gauges
-    company_value = df.set_index("Name").loc[stock_symbol]["P/E"]
-    industry = df.set_index("Name").loc[stock_symbol]["Sector"]
-    industry_value = df[df["Sector"]==industry]["P/E"].mean()
-
-    # Create the gauge charts as subplots
-    fig = make_subplots(
-        rows=1, cols=2,
-        specs=[[{'type': 'indicator'}, {'type': 'indicator'}]],
-        horizontal_spacing=0.2
-    )
-
-    # Add the gauge for the company value
-    fig.add_trace(go.Indicator(
-        mode="gauge+number",
-        value=company_value,
-        title={'text': "Company P/E"},
-        gauge={
-            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
-            'bar': {'color': "lightcyan"},
-            'bgcolor': "black",
-            'borderwidth': 2,
-            'bordercolor': "white",
-            'steps': [
-                {'range': [0, 10], 'color': "red"},
-                {'range': [10, 20], 'color': "orange"},
-                {'range': [20, 30], 'color': "yellow"},
-                {'range': [30, 40], 'color': "green"}],
-            'threshold': {
-                'line': {'color': "lightblue", 'width': 4},
-                'thickness': 0.75,
-                'value': company_value}}),
-        row=1, col=1)
-
-    # Add the gauge for the industry value
-    fig.add_trace(go.Indicator(
-        mode="gauge+number",
-        value=industry_value,
-        title={'text': "Sector P/E"},
-        gauge={
-            'axis': {'range': [0, 40], 'tickwidth': 1, 'tickcolor': "white"},
-            'bar': {'color': "lightcyan"},
-            'bgcolor': "black",
-            'borderwidth': 2,
-            'bordercolor': "white",
-            'steps': [
-                {'range': [0, 10], 'color': "red"},
-                {'range': [10, 20], 'color': "orange"},
-                {'range': [20, 30], 'color': "yellow"},
-                {'range': [30, 40], 'color': "green"}],
-            'threshold': {
-                'line': {'color': "lightblue", 'width': 4},
-                'thickness': 0.75,
-                'value': industry_value}}),
-        row=1, col=2)
-
-    # Update the layout
-    fig.update_layout(
-        title="P/E - Company vs Sector",
-        font={'color': "white", 'family': "Arial"},
-        paper_bgcolor="#0E1117",
-        plot_bgcolor="#0E1117"
-    )
-
-    st.plotly_chart(fig,use_container_width=True)"""
-
-    company_value = df.set_index("Name").loc[stock_symbol]["P/E"]
-    industry = df.set_index("Name").loc[stock_symbol]["Sector"]
-    industry_value = df[df["Sector"]==industry]["P/E"].mean()
-
-    st.write(f"How does {stock_symbol}'s P/E Ratio compare to its peers?")
-    if company_value <= industry_value:
+    
+    if company_value > industry_value:
         st.markdown(
-            f"<div style='color:green; font-size: 18px;'>"
-            f"✅ {stock_symbol} is a good value based on its Price-To-Earnings Ratio: "
-            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>."
-            f"</div>",
-            unsafe_allow_html=True
-        )
+        f"<div style='color:red; font-size: 18px;'>"
+        f"❌ {stock_symbol} has a higher PE Ratio of <strong>{company_value}</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"This suggests that {stock_symbol} may be overvalued relative to its peers, potentially indicating a less attractive investment at the current price."
+        f"</div>",
+        unsafe_allow_html=True
+    )
     else:
+        score +=1
         st.markdown(
-            f"<div style='color:red; font-size: 18px;'>"
-            f"❌ {stock_symbol} is expensive based on its Price-To-Earnings Ratio: "
-            f"<strong>{company_value}x</strong> compared to the sector average <strong>{np.round(industry_value,2)}x</strong>."
-            f"</div>",
-            unsafe_allow_html=True
+        f"<div style='color:green; font-size: 18px;'>"
+        f"✅ {stock_symbol} has a PE Ratio of <strong>{company_value}</strong>, which is lower or equal to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"This suggests that {stock_symbol} may be undervalued relative to its peers, potentially offering a more attractive investment opportunity."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin: 20px auto; 
+            width: 240px;  /* Set the width of the box */
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
         )
+        
