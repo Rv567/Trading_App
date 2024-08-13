@@ -452,7 +452,7 @@ def app():
         score +=1
         st.markdown(
         f"<div style='color:green; font-size: 18px;'>"
-        f"✅ {stock_symbol} has a PE Ratio of <strong>{company_value}</strong>, which is lower or equal to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"✅ {stock_symbol} has a PE Ratio of <strong>{company_value}</strong>, which is lower to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
         f"This suggests that {stock_symbol} may be undervalued relative to its peers, potentially offering a more attractive investment opportunity."
         f"</div>",
         unsafe_allow_html=True
