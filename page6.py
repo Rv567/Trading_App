@@ -347,15 +347,10 @@ def app():
     if "favorite" not in st.session_state:
         st.session_state["favorite"] = [False] * len(df_close.columns)
 
-    # Prepare stock data
     stock_data = {
         "Stock": df_close.columns.tolist(),
     }
-
-    # Create the DataFrame
     data_df = pd.DataFrame(stock_data)
-
-    # Add the 'Choice' column from session state
     data_df["Choice"] = st.session_state["favorite"]
 
     # Display the data editor
@@ -372,12 +367,11 @@ def app():
         hide_index=True,
     )
 
-    # Update session state with the new choices
+    # Update session state 
     st.session_state["favorite"] = edited_df["Choice"].tolist()
-
-    # Filter the DataFrame to get only the selected favorite stocks
     favorite_stocks = edited_df[edited_df["Choice"]]
 
-    # Display the list of selected favorite stocks
+
+
     st.write("Your favorite stocks:")
-    st.dataframe(favorite_stocks)
+    st.dataframe(favorite_stocks["Stock"].tolist())
