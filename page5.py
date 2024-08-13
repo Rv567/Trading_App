@@ -122,4 +122,4 @@ def app():
     df['Sell'] = sell_signal.astype(int)
 
     st.write("Recent Trading Signals Based on Z-Score :")
-    st.write(df[['z_score', 'Buy', 'Sell']].tail(15).sort_index(ascending=False))
+    st.write(df[['z_score', 'Buy', 'Sell']].tail(20).sort_index(ascending=False))
