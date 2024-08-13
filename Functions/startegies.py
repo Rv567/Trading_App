@@ -44,7 +44,7 @@ class SmaCross_StopLoss(Strategy):
 
             if buy_signals == 1 and not self.position:
                 self.buy()
-                self.highest_price = self.data.Close[-1] # Highest price is initialized at entry
+                self.highest_price = self.data.Close[-1] # Highest price is initialized by the last close
 
             elif self.position:
                 # Inside the position taken we update the highest price
@@ -91,12 +91,12 @@ class MultiIndicatorStrategy(Strategy):
         
         if buy_signals >= 3 and not self.position:
             self.buy()
-            self.highest_price = self.data.High[-1] # Highest price is initialized at entry
+            self.highest_price = self.data.Close[-1] # Highest price is initialized by the last close
 
         elif self.position:
             # Inside the position taken we update the highest price
-            if self.data.High[-1] > self.highest_price:
-                self.highest_price = self.data.High[-1]
+            if self.data.Close[-1] > self.highest_price:
+                self.highest_price = self.data.Close[-1]
 
             # Trailing stop loss
             trailing_stop = self.highest_price * (1 - self.trailing_stop/100)  # 5% trailing stop
