@@ -398,21 +398,23 @@ def app():
         st.subheader("Optimized Portfolio Performance")
         # Portfolio Construction
         df_poids_opt = df_poids.set_index("Stock")
+        st.write(df_poids_opt)
         optimized_portfolio=0
         exclude_columns = ["MASI", "SNA","LES"]
-        for elem in df.columns:
+        for elem in df_own.columns:
             if elem not in  exclude_columns:
+                st.write(elem)
                 poids = df_poids_opt.loc[elem].values
                 optimized_portfolio += poids/100 * df[elem]
-
-        #Plot
+        st.write(optimized_portfolio)
+        """#Plot
         trace_perf(optimized_portfolio,df["MASI"])
 
         #Addictional metrics
         st.write("Additional Metrics :")
-        metrics(optimized_portfolio,df["MASI"])
+        metrics(optimized_portfolio,df["MASI"])"""
 
-    elif contra == "No" :
+    """elif contra == "No" :
         ef = EfficientFrontier(mu,S)
 
         weights = ef.max_sharpe()
@@ -441,4 +443,4 @@ def app():
 
         #Addictional metrics
         st.write("Additional Metrics :")
-        metrics(optimized_portfolio,df["MASI"])
+        metrics(optimized_portfolio,df["MASI"])"""
