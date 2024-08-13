@@ -96,7 +96,9 @@ def app():
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
 
     st.write(df['z_score'].tail(20))
-
+    st.subheader("Z-Score Distribution")
+    st.hist(df['z_score'], bins=50)
+    
     st.subheader("Trading Signals Based on Spread")
     z_score_threshold = 2
 
