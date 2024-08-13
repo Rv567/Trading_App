@@ -95,7 +95,7 @@ def app():
 
 
     # Markowitz Optimization
-    st.header("Portfolio Markowitz Optimization")  
+    st.header("Portfolio Markowitz Optimization ⚖️")  
 
     df_close = pd.concat([dataframes[elem][elem] for elem in ticker],join="outer",axis=1,sort=True)
     df_close.index = pd.to_datetime(df_close.index)
