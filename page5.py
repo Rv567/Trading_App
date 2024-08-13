@@ -80,7 +80,7 @@ def app():
     ##################################################
     st.header("Pairs Trading")
     st.write("Pairs trading involves identifying two stocks with a strong historical correlation and exploiting the temporary divergences in their price relationship.")
-    st.subheader("Spread Calculation")
+    
     df = pd.merge(Newdict_df_close[pairs[0]],Newdict_df_close[pairs[1]],left_index=True, right_index=True, suffixes=(f'_{pairs[0]}', f'_{pairs[1]}'))
     
     X = df[f"Close_{pairs[1]}"]
@@ -96,7 +96,7 @@ def app():
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
 
     st.write(df['z_score'].tail(20))
-    st.title('Z-Score Histogram')
+    """st.title('Z-Score Histogram')
 
     # Create a histogram plot
     fig, ax = plt.subplots()
@@ -106,12 +106,12 @@ def app():
     ax.set_ylabel('Frequency')
 
     # Display the histogram in the Streamlit app
-    st.pyplot(fig)
+    st.pyplot(fig)"""
     st.write(df.describe())
-    st.write(np.percentile(df['z_score'], 95))
+    st.write("95th Percentile of the Z-Score is ",np.percentile(df['z_score'], 95))
 
-    st.subheader("Trading Signals Based on Spread")
-    z_score_threshold = 2
+    st.subheader("Trading Signals Based on Spread between two stocks high correlated")
+    z_score_threshold = np.percentile(df['z_score'], 95)
 
     buy_signal = df['z_score'] > z_score_threshold
     sell_signal = df['z_score'] < -z_score_threshold
