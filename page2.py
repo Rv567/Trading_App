@@ -375,7 +375,7 @@ def app():
         score += 1
         st.markdown(
         f"<div style='color:green; font-size: 18px;'>"
-        f"✅ {stock_symbol} has a Debt-to-Equity Ratio of <strong>{company_value}</strong>, which is lower or equal to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"✅ {stock_symbol} has a Debt-to-Equity Ratio of <strong>{company_value}</strong>, which is lower to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
         f"This indicates that {stock_symbol} is managing its debt prudently relative to its equity, suggesting strong solvency and a lower financial risk compared to its peers."
         f"</div>",
         unsafe_allow_html=True
