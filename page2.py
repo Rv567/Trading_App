@@ -230,8 +230,7 @@ def app():
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover_current":"Asset Turnover"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
     df["Sector"] = ["Bank","Telecom","Bank","Materials","Bank","Materials","Utilities","Transportation","Materials","Food,Beverage","Insurance","Energy","Consumer Retailing","Healthcare","Energy","Bank","Real Estate","Capital Goods","Bank","Bank aside","Insurance","Insurance","Food,Beverage","Food,Beverage","Pharmaceuticals","Bank aside","Real Estate","Real Estate","Capital Goods","Diversified Financials","Materials","Consumer Services","Retail","Materials","Food,Beverage","Materials","Food,Beverage","Real Estate","Retail","Diversified Financials","Capital Goods","Diversified Financials","Real Estate","Tech","Insurance","Insurance","Materials","Tech","Food,Beverage","Pharmaceuticals"]
-    df.drop(columns=["Close","Change %"])
-    st.write(df)
+    st.write(df.drop(columns=["Close","Change %"]))
 
     st.header("Fundamental Analysis ⚙️")
     st.write("""
