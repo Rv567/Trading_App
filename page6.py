@@ -344,7 +344,7 @@ def app():
             metrics(optimized_portfolio,df["MASI"])
     ##########################################################
 
-    st.header("Customize Your Own Portfolio Optimization") 
+    st.header("Customize Your Own Portfolio Optimization 🔒") 
     st.write("In this section, you can create and optimize your own portfolio using Markowitz optimization.")
     st.write("Select stocks from the list to construct your portfolio.")
     if "favorite" not in st.session_state:
