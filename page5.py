@@ -30,7 +30,7 @@ def app():
     """)
     st.header("Couples with Strong Correlation")
     st.write("Select the correlation threshold.")
-    threshold = st.slider('Threshold :', min_value=80, max_value=100, value=80, step=1)
+    threshold = st.slider('Threshold :', min_value=80, max_value=100, value=90, step=1)
     st.write("List of stock pairs with high correlation values :")
     threshold = threshold/100
     high_corr_pairs = []
@@ -77,7 +77,7 @@ def app():
     )
     
     st.plotly_chart(fig,use_container_width=True)
-
+    ##################################################
     st.header("Pairs Trading")
     st.write("Pairs trading involves identifying two stocks with a strong historical correlation and exploiting the temporary divergences in their price relationship.")
     st.subheader("Spread Calculation")
@@ -96,3 +96,15 @@ def app():
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
 
     st.write(df['z_score'].tail(20))
+
+    st.subheader("Trading Signals Based on Spread")
+    spread_threshold = df['spread'].std()
+
+    buy_signal = df['spread'] > spread_threshold
+    sell_signal = df['spread'] < -spread_threshold
+
+    df['buy'] = buy_signal.astype(int)
+    df['sell'] = sell_signal.astype(int)
+
+    st.write("Recent Trading Signals Based on Spread")
+    st.write(df[['spread', 'buy', 'sell']].tail(20))
