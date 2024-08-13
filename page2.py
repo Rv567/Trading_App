@@ -511,4 +511,53 @@ def app():
 
 
     #Conclusion
-    st.write(f"Final Financial Health Score for {stock_symbol} is : {score}/7")
+    st.subheader("Financial Health Score")
+    if score < 3:
+        st.markdown(
+            f"""
+            <div style="
+                background-color: #ffcccc; 
+                padding: 15px; 
+                border-radius: 8px; 
+                box-shadow: 3px 3px 15px rgba(255, 0, 0, 0.2); 
+                margin: 20px auto; 
+                width: 300px; 
+                text-align: center;">
+                <h4 style="color: #b30000; font-family: 'Arial', sans-serif; margin: 0;">🚨 Final Financial Health Score: {score} (Low) 🚨</h4>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+    elif score >= 3 and score < 5:
+        st.markdown(
+            f"""
+            <div style="
+                background-color: #fff5cc; 
+                padding: 15px; 
+                border-radius: 8px; 
+                box-shadow: 3px 3px 15px rgba(255, 165, 0, 0.2); 
+                margin: 20px auto; 
+                width: 300px; 
+                text-align: center;">
+                <h4 style="color: #e65c00; font-family: 'Arial', sans-serif; margin: 0;">⚠️ Final Financial Health Score: {score} (Medium) ⚠️</h4>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+    elif score >= 5:
+        st.markdown(
+            f"""
+            <div style="
+                background-color: #ccffcc; 
+                padding: 15px; 
+                border-radius: 8px; 
+                box-shadow: 3px 3px 15px rgba(0, 255, 0, 0.2); 
+                margin: 20px auto; 
+                width: 300px; 
+                text-align: center;">
+                <h4 style="color: #006600; font-family: 'Arial', sans-serif; margin: 0;">✅ Final Financial Health Score: {score} (High) ✅</h4>
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
+    st.write(f"Final Financial Health Score for {stock_symbol} is {score}/7")
