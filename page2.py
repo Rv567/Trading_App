@@ -324,6 +324,7 @@ def app():
     ################################Profitability
     #Current Ratio
     st.subheader("Liquidity:")
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Current Ratio")
     trace_fundamental(df_sec,industry,"Current Ratio")
     if company_value < 1:
         st.markdown(
@@ -337,7 +338,7 @@ def app():
         score += 1
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
-            f"✅ {stock_symbol} has a healthy Current Ratio of <strong>{company_value}</strong>. "
+            f"✅ {stock_symbol} has a healthy Current Ratio of <strong>{company_value}</strong> > 1. "
             f"This indicates that {stock_symbol} has more than enough current assets to cover its short-term liabilities, suggesting strong liquidity and financial stability."
             f"</div>",
             unsafe_allow_html=True
@@ -352,7 +353,7 @@ def app():
             margin: 20px auto; 
             width: 240px;  /* Set the width of the box */
             text-align: center;">
-            <h4 style="color: #006400; font-family: 'Arial', sans-serif;'>🌟 Score +1 🌟</h4>
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
         </div>
         """, 
         unsafe_allow_html=True
