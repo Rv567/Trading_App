@@ -107,6 +107,7 @@ def app():
 
     # Display the histogram in the Streamlit app
     st.pyplot(fig)
+    st.write(df.describe())
 
     st.subheader("Trading Signals Based on Spread")
     z_score_threshold = 2
