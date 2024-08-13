@@ -472,4 +472,40 @@ def app():
         """, 
         unsafe_allow_html=True
         )
-        
+    #Dividend Yield
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,'Div Yield %')
+    trace_fundamental(df_sec,industry,'Div Yield %')
+
+    if company_value < industry_value:
+        st.markdown(
+        f"<div style='color:red; font-size: 18px;'>"
+        f"❌ {stock_symbol} has a lower Dividend Yield of <strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>. "
+        f"This suggests that {stock_symbol} may offer a less attractive dividend return relative to its peers, which could be a disadvantage for income-seeking investors."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+    else:
+        score +=1
+        st.markdown(
+        f"<div style='color:green; font-size: 18px;'>"
+        f"✅ {stock_symbol} has a Dividend Yield of <strong>{company_value}%</strong>, which is higher or equal to the sector average of <strong>{np.round(industry_value, 2)}%</strong>. "
+        f"This suggests that {stock_symbol} offers a more attractive dividend return compared to its peers, potentially making it a better option for income-focused investors."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin: 20px auto; 
+            width: 240px;  /* Set the width of the box */
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
+        )
+
