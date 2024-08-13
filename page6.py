@@ -371,5 +371,74 @@ def app():
     st.session_state["favorite"] = edited_df["Choice"].tolist()
     #Selected Stocks
     favorite_stocks = edited_df[edited_df["Choice"]]["Stock"].tolist()
+    df_own = df_close[favorite_stocks]
 
-    st.write(df_close[favorite_stocks])
+    #Portfolio Optimization
+    mu = expected_returns.mean_historical_return(df_own)
+    S = risk_models.sample_cov(df_own)
+
+    contra = st.selectbox("Add a contraint for maximum weight allocation", ["Yes", "No"])
+    if contra == "Yes":
+        choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+        
+        ef = EfficientFrontier(mu,S)
+        ef.add_constraint(lambda w: w <= choice/100)
+
+        weights = ef.max_sharpe()
+
+        clean_weights = ef.clean_weights()
+
+        df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+        df_poids["Poids %"] *= 100
+        st.subheader("Optimized Portfolio Weights")
+        st.write(df_poids.sort_values(by="Poids %", ascending=False))
+        st.subheader("Optimized Portfolio Allocation")
+        trace_pie(df_poids)
+    
+        st.subheader("Optimized Portfolio Performance")
+        # Portfolio Construction
+        df_poids_opt = df_poids.set_index("Stock")
+        optimized_portfolio=0
+        exclude_columns = ["MASI", "SNA","LES"]
+        for elem in df.columns:
+            if elem not in  exclude_columns:
+                poids = df_poids_opt.loc[elem].values
+                optimized_portfolio += poids/100 * df[elem]
+
+        #Plot
+        trace_perf(optimized_portfolio,df["MASI"])
+
+        #Addictional metrics
+        st.write("Additional Metrics :")
+        metrics(optimized_portfolio,df["MASI"])
+
+    elif contra == "No" :
+        ef = EfficientFrontier(mu,S)
+
+        weights = ef.max_sharpe()
+
+        clean_weights = ef.clean_weights()
+
+        df_poids = pd.DataFrame(list(clean_weights.items()), columns=['Stock', 'Poids %'])
+        df_poids["Poids %"] *= 100
+        st.subheader("Optimized Portfolio Weights")
+        st.write(df_poids.sort_values(by="Poids %", ascending=False))
+        st.subheader("Optimized Portfolio Allocation")
+        trace_pie(df_poids)
+
+        st.subheader("Optimized Portfolio Performance")
+        # Portfolio Construction
+        df_poids_opt = df_poids.set_index("Stock")
+        optimized_portfolio=0
+        exclude_columns = ["MASI", "SNA","LES"]
+        for elem in df.columns:
+            if elem not in  exclude_columns:
+                poids = df_poids_opt.loc[elem].values
+                optimized_portfolio += poids/100 * df[elem]
+
+        #Plot
+        trace_perf(optimized_portfolio,df["MASI"])
+
+        #Addictional metrics
+        st.write("Additional Metrics :")
+        metrics(optimized_portfolio,df["MASI"])
