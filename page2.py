@@ -520,8 +520,7 @@ def app():
                 padding: 15px; 
                 border-radius: 8px; 
                 box-shadow: 3px 3px 15px rgba(255, 0, 0, 0.2); 
-                margin: 20px auto; 
-                width: 400px; 
+                margin: 20px auto;  
                 text-align: center;">
                 <h4 style="color: #b30000; font-family: 'Arial', sans-serif; margin: 0;">🚨 Financial Health Score: {score}/7 (Low) 🚨</h4>
             </div>
@@ -537,7 +536,6 @@ def app():
                 border-radius: 8px; 
                 box-shadow: 3px 3px 15px rgba(255, 165, 0, 0.2); 
                 margin: 20px auto; 
-                width: 400px; 
                 text-align: center;">
                 <h4 style="color: #e65c00; font-family: 'Arial', sans-serif; margin: 0;">⚠️ Financial Health Score: {score}/7 (Medium) ⚠️</h4>
             </div>
