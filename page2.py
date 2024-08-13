@@ -95,7 +95,7 @@ def app():
     st.subheader("Stocks meeting the liquidity criteria")
     st.write(Newdict_df.keys())
     st.header("Beta Classification")
-    st.write("We split the selected stocks into High/Low volatility stocks. The Beta is calculated on 3-Year.")
+    st.write("We split the selected stocks into High/Low volatility stocks.")
     list_df = high_low_volat(Newdict_df,dataframes["MASI"])
 
     st.subheader('Stocks with Beta > 1')
@@ -107,7 +107,7 @@ def app():
 
     st.markdown("""
     #### Key Points:
-    **Beta measures how much a stock's price moves compared to the overall market. It's calculated based on 3 Years data.**
+    **Beta measures how much a stock's price moves compared to the overall market. It's calculated on 3-Year.**
     - **Beta = 1**: The stock moves exactly in line with the market.
     - **Beta > 1**: The stock is more volatile than the market.
     - **Beta < 1**: The stock is less volatile than the market.
