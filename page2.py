@@ -325,7 +325,38 @@ def app():
     #Current Ratio
     st.subheader("Liquidity:")
     trace_fundamental(df_sec,industry,"Current Ratio")
-
+    if company_value < 1:
+        st.markdown(
+            f"<div style='color:red; font-size: 18px;'>"
+            f"❌ {stock_symbol} has a Current Ratio of <strong>{company_value}</strong>, which is below 1. "
+            f"This suggests that {stock_symbol} may struggle to meet its short-term liabilities with its current assets, indicating potential liquidity issues."
+            f"</div>",
+            unsafe_allow_html=True
+        )
+    else:
+        score += 1
+        st.markdown(
+            f"<div style='color:green; font-size: 18px;'>"
+            f"✅ {stock_symbol} has a healthy Current Ratio of <strong>{company_value}</strong>. "
+            f"This indicates that {stock_symbol} has more than enough current assets to cover its short-term liabilities, suggesting strong liquidity and financial stability."
+            f"</div>",
+            unsafe_allow_html=True
+        )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin: 20px auto; 
+            width: 240px;  /* Set the width of the box */
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;'>🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
+        )
     ################################Solvency
     st.subheader("Solvency:")
     #trace_fundamental(df_sec,industry,"Current Ratio")
