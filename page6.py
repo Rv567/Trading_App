@@ -374,4 +374,4 @@ def app():
 
 
     st.write("Your favorite stocks:")
-    st.write(len(favorite_stocks))
+    st.write(type(favorite_stocks))
