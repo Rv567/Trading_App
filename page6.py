@@ -407,12 +407,12 @@ def app():
                 poids = df_poids_opt.loc[elem].values
                 optimized_portfolio += poids/100 * df[elem]
         st.write(optimized_portfolio)
-        """#Plot
+        #Plot
         trace_perf(optimized_portfolio,df["MASI"])
 
         #Addictional metrics
         st.write("Additional Metrics :")
-        metrics(optimized_portfolio,df["MASI"])"""
+        metrics(optimized_portfolio,df["MASI"])
 
     """elif contra == "No" :
         ef = EfficientFrontier(mu,S)
