@@ -553,7 +553,6 @@ def app():
                 border-radius: 8px; 
                 box-shadow: 3px 3px 15px rgba(0, 255, 0, 0.2); 
                 margin: 20px auto; 
-                width: 400px; 
                 text-align: center;">
                 <h4 style="color: #006600; font-family: 'Arial', sans-serif; margin: 0;">✅ Final Financial Health Score: {score}/7 (High) ✅</h4>
             </div>
