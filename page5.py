@@ -98,13 +98,13 @@ def app():
     st.write(df['z_score'].tail(20))
 
     st.subheader("Trading Signals Based on Spread")
-    spread_threshold = df['spread'].std()
+    z_score_threshold = 2
 
-    buy_signal = df['spread'] > spread_threshold
-    sell_signal = df['spread'] < -spread_threshold
+    buy_signal = df['z_score'] > z_score_threshold
+    sell_signal = df['z_score'] < -z_score_threshold
 
     df['buy'] = buy_signal.astype(int)
     df['sell'] = sell_signal.astype(int)
 
-    st.write("Recent Trading Signals Based on Spread")
+    st.write("Recent Trading Signals Based on Z-Score")
     st.write(df[['spread', 'buy', 'sell']].tail(20))
