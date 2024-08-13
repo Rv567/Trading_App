@@ -80,7 +80,8 @@ def app():
     ##################################################
     st.header("Pairs Trading")
     st.write("Pairs trading involves identifying two stocks with a strong historical correlation and exploiting the temporary divergences in their price relationship.")
-    
+    st.write("We start with calculating the spread (price difference the two stocks), then we normalize it to obtain the z-score.")
+    st.subheader("Z-score Calculating")
     df = pd.merge(Newdict_df_close[pairs[0]],Newdict_df_close[pairs[1]],left_index=True, right_index=True, suffixes=(f'_{pairs[0]}', f'_{pairs[1]}'))
     
     X = df[f"Close_{pairs[1]}"]
@@ -94,7 +95,7 @@ def app():
 
     # Calculate z-score
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
-
+    
     st.write(df['z_score'].tail(20))
     """st.title('Z-Score Histogram')
 
@@ -107,7 +108,7 @@ def app():
 
     # Display the histogram in the Streamlit app
     st.pyplot(fig)"""
-    st.write(df.describe())
+    st.write(df.describe()["z_score"])
     st.write("95th Percentile of the Z-Score is ",np.percentile(df['z_score'], 95))
 
     st.subheader("Trading Signals Based on Spread between two stocks high correlated")
