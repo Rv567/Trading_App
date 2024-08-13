@@ -369,9 +369,9 @@ def app():
 
     # Update session state 
     st.session_state["favorite"] = edited_df["Choice"].tolist()
-    favorite_stocks = edited_df[edited_df["Choice"]]["Stock"]
+    favorite_stocks = edited_df[edited_df["Choice"]]["Stock"].tolist()
 
 
 
     st.write("Your favorite stocks:")
-    st.write(favorite_stocks.tolist())
+    st.write(favorite_stocks)
