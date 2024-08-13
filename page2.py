@@ -363,6 +363,39 @@ def app():
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Debt/equity")
     trace_fundamental(df_sec,industry,"Debt/equity")
 
+    if company_value > industry_value:
+        st.markdown(
+        f"<div style='color:red; font-size: 18px;'>"
+        f"❌ {stock_symbol} has a higher Debt-to-Equity Ratio of <strong>{company_value}</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"This suggests that {stock_symbol} relies more heavily on debt financing, which could indicate higher financial risk and potential challenges in meeting long-term obligations."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+    else:
+        score += 1
+        st.markdown(
+        f"<div style='color:green; font-size: 18px;'>"
+        f"✅ {stock_symbol} has a Debt-to-Equity Ratio of <strong>{company_value}</strong>, which is lower or equal to the sector average of <strong>{np.round(industry_value, 2)}</strong>. "
+        f"This indicates that {stock_symbol} is managing its debt prudently relative to its equity, suggesting strong solvency and a lower financial risk compared to its peers."
+        f"</div>",
+        unsafe_allow_html=True
+    )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin: 20px auto; 
+            width: 240px;  /* Set the width of the box */
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
+        )
+
 
 
 
