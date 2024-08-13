@@ -214,7 +214,7 @@ def app():
     st.plotly_chart(fig3,use_container_width=True)
 
     st.header("Stock Screener")
-    st.write("Filter and identify stocks based on various fundamental criteria Beta, P/E, P/B, Div Yield % ...")
+    st.write("Filter and identify stocks based on various fundamental criteria Net Income, Current Ratio, D/E, AT, P/E ...")
 
     morocco_url = 'https://scanner.tradingview.com/morocco/scan'
 
