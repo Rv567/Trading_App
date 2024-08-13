@@ -245,6 +245,7 @@ def app():
     #Stock Selection
     st.write("First choose a Stock to see it Financial Health Assessment.")
     stock_symbol = st.selectbox('Select Stock Symbol', ["ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"])
+    
     ################################Profitability
     st.subheader("Profitability:")
     #Net Income Growth%
@@ -288,7 +289,40 @@ def app():
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"ROE %")
     trace_gauge("ROE %",company_value,industry_value)
 
+    if company_value <= industry_value:
+        st.markdown(
+            f"<div style='color:red; font-size: 18px;'>"
+            f"❌ {stock_symbol} has a lower Return on Equity (ROE) of <strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>. "
+            f"This suggests that {stock_symbol} is less efficient in generating profits from its equity compared to other companies in the sector."
+            f"</div>",
+            unsafe_allow_html=True
+        )
+    else:
+        score += 1
+        st.markdown(
+            f"<div style='color:green; font-size: 18px;'>"
+            f"✅ {stock_symbol} has a higher Return on Equity (ROE) of <strong>{company_value}%</strong> compared to the sector average of <strong>{np.round(industry_value, 2)}%</strong>. "
+            f"This indicates that {stock_symbol} is more efficient in generating profits from its equity, demonstrating a stronger performance relative to its peers in the sector."
+            f"</div>",
+            unsafe_allow_html=True
+        )
+        st.markdown(
+        f"""
+        <div style="
+            background-color: #e0ffe0; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 3px 3px 15px rgba(0, 128, 0, 0.2); 
+            margin: 20px auto; 
+            width: 240px;  /* Set the width of the box */
+            text-align: center;">
+            <h4 style="color: #006400; font-family: 'Arial', sans-serif;">🌟 Score +1 🌟</h4>
+        </div>
+        """, 
+        unsafe_allow_html=True
+        )
     ################################Profitability
+    #Current Ratio
     st.subheader("Liquidity:")
     trace_fundamental(df_sec,industry,"Current Ratio")
 
