@@ -96,9 +96,18 @@ def app():
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
 
     st.write(df['z_score'].tail(20))
-    st.subheader("Z-Score Distribution")
-    st.hist(df['z_score'], bins=50)
-    
+    st.title('Z-Score Histogram')
+
+    # Create a histogram plot
+    fig, ax = plt.subplots()
+    ax.hist(df['z_score'], bins=30, edgecolor='black')
+    ax.set_title('Z-Score Distribution')
+    ax.set_xlabel('Z-Score')
+    ax.set_ylabel('Frequency')
+
+    # Display the histogram in the Streamlit app
+    st.pyplot(fig)
+
     st.subheader("Trading Signals Based on Spread")
     z_score_threshold = 2
 
