@@ -344,23 +344,27 @@ def app():
             metrics(optimized_portfolio,df["MASI"])
 
     st.header("Own Portfolio Optimization") 
-
-    data_df = pd.DataFrame(
-        {
-            "widgets": ["st.selectbox", "st.number_input", "st.text_area", "st.button"],
-            "favorite": [True, False, False, True],
-        }
-    )
+    stock_data = {
+    "Stock": df_close.columns.tolist(),
+    }
+    data_df = pd.DataFrame(stock_data)
+    data_df["Choice"] = False
 
     st.data_editor(
         data_df,
         column_config={
-            "favorite": st.column_config.CheckboxColumn(
-                "Your favorite?",
-                help="Select your **favorite** widgets",
+            "Choice": st.column_config.CheckboxColumn(
+                "Choice",
+                help="Select your Stocks",
                 default=False,
             )
         },
-        disabled=["widgets"],
+        disabled=["Stock"],
         hide_index=True,
     )
+
+    favorite_stocks = data_df[data_df["favorite"]]
+
+    # Display the list of selected favorite stocks
+    st.write("Your favorite stocks:")
+    st.dataframe(favorite_stocks)
