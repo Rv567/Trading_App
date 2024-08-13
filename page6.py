@@ -377,7 +377,7 @@ def app():
     mu = expected_returns.mean_historical_return(df_own)
     S = risk_models.sample_cov(df_own)
 
-    contra = st.selectbox("Add a contraint for maximum weight allocation", ["Yes", "No"])
+    contra = st.selectbox("Add a contraint for maximum weight allocation", ["Yes", "No"],key='po')
     if contra == "Yes":
         choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
         
