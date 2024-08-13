@@ -363,7 +363,7 @@ def app():
         hide_index=True,
     )
 
-    favorite_stocks = data_df[data_df["favorite"]]
+    favorite_stocks = data_df[data_df["Choice"]]
 
     # Display the list of selected favorite stocks
     st.write("Your favorite stocks:")
