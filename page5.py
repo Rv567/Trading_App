@@ -108,13 +108,13 @@ def app():
 
     # Display the histogram in the Streamlit app
     st.pyplot(fig)"""
-    st.write(df.describe()["z_score"])
     st.subheader("Z-score Statistics")
+    st.write(df.describe()["z_score"])
     st.write("95th Percentile of the Z-Score is ",np.percentile(df['z_score'], 95))
 
     st.subheader("Trading Signals Based on Spread between two stocks high correlated")
+    
     z_score_threshold = np.percentile(df['z_score'], 95)
-
     buy_signal = df['z_score'] > z_score_threshold
     sell_signal = df['z_score'] < -z_score_threshold
 
