@@ -560,4 +560,4 @@ def app():
             """, 
             unsafe_allow_html=True
         )
-    st.write(f"Final Financial Health Score for {stock_symbol} is {score}/7")
+    #st.write(f"Final Financial Health Score for {stock_symbol} is {score}/7")
