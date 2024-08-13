@@ -360,7 +360,8 @@ def app():
         )
     ################################Solvency
     st.subheader("Solvency:")
-    #trace_fundamental(df_sec,industry,"Current Ratio")
+    company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Debt/equity")
+    trace_fundamental(df_sec,industry,"Debt/equity")
 
 
 
