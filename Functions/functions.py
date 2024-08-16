@@ -502,8 +502,8 @@ def metrics(portfolio,masi):
 
     st.write(df)
     st.write("VaR Interpretation :")
-    st.write(df["VaR at 95%"].iloc[1])
-    #st.write(f"The Value at Risk (VaR) at 95% confidence level being {df["VaR at 95%"].iloc[1]} on a daily basis means that, under normal market conditions, there is a 95% probability that the portfolio will not lose more than {df["VaR at 95%"].iloc[1]} of its value in a single day.")
+    st.write()
+    st.write(f"The Value at Risk (VaR) at 95% confidence level being {df["VaR at 95%"].iloc[1]} on a daily basis means that, under normal market conditions, there is a 95% probability that the portfolio will not lose more than {df["VaR at 95%"].iloc[1]} of its value in a single day.")
 
 def generate_random_color():
     return "#{:02x}{:02x}{:02x}".format(random.randint(0, 255),
