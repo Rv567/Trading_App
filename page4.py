@@ -70,8 +70,8 @@ def app():
     st.markdown(custom_button_css, unsafe_allow_html=True)
     #st.markdown('<div class="centered-button">', unsafe_allow_html=True)
     st.write("The predictions should be done every Friday.")
-    st.write(f"the last Prediction Session was done the {Newdict_df["ATW"].index[-1]}")
-    
+    st.write(f"the last Prediction Session was done the {Newdict_df["ATW"].index[-1].date()}")
+
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
         features_df = {}
