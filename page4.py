@@ -70,7 +70,9 @@ def app():
     st.markdown(custom_button_css, unsafe_allow_html=True)
     #st.markdown('<div class="centered-button">', unsafe_allow_html=True)
     st.write("The predictions should be done every Friday.")
-    st.write("The last Prediction Session was done the ",dataframes["ATW"].index[-1])
+    
+    last_session_date = dataframes["ATW"].index[-1].strftime('%Y-%m-%d')
+    st.write(f"The last session was done from the {last_session_date} data to predict the next week's variation.")
 
     st.write("To verify the data", dataframes["ATW"].tail())
 
