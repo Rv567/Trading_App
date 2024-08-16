@@ -373,7 +373,7 @@ def app():
         """, 
         unsafe_allow_html=True
         )
-    ################################Profitability
+    ################################Liquidity
     #Current Ratio
     st.subheader("Liquidity:")
     company_value,industry,industry_value,df_sec = metric_definition(df,stock_symbol,"Current Ratio")
@@ -386,7 +386,7 @@ def app():
             f"</div>",
             unsafe_allow_html=True
         )
-    elif company_value >= industry_value and not np.isnan(company_value):
+    elif company_value >= 1 and not np.isnan(company_value):
         score += 1
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
