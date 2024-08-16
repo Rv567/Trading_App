@@ -72,6 +72,8 @@ def app():
     st.write("The predictions should be done every Friday.")
     st.write("The last Prediction Session was done the ",Newdict_df["ATW"].index[-1])
 
+    st.write("To verify the data", Newdict_df["ATW"])
+
 
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
