@@ -70,9 +70,9 @@ def app():
     st.markdown(custom_button_css, unsafe_allow_html=True)
     #st.markdown('<div class="centered-button">', unsafe_allow_html=True)
     st.write("The predictions should be done every Friday.")
-    st.write("The last Prediction Session was done the ",Newdict_df["ATW"].index[-1])
+    st.write("The last Prediction Session was done the ",dataframes["ATW"].index[-1])
 
-    st.write("To verify the data", Newdict_df["ATW"])
+    st.write("To verify the data", dataframes["ATW"])
 
 
     if st.button("Predict 🔮"):
