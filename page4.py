@@ -62,7 +62,7 @@ def app():
     </style>
         """
     
-    keys_to_keep = list(Newdict_df.keys())[:10] # 15 stocks
+    keys_to_keep = list(Newdict_df.keys())[:15] # 15 stocks
     # Create a new dictionary with only these keys
     filtered_dict = {key: Newdict_df[key] for key in keys_to_keep}
 
