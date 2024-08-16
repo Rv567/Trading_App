@@ -489,7 +489,7 @@ def metrics(portfolio,masi):
     metrics_masi = {
                 "Win Rate%": np.round(qs.stats.win_rate(masi)*100,2),
                 "Max Drawdown%": np.round(qs.stats.max_drawdown(masi)*100,2),
-                "VaR at 95%": np.round(qs.stats.var(masi) * -1,2)
+                "VaR at 95%": np.round(qs.stats.var(masi) * -100,2)
             }
     
     metrics_portfolio = {
