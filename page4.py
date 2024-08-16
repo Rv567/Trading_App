@@ -72,7 +72,7 @@ def app():
     st.write("The predictions should be done every Friday.")
     st.write("The last Prediction Session was done the ",dataframes["ATW"].index[-1])
 
-    st.write("To verify the data", dataframes["ATW"])
+    st.write("To verify the data", dataframes["ATW"].tail())
 
 
     if st.button("Predict 🔮"):
