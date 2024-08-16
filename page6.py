@@ -447,7 +447,7 @@ def app():
     if obj_choice == "Maximize the Sharpe Ratio of the portfolio":
         contra = st.selectbox("Add a contraint for maximum weight allocation", ["Yes", "No"],key="op")
         if contra == "Yes":
-            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10,key="pl")
             
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
@@ -515,7 +515,7 @@ def app():
     elif obj_choice == "Minimize the Volatility of the portfolio":
         contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"],key="er")
         if contra == "Yes":
-            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10,key="ty")
             
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= choice/100)
@@ -580,7 +580,7 @@ def app():
             metrics(optimized_portfolio,df["MASI"])
     ##################### Third objective
     elif obj_choice == "Target Return with Minimum Risk" :
-        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"],key="pl")
+        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"],key="pp")
         if contra == "Yes":
             target = st.slider(
                                 'Choose a target return',
@@ -589,7 +589,7 @@ def app():
                                 value=0.7, 
                                 step=0.1
                             )
-            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
+            choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10,key="Gh")
             
             ef = EfficientFrontier(mu,S)
             ef.add_constraint(lambda w: w <= 20/100)
