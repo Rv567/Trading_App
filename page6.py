@@ -468,7 +468,7 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            for elem in df.columns:
+            for elem in df_own.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
@@ -499,7 +499,7 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            for elem in df.columns:
+            for elem in df_own.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
@@ -536,7 +536,7 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            for elem in df.columns:
+            for elem in df_own.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
@@ -567,7 +567,7 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            for elem in df.columns:
+            for elem in df_own.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
@@ -609,7 +609,7 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            for elem in df.columns:
+            for elem in df_own.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
@@ -647,7 +647,7 @@ def app():
             df_poids_opt = df_poids.set_index("Stock")
             optimized_portfolio=0
             exclude_columns = ["MASI", "SNA","LES"]
-            for elem in df.columns:
+            for elem in df_own.columns:
                 if elem not in  exclude_columns:
                     poids = df_poids_opt.loc[elem].values
                     optimized_portfolio += poids/100 * df[elem]
