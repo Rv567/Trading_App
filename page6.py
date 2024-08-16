@@ -445,7 +445,7 @@ def app():
     obj_choice = st.selectbox("Select Objective", ["Maximize the Sharpe Ratio of the portfolio", "Minimize the Volatility of the portfolio","Target Return with Minimum Risk"],key="joi")
     ################### First objective
     if obj_choice == "Maximize the Sharpe Ratio of the portfolio":
-        contra = st.selectbox("Add a contraint for maximum weight allocation", ["Yes", "No"])
+        contra = st.selectbox("Add a contraint for maximum weight allocation", ["Yes", "No"],key="op")
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
             
@@ -513,7 +513,7 @@ def app():
 
     ################## Second objective
     elif obj_choice == "Minimize the Volatility of the portfolio":
-        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
+        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"],key="er")
         if contra == "Yes":
             choice = st.slider('Choose a maximum weight allocation', min_value=10, max_value=50, value=50, step=10)
             
@@ -580,7 +580,7 @@ def app():
             metrics(optimized_portfolio,df["MASI"])
     ##################### Third objective
     elif obj_choice == "Target Return with Minimum Risk" :
-        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"])
+        contra = st.selectbox("Add a contraint fo maximum weight allocation", ["Yes", "No"],key="pl")
         if contra == "Yes":
             target = st.slider(
                                 'Choose a target return',
