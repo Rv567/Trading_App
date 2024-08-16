@@ -313,7 +313,7 @@ def app():
             f"</div>",
             unsafe_allow_html=True
         )
-    else:
+    elif company_value >= industry_value and not np.isnan(company_value):
         score += 1
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
@@ -349,7 +349,7 @@ def app():
             f"</div>",
             unsafe_allow_html=True
         )
-    else:
+    elif company_value >= industry_value and not np.isnan(company_value):
         score += 1
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
@@ -386,7 +386,7 @@ def app():
             f"</div>",
             unsafe_allow_html=True
         )
-    else:
+    elif company_value >= industry_value and not np.isnan(company_value):
         score += 1
         st.markdown(
             f"<div style='color:green; font-size: 18px;'>"
@@ -423,7 +423,7 @@ def app():
         f"</div>",
         unsafe_allow_html=True
     )
-    else:
+    elif company_value <= industry_value and not np.isnan(company_value):
         score += 1
         st.markdown(
         f"<div style='color:green; font-size: 18px;'>"
@@ -460,7 +460,7 @@ def app():
         f"</div>",
         unsafe_allow_html=True
     )
-    else:
+    elif company_value >= industry_value and not np.isnan(company_value):
         score += 1
         st.markdown(
         f"<div style='color:green; font-size: 18px;'>"
@@ -500,7 +500,7 @@ def app():
         f"</div>",
         unsafe_allow_html=True
     )
-    else:
+    elif company_value <= industry_value and not np.isnan(company_value):
         score +=1
         st.markdown(
         f"<div style='color:green; font-size: 18px;'>"
@@ -536,7 +536,7 @@ def app():
         f"</div>",
         unsafe_allow_html=True
     )
-    else:
+    elif company_value >= industry_value and not np.isnan(company_value):
         score +=1
         st.markdown(
         f"<div style='color:green; font-size: 18px;'>"
