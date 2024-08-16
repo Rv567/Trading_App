@@ -73,12 +73,13 @@ def app():
     
     last_session_date = dataframes["ATW"].index[-1].strftime('%Y-%m-%d')
     st.write(f"The last session was done from the {last_session_date} data to predict the next week's variation.")
-
+    
     st.write("To verify the data", dataframes["ATW"].tail())
 
 
     if st.button("Predict 🔮"):
         st.markdown("<h3 style='color: orange;'>Model is running...⏳</h3>", unsafe_allow_html=True)
+        st.write("The last Prediction was made ",date.today())
         features_df = {}
         target_df ={}
         df_pred_tomorrow = {} #model.predict()
