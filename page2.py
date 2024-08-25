@@ -261,9 +261,9 @@ def app():
             "Matériels, Logiciels et Services Informatiques",  # HPS
             "Mines",  # SMI
             "Loisirs et Hôtels",  # RIS
-            "tot",
-            "Distributeurs",  # ATH
             "Bâtiment et Matériaux de Construction",  # SID
+            "Distributeurs",  # ATH
+            "Mines",  # CMT
             "Boissons",  # OUL
             "Mines",  # CMT
             "Distributeurs",  # MUT
