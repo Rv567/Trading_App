@@ -248,7 +248,6 @@ def app():
             "Banques",  # CIH
             "Participation et promotion immobilières",  # ADH
             "Bâtiment et Matériaux de Construction",  # TGC
-            "Banques",  # CDM
             "Banques",  # BCI
             "Assurances",  # SAH
             "Assurances",  # ATL
@@ -262,6 +261,7 @@ def app():
             "Matériels, Logiciels et Services Informatiques",  # HPS
             "Mines",  # SMI
             "Loisirs et Hôtels",  # RIS
+            "tot",
             "Distributeurs",  # ATH
             "Bâtiment et Matériaux de Construction",  # SID
             "Boissons",  # OUL
