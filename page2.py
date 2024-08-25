@@ -242,18 +242,18 @@ def app():
             "Agroalimentaire et Production",  # CSR
             "Assurances",  # WAA
             "Pétrole et Gaz",  # GAZ
-            "Distributeurs",  # LBV
             "Santé",  # AKT
+            "Distributeurs",  # LBV
             "Pétrole et Gaz",  # TMA
             "Banques",  # CIH
             "Participation et promotion immobilières",  # ADH
             "Bâtiment et Matériaux de Construction",  # TGC
-            "Banques",  # CDM
+            #"Banques",  # CDM
             "Banques",  # BCI
             "Assurances",  # SAH
             "Assurances",  # ATL
-            "Boissons",  # SBM
             "Agroalimentaire et Production",  # LES
+            "Boissons",  # SBM
             "Industrie Pharmaceutique",  # SOT
             "Banques",  # CFG
             "Sociétés de placement immobilier",  # ARD
@@ -280,6 +280,7 @@ def app():
             "Matériels, Logiciels et Services Informatiques",  # MIC
             "Agroalimentaire et Production",  # DRI
             "Industrie Pharmaceutique"  # PRO
+            "toto"
         ]
     st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
