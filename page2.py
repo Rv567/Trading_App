@@ -278,9 +278,10 @@ def app():
             "Sociétés de financement et Autres Activités Financières",  # MLE
             "Industrie Pharmaceutique"  # PRO
             "Matériels, Logiciels et Services Informatiques",  # MIC
-            "Agroalimentaire et Production",  # DRI
-            "Bâtiment et Matériaux de Construction" #COL
+            "Agroalimentaire et Production"  # DRI
+ 
         ]
+    #           "Bâtiment et Matériaux de Construction" #COL
     st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
     st.header("Fundamental Analysis ⚙️")
