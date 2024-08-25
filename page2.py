@@ -248,7 +248,7 @@ def app():
             "Banques",  # CIH
             "Participation et promotion immobilières",  # ADH
             "Bâtiment et Matériaux de Construction",  # TGC
-            #"Banques",  # CDM
+            "Banques",  # CDM
             "Banques",  # BCI
             "Assurances",  # SAH
             "Assurances",  # ATL
