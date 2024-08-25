@@ -276,12 +276,13 @@ def app():
             "Assurances",  # AFM
             "Chimie",  # SNP
             "Sociétés de financement et Autres Activités Financières",  # MLE
-            "Industrie Pharmaceutique"  # PRO
+            "Industrie Pharmaceutique",  # PRO
             "Matériels, Logiciels et Services Informatiques",  # MIC
-            "Agroalimentaire et Production"  # DRI
+            "Agroalimentaire et Production",  # DRI
+            "Bâtiment et Matériaux de Construction" #COL
  
         ]
-    #           "Bâtiment et Matériaux de Construction" #COL
+    #           
     st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
     st.header("Fundamental Analysis ⚙️")
