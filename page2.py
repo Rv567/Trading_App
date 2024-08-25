@@ -260,26 +260,26 @@ def app():
             "Holding",  # DHO
             "Matériels, Logiciels et Services Informatiques",  # HPS
             "Mines",  # SMI
+            "Distributeurs",  # ATH
             "Loisirs et Hôtels",  # RIS
             "Bâtiment et Matériaux de Construction",  # SID
-            "Distributeurs",  # ATH
             "Mines",  # CMT
             "Boissons",  # OUL
-            "Mines",  # CMT
             "Distributeurs",  # MUT
             "Participation et promotion immobilières",  # RDS
             "Distributeurs",  # NKL
             "Bâtiment et Matériaux de Construction",  # JET
             "Sociétés de financement et Autres Activités Financières",  # EQD
             "Sociétés de financement et Autres Activités Financières",  # SLF
-            "Assurances",  # AGM
             "Sociétés de financement et Autres Activités Financières",  # MAB
             "Matériels, Logiciels et Services Informatiques",  # DWY
             "Assurances",  # AFM
             "Chimie",  # SNP
+            "Sociétés de financement et Autres Activités Financières",  # MLE
+            "Industrie Pharmaceutique"  # PRO
             "Matériels, Logiciels et Services Informatiques",  # MIC
             "Agroalimentaire et Production",  # DRI
-            "Industrie Pharmaceutique"  # PRO
+            "Bâtiment et Matériaux de Construction" #COL
         ]
     st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
