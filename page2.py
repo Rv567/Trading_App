@@ -280,7 +280,6 @@ def app():
             "Matériels, Logiciels et Services Informatiques",  # MIC
             "Agroalimentaire et Production",  # DRI
             "Industrie Pharmaceutique"  # PRO
-            "toto"
         ]
     st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
