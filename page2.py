@@ -94,7 +94,7 @@ def app():
 
     st.subheader("Stocks meeting the liquidity criteria")
     ty = list(Newdict_df.keys())
-    st.write(f" : {ty}")
+    st.write(f"Stocks : {ty}")
     st.header("Beta Classification")
     st.write("We split the selected stocks into High/Low volatility stocks.")
     list_df = high_low_volat(Newdict_df,dataframes["MASI"])

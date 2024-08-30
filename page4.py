@@ -26,7 +26,8 @@ def app():
     Newdict_df.pop('ATL', None)# blocked at 20"""
 
     
-    st.write(Newdict_df.keys())
+    ty = list(Newdict_df.keys())
+    st.write(f"Stocks : {ty}")
         
     st.header("Model Prediction")
     st.write("We use Machine Learning Model to fit it to our data. Then we use it to predict future Weekly Variation%.")
