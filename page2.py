@@ -220,7 +220,7 @@ def app():
     morocco_url = 'https://scanner.tradingview.com/morocco/scan'
 
     # Create a query for the Moroccan stock exchange
-    query = (Query()
+    #query = (Query()
             .select('name', 'close', "Change %","Net Income (Annual YoY Growth)", "Return on Equity (TTM)","current_ratio", "debt_to_equity","asset_turnover_current","Price to Earnings Ratio (TTM)",'dividends_yield',
                 "Perf.YTD",)
             .order_by('market_cap_basic', ascending=False))  # Sort by market cap in descending order
