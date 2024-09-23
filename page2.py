@@ -268,6 +268,8 @@ def app():
             return "Sociétés de financement et Autres Activités Financières"
         elif f == "Steel":
             return "Bâtiment et Matériaux de Construction"
+        elif f == "Pharmaceuticals: Major":
+            return "Industrie Pharmaceutique"
         else:
             return f
         
