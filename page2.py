@@ -276,6 +276,10 @@ def app():
             return "Assurances"
         elif f == "Packaged Software" or f == "Electronics Distributors":
             return "Matériels, Logiciels et Services Informatiques"
+        elif f == "Agricultural Commodities/Milling":
+            return "Agroalimentaire et Production"
+
+        
         else:
             return f
         
