@@ -266,6 +266,8 @@ def app():
             return "Loisirs et Hôtels"
         elif f == "Finance/Rental/Leasing":
             return "Sociétés de financement et Autres Activités Financières"
+        elif f == "Steel":
+            return "Bâtiment et Matériaux de Construction"
         else:
             return f
         
