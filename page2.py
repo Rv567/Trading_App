@@ -252,6 +252,12 @@ def app():
             return "Boissons"
         elif f == "Specialty Stores":
             return "Pétrole et Gaz"
+        elif f == "Other Transportation":
+            return "Transport"
+        elif f == "Wholesale Distributors":
+            return "Pétrole et Gaz"
+        elif f == "Engineering & Construction":
+            return "Bâtiment et Matériaux de Construction"
         else:
             return f
         
