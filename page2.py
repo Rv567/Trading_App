@@ -270,6 +270,8 @@ def app():
             return "Bâtiment et Matériaux de Construction"
         elif f == "Pharmaceuticals: Major":
             return "Industrie Pharmaceutique"
+        elif f == "Chemicals: Major Diversified":
+            return "Chimie"
         else:
             return f
         
