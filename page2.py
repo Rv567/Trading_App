@@ -248,7 +248,7 @@ def app():
             return "Participation et promotion immobilières"
         elif f == "Hospital/Nursing Management":
             return "Santé"
-        elif f == "Beverages: Alcoholic":
+        elif f == "Beverages: Alcoholic" or f == "Beverages: Non-Alcoholic":
             return "Boissons"
         elif f == "Specialty Stores":
             return "Pétrole et Gaz"
