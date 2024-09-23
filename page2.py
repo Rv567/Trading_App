@@ -258,7 +258,7 @@ def app():
             return "Pétrole et Gaz"
         elif f == "Engineering & Construction":
             return "Bâtiment et Matériaux de Construction"
-        elif f == "Food Retail":
+        elif f == "Food Retail" or f == "Food: Meat/Fish/Dairy":
             return "Distributeurs"
         elif f == "Food: Specialty/Candy":
             return "Distributeurs"
