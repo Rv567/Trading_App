@@ -599,7 +599,7 @@ def metric_definition(df,stock_symbol,metric):
 
         company_value = df.set_index("Name").loc[stock_symbol][metric]
         industry = df.set_index("Name").loc[stock_symbol]["Industry"] # get the sector automaticly
-        industry_value = df[df["Sector"]==industry][metric].mean()
-        df_sec = df[df["Sector"]==industry]
+        industry_value = df[df["Industry"]==industry][metric].mean()
+        df_sec = df[df["Industry"]==industry]
 
         return company_value,industry,industry_value,df_sec
