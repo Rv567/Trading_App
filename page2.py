@@ -230,8 +230,39 @@ def app():
     df.drop(columns=["ticker"],inplace=True)
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change %","price_earnings_ttm":"P/E","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover_current":"Asset Turnover","industry":"Industry"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
+
+    def sector(f):
+        if f == "Regional Banks" or f == "Major Banks":
+            return "Banques"
+        elif f == "Wireless Telecommunications":
+            return "Télécommunications"
+        elif f == "Construction Materials":
+            return "Bâtiment et Matériaux de Construction"
+        elif f == "Other Metals/Minerals":
+            return "Mines"
+        elif f == "Electric Utilities":
+            return "Electricité"
+        elif f == "Multi-Line Insurance":
+            return "Assurances"
+        elif f == "Real Estate Development":
+            return "Participation et promotion immobilières"
+        elif f == "Hospital/Nursing Management":
+            return "Santé"
+        elif f == "Beverages: Alcoholic":
+            return "Boissons"
+        elif f == "Specialty Stores":
+            return "Pétrole et Gaz"
+        else:
+            return f
+        
+    df['Industry'] = df['Industry'].apply(sector)
+
+
+
+
+
     """df["Sector"] = ["Banques",  # ATW
-            "Télécommunications",  # IAM
+            "",  # IAM
             "Banques",  # BCP
             "Bâtiment et Matériaux de Construction",  # LHM
             "Banques",  # BOA
