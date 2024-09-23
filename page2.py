@@ -274,6 +274,8 @@ def app():
             return "Chimie"
         elif f == "Insurance Brokers/Services":
             return "Assurances"
+        elif f == "Packaged Software" or f == "Electronics Distributors":
+            return "Matériels, Logiciels et Services Informatiques"
         else:
             return f
         
