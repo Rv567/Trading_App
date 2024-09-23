@@ -272,6 +272,8 @@ def app():
             return "Industrie Pharmaceutique"
         elif f == "Chemicals: Major Diversified":
             return "Chimie"
+        elif f == "Insurance Brokers/Services":
+            return "Assurances"
         else:
             return f
         
