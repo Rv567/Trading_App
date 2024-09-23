@@ -262,6 +262,8 @@ def app():
             return "Distributeurs"
         elif f == "Food: Specialty/Candy":
             return "Distributeurs"
+        elif f == "Hotels/Resorts/Cruise lines":
+            return "Loisirs et Hôtels"
         else:
             return f
         
