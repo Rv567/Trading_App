@@ -231,6 +231,7 @@ def app():
     df = df.rename(columns={"name":"Name","close":"Close","change":"Change","price_earnings_ttm":"P/E","dividend_yield_recent":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover_current":"Asset Turnover","industry":"Industry"})
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
 
+
     def sector(f):
         if f == "Regional Banks" or f == "Major Banks":
             return "Banques"
