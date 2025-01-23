@@ -343,7 +343,7 @@ def app():
  
         ]"""
     #          
-    st.write(df.drop(columns=["Close","Change %","Perf %"]))
+    st.write(df.drop(columns=["Close","Perf %"])) # "Change %"
 
     st.header("Fundamental Analysis ⚙️")
     st.write("""
