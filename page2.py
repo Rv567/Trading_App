@@ -221,15 +221,15 @@ def app():
 
     # Create a query for the Moroccan stock exchange
     query = (Query()
-            .select('name', 'close',"Net Income (Annual YoY Growth)", "Return on Equity (TTM)","current_ratio", "debt_to_equity","asset_turnover_current","Price to Earnings Ratio (TTM)",'dividends_yield',
-                "Perf.YTD","industry") # "Change %"
+            .select('name', 'close',"change","net_income_yoy_growth_fy", "return_on_equity","current_ratio", "debt_to_equity","asset_turnover_current","price_earnings_ttm",'dividend_yield_recent',
+                "Perf.YTD","industry")
             .order_by('market_cap_basic', ascending=False))  # Sort by market cap in descending order
     query.url = morocco_url
     count, df = query.get_scanner_data()
 
     df.drop(columns=["ticker"],inplace=True)
-    df = df.rename(columns={"name":"Name","close":"Close","price_earnings_ttm":"P/E","dividends_yield":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover_current":"Asset Turnover","industry":"Industry"})
-    df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x) #"change":"Change %",
+    df = df.rename(columns={"name":"Name","close":"Close","change":"Change","price_earnings_ttm":"P/E","dividend_yield_recent":"Div Yield %","net_income_yoy_growth_fy":"Net Income Growth %","Perf.YTD":"Perf %","return_on_equity":"ROE %","current_ratio":"Current Ratio","debt_to_equity":"Debt/equity","asset_turnover_current":"Asset Turnover","industry":"Industry"})
+    df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
 
     def sector(f):
         if f == "Regional Banks" or f == "Major Banks":
@@ -343,7 +343,7 @@ def app():
  
         ]"""
     #          
-    st.write(df.drop(columns=["Close","Perf %"])) # "Change %"
+    st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
     st.header("Fundamental Analysis ⚙️")
     st.write("""
