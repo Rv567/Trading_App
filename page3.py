@@ -2,7 +2,6 @@ from Functions.functions import *
 from Functions.mylibraries import *
 from Functions.startegies import *
 
-@st.cache_data(ttl=1800) 
 def app():
     st.header("Introduction to the Trading Strategy page")
     st.write("Welcome to the Trading Strategy page. Here, you can define the best trading strategy for each stock. This page can be loaded daily or weekly.")
