@@ -7,6 +7,7 @@ tv = TvDatafeed()
 #masi = tv.get_hist(symbol='MASI',exchange='CSEMA',interval=Interval.in_daily,n_bars=70000)
 
 #Load Data
+@st.cache_data(ttl=1800)
 def load_data():
     ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
     dataframes = {}
@@ -14,6 +15,7 @@ def load_data():
         dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_{ticker_symbol}.pkl')
     return dataframes
 
+@st.cache_data(ttl=1800)
 def load_data_weekly():
     ticker = ["MASI","ATW","IAM","BCP","LHM","BOA","TQM",'MNG',"CMA",'MSA','CSR','WAA','GAZ','LBV',"TMA",'CIH',"ADH","AKT","TGC","CDM","BCI","SAH","ATL",'LES',"ARD","CFG","ADI","DHO",'HPS','RIS',"ATH","SID","RDS","JET","SNA"]
     dataframes = {}
@@ -21,7 +23,8 @@ def load_data_weekly():
         dataframes[ticker_symbol]=pd.read_pickle(f'dataframe_weekly_{ticker_symbol}.pkl')
     return dataframes
 
-#Reoragnize the dataframe with proper names for the columns 
+#Reoragnize the dataframe with proper names for the columns
+@st.cache_data(ttl=1800)
 def reorganize(dataframe):
     if 'symbol' in dataframe.columns:
         dataframe = dataframe.drop('symbol', axis=1)
