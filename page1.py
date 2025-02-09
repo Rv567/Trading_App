@@ -1,7 +1,7 @@
 from Functions.functions import *
 from Functions.mylibraries import *
 
-@st.cache_data(ttl=3600)
+
 def app():
 
     st.header("Introduction to the Data page")
