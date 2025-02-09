@@ -7,10 +7,11 @@ def app():
     st.write("Welcome to the Trading Strategy page. Here, you can define the best trading strategy for each stock. This page can be loaded daily or weekly.")
     
     dataframes = load_data()
-    dataframes = {key: reorganize(df) for key, df in dataframes.items()}
+    """dataframes = {key: reorganize(df) for key, df in dataframes.items()}
     for key, df in dataframes.items():
         df.index.name = None
-        df.index = pd.to_datetime(df.index)
+        df.index = pd.to_datetime(df.index)"""
+    dataframes = reorganize_all(dataframes)
     
 
     strategies = {

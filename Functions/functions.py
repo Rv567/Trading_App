@@ -62,8 +62,21 @@ def reorganize_trades(df):
     df_transposed=df_transposed.rename(columns={"EntryTime":"Entry Time","ExitTime":"Exit Time","EntryPrice":"Entry Price","ReturnPct":"Perf %"})
     df_transposed["Perf %"]=df_transposed["Perf %"]*100
     return df_transposed
-    
-#Time series decompostion into (trend, seasonal, and residual)
+
+@st.cache_data(ttl=3600)
+def reorganize_all(dataframes):
+    """Reorganize all data at once (more efficient)."""
+    reorganized_data = {}
+    for key, df in dataframes.items():
+        df = df.copy()
+        if 'symbol' in df.columns:
+            df = df.drop(columns=['symbol'])
+        df.index = pd.to_datetime(df.index)
+        reorganized_data[key] = df.rename(columns={'open': 'Open', 'high': 'High', 'low': 'Low', 
+                                                   'close': 'Close', 'volume': 'Volume'}).rename_axis("Date")
+    return reorganized_data
+
+"""#Time series decompostion into (trend, seasonal, and residual)
 def decompose(dataframe):
     df_close = dataframe["Close"]
 
@@ -111,7 +124,7 @@ def decompose(dataframe):
 
     # Display the plot in Streamlit
     st.plotly_chart(fig)
-
+"""
 def max_without_nan(lst):
     filtered_lst = [value for value in lst if not np.isnan(value)]
     
