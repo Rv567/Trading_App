@@ -118,13 +118,13 @@ def app():
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
-            st.write(df_return_high)
+            #st.write(df_return_high)
             df_return_high.to_pickle('performance_high.pkl')
             
 
             df_trades_high = pd.DataFrame(trades_high)
             #
-            st.write(df_trades_high)
+            #st.write(df_trades_high)
             df_trades_high.to_pickle('trades_high.pkl')
                     
         elif market == "Marché Baissier" :
