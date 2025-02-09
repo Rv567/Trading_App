@@ -33,6 +33,15 @@ def app():
                                 'n2': range(20, 210, 10),
                                 "constraint": lambda p: p.n1<p.n2,
                                 "trailing_stop" : range(1,11,1)}
+        },
+        'Multi Indicator Strategy': {
+            'description': 'Strategy that combines 4 indicators at once RSI, SMA, ATR and AD',
+            'entry': 'Buy when 3 out of 4 signals are valid',
+            'exit': 'Sell when the Stop Loss is triggered',
+            "symbol" : MultiIndicatorStrategy,
+            "optimize_params": {"level_rsi" : range(10,45,1),
+                                "n_sma" : range(20,110,10),
+                                "trailing_stop" : range(1,11,1)}
         }
     }
 
