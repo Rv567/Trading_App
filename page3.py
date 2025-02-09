@@ -108,7 +108,6 @@ def app():
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
-            st.write(high_volatility_df_stocks)
             for elem in high_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
@@ -118,8 +117,8 @@ def app():
                     trades_high[elem] = last_trade
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
-            st.write(df_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
+            st.write(df_return_high)
             df_return_high.to_pickle('performance_high.pkl')
             
 
