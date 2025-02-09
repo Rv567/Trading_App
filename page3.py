@@ -118,12 +118,14 @@ def app():
                     trades_high[elem] = last_trade
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
-            df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             st.write(df_return_high)
+            df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             df_return_high.to_pickle('performance_high.pkl')
             
 
             df_trades_high = pd.DataFrame(trades_high)
+            #
+            st.write(df_trades_high)
             df_trades_high.to_pickle('trades_high.pkl')
                     
         elif market == "Marché Baissier" :
@@ -171,7 +173,7 @@ def app():
     result_dict = dict(zip(metrics, metrics_def))
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
     st.write(f"**{result_dict[mertic_name]}**")
-    #########test
+    #########
 
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
@@ -191,7 +193,7 @@ def app():
     df_trades_low_mod = modify_small(reorganize_trades(df_trades_low))
     st.write(df_trades_low_mod)
     
-    # Combine stock for selecting only one
+    """# Combine stock for selecting only one
     st.header("Individual Stock Selection")
     combined_stocks = high_volatility_df_stocks+low_volatility_df_stocks
     stock = st.selectbox("Choose a stock to see it Performance Metrics and Last Trade",combined_stocks,key='cb')
@@ -201,5 +203,5 @@ def app():
 
     elif stock in low_volatility_df_stocks:
         st.write(df_low_mod[stock])
-        st.write(df_trades_low_mod.loc[stock])
+        st.write(df_trades_low_mod.loc[stock])"""
 
