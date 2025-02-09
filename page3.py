@@ -39,8 +39,8 @@ def app():
             'entry': 'Buy when 3 out of 4 signals are valid',
             'exit': 'Sell when the Stop Loss is triggered',
             "symbol" : MultiIndicatorStrategy,
-            "optimize_params": {"level_rsi" : range(10,45,1),
-                                "n_sma" : range(20,110,10),
+            "optimize_params": {"level_rsi" : range(10,45,5),
+                                "n_sma" : range(50,110,10),
                                 "trailing_stop" : range(1,11,1)}
         }
     }
