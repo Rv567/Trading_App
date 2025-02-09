@@ -70,7 +70,6 @@ def app():
         
         st.success('Data updated!')
         st.write(f"We successfully created and updated {len(dataframes)} dataframes")
-        st.write(dataframes)
     ############################################################### Weekly
 
     if st.button('Update Weekly Stock Dataframes'):
