@@ -169,7 +169,7 @@ def app():
     result_dict = dict(zip(metrics, metrics_def))
     mertic_name = st.selectbox("Choose a Performance Metric to Understand its use",metrics,key='met')
     st.write(f"**{result_dict[mertic_name]}**")
-    #########
+    #########test
 
     st.subheader("Last trade for an **:green[uptrend market]**")
     df_trades_high = pd.read_pickle('trades_high.pkl')
