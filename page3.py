@@ -119,6 +119,7 @@ def app():
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
+            st.write(df_return_high)
             df_return_high.to_pickle('performance_high.pkl')
             
 
