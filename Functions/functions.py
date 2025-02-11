@@ -300,6 +300,13 @@ def walk_forward_analysis(data, strategy, param_grid, n_splits=5):
 
     return results
 
+
+def optimize_strategies_parallel(args):
+    elem, dataframe, strategies = args
+    best_parameters, optim, last_trade = optimize_strategies(dataframe, strategies)
+    return elem, best_parameters, optim, last_trade
+
+
 def optimize_strategies(dataframe, strategies):
     best_strategy = None
     best_return = float('-inf')
