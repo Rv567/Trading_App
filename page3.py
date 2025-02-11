@@ -108,22 +108,14 @@ def app():
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
-            """for elem in high_volatility_df_stocks:
+            for elem in high_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
                     best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters for {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
-                    trades_high[elem] = last_trade"""
-            ###########################
-            with ThreadPoolExecutor(max_workers=4) as executor:  # Adjust number of threads as needed
-                futures = {executor.submit(optimize_strategies_parallel, elem, dataframes[elem], strategies): elem for elem in high_volatility_df_stocks if elem in dataframes}
+                    trades_high[elem] = last_trade
 
-            for future in futures:
-                elem, best_parameters, optim, last_trade = future.result()
-                st.write(f"Optimized Strategy Parameters for {elem} ✅: {best_parameters}")
-                stock_strategy_return_high[elem] = optim
-                trades_high[elem] = last_trade
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
