@@ -118,7 +118,7 @@ def app():
 
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
-            #st.write(df_return_high)
+            st.write(df_return_high)
             df_return_high.to_pickle('performance_high.pkl')
             
 
@@ -150,7 +150,7 @@ def app():
     # Beta>1
     st.subheader("Corresponding Stocks performance for an **:green[uptrend market]**")
     df_high = pd.read_pickle('performance_high.pkl')
-    st.write(df_high)
+    #st.write(df_high)
     df_high_mod,date = modify_big(df_high)
     st.write(f"The backtest begins from from the start date of each stock to {date}.")
     st.write(df_high_mod)
