@@ -50,7 +50,7 @@ from IPython.display import display
 import warnings
 warnings.filterwarnings("ignore")
 
-from multiprocessing import Pool, cpu_count
+from concurrent.futures import ThreadPoolExecutor
 from tradingview_screener import Query, Column
 import yaml
 from yaml.loader import SafeLoader
