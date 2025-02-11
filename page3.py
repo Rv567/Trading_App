@@ -108,22 +108,32 @@ def app():
         if market == "Marché Haussier":
             #st.write(pd.read_pickle('performance_high.pkl'))
             st.write("Stock with a Beta > 1")
-            for elem in high_volatility_df_stocks:
+            """for elem in high_volatility_df_stocks:
                 if elem in dataframes:
                     st.write(elem)
                     best_parameters, optim, last_trade = optimize_strategies(dataframes[elem], strategies)
                     st.write(f"Optimized Strategy Parameters for {elem} :white_check_mark: : {best_parameters}")
                     stock_strategy_return_high[elem] = optim
-                    trades_high[elem] = last_trade
+                    trades_high[elem] = last_trade"""
 
+            num_processes = min(cpu_count(), len(high_volatility_df_stocks))  # Limit to available CPU cores
+            with Pool(processes=num_processes) as pool:
+                results = pool.map(optimize_strategies_parallel, [(elem, dataframes[elem], strategies) for elem in high_volatility_df_stocks if elem in dataframes])
+
+            # Process results and display
+            for elem, best_parameters, optim, last_trade in results:
+                st.write(f"Optimized Strategy Parameters for {elem} ✅: {best_parameters}")
+                stock_strategy_return_high[elem] = optim
+                trades_high[elem] = last_trade
+
+            #########################
             df_return_high = pd.DataFrame(stock_strategy_return_high)
             df_return_high = pd.concat([df_return_high.iloc[[-3]], df_return_high.iloc[:-3]])
             st.write(df_return_high)
             df_return_high.to_pickle('performance_high.pkl')
-            
+
 
             df_trades_high = pd.DataFrame(trades_high)
-            #
             #st.write(df_trades_high)
             df_trades_high.to_pickle('trades_high.pkl')
                     
