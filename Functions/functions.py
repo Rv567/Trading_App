@@ -86,55 +86,6 @@ def reorganize_all(dataframes):
                                                    'close': 'Close', 'volume': 'Volume'}).rename_axis("Date")
     return reorganized_data
 
-"""#Time series decompostion into (trend, seasonal, and residual)
-def decompose(dataframe):
-    df_close = dataframe["Close"]
-
-    stl = STL(df_close, period=365)
-    result = stl.fit()
-
-    # Create a figure with 3 subplots
-    fig = make_subplots(rows=3, cols=1, shared_xaxes=True, 
-                        subplot_titles=('Close Price', 'Trend', 'Seasonal'))
-
-    # Plot original series in the first subplot
-    fig.add_trace(go.Scatter(
-        x=df_close.index,
-        y=df_close,
-        mode='lines',
-        name='Close',
-        line=dict(color='blue', width=2)
-    ), row=1, col=1)
-
-    # Plot trend component in the second subplot
-    fig.add_trace(go.Scatter(
-        x=result.trend.index,
-        y=result.trend,
-        mode='lines',
-        name='Trend',
-        line=dict(color='green', width=2)
-    ), row=2, col=1)
-
-    # Plot seasonal component in the third subplot
-    fig.add_trace(go.Scatter(
-        x=result.seasonal.index,
-        y=result.seasonal,
-        mode='lines',
-        name='Seasonal',
-        line=dict(color='orange', width=2)
-    ), row=3, col=1)
-
-    # Update layout
-    fig.update_layout(
-        title='Price Decomposition',
-        height=900,
-        showlegend=False,
-        template='plotly_white'
-    )
-
-    # Display the plot in Streamlit
-    st.plotly_chart(fig)
-"""
 def max_without_nan(lst):
     filtered_lst = [value for value in lst if not np.isnan(value)]
     
