@@ -31,6 +31,7 @@ def app():
         
     st.header("Model Prediction")
     st.write("We use Machine Learning Model to fit it to our data. Then we use it to predict future Weekly Variation%.")
+    # Write HTML formula
     st.write("**Weekly Percentage Change Formula** :")
     st.markdown("""
         To understand the weekly variation of a stock, we calculate the percentage change in the closing price from one week to the next.
@@ -202,10 +203,6 @@ def app():
         progress_text.text("Model prediction complete!")
         st.success("All stocks have been processed.")
 
-        """df_tr = pd.DataFrame(list(df_train.items()), columns=["Key", 'RMSE Train'])
-        df_tst = pd.DataFrame(list(df_test.items()), columns=["Key", 'RMSE Test'])
-        resultat_baselineModel = pd.merge(df_tr,df_tst) # Display Train -> Test
-        #st.write(resultat_baselineModel) # i decided not include the RMSE result table"""
         
         # Create different dataframes
         # Actual this week and the previous one 
