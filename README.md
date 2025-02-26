@@ -39,7 +39,7 @@ It provides a **Streamlit dashboard** for:
     -  **Buy**  
     -  **Hold**  
     -  **Sell**  (based on median % change) 
-
+![image](https://github.com/user-attachments/assets/484398a2-844e-4c99-b899-f924a1915d88)
 ### 📊 **Portfolio Optimization using Markowitz Model**  
 -  Efficient Frontier Optimization for:  
     -  **Max Sharpe Ratio**  
