@@ -116,7 +116,6 @@ def app():
     st.header('Stock Risk-Return Profile')
 
     #Plot2
-    #st.write('Comparison of Cumulative Returns vs. Annualized Volatility')
 
     individual_cumsum = pd.DataFrame()
     annualized_volatility = pd.Series(dtype=float)
@@ -232,6 +231,7 @@ def app():
     df = df.applymap(lambda x: round(x, 2) if isinstance(x, (int, float)) else x)
 
 
+    # Define sectors in french
     def sector(f):
         if f == "Regional Banks" or f == "Major Banks":
             return "Banques"
@@ -287,63 +287,7 @@ def app():
         
     df['Industry'] = df['Industry'].apply(sector)
 
-
-
-
-
-    """df["Sector"] = ["Banques",  # ATW
-            "",  # IAM
-            "Banques",  # BCP
-            "Bâtiment et Matériaux de Construction",  # LHM
-            "Banques",  # BOA
-            "Mines",  # MNG
-            "Electricité",  # TQM
-            "Transport",  # MSA
-            "Bâtiment et Matériaux de Construction",  # CMA
-            "Agroalimentaire et Production",  # CSR
-            "Assurances",  # WAA
-            "Pétrole et Gaz",  # GAZ
-            "Santé",  # AKT
-            "Distributeurs",  # LBV
-            "Pétrole et Gaz",  # TMA
-            "Banques",  # CIH
-            "Participation et promotion immobilières",  # ADH
-            "Bâtiment et Matériaux de Construction",  # TGC
-            "Banques",  # BCI
-            "Assurances",  # SAH
-            "Assurances",  # ATL
-            "Agroalimentaire et Production",  # LES
-            "Boissons",  # SBM
-            "Industrie Pharmaceutique",  # SOT
-            "Banques",  # CFG
-            "Sociétés de placement immobilier",  # ARD
-            "Participation et promotion immobilières",  # ADI
-            "Holding",  # DHO
-            "Matériels, Logiciels et Services Informatiques",  # HPS
-            "Mines",  # SMI
-            "Distributeurs",  # ATH
-            "Loisirs et Hôtels",  # RIS
-            "Bâtiment et Matériaux de Construction",  # SID
-            "Mines",  # CMT
-            "Boissons",  # OUL
-            "Distributeurs",  # MUT
-            "Participation et promotion immobilières",  # RDS
-            "Distributeurs",  # NKL
-            "Bâtiment et Matériaux de Construction",  # JET
-            "Sociétés de financement et Autres Activités Financières",  # EQD
-            "Sociétés de financement et Autres Activités Financières",  # SLF
-            "Sociétés de financement et Autres Activités Financières",  # MAB
-            "Matériels, Logiciels et Services Informatiques",  # DWY
-            "Assurances",  # AFM
-            "Chimie",  # SNP
-            "Sociétés de financement et Autres Activités Financières",  # MLE
-            "Industrie Pharmaceutique",  # PRO
-            "Matériels, Logiciels et Services Informatiques",  # MIC
-            "Agroalimentaire et Production",  # DRI
-            "Bâtiment et Matériaux de Construction" #COL
- 
-        ]"""
-    #          
+        
     st.write(df.drop(columns=["Close","Change %","Perf %"]))
 
     st.header("Fundamental Analysis ⚙️")
@@ -674,4 +618,3 @@ def app():
             """, 
             unsafe_allow_html=True
         )
-    #st.write(f"Final Financial Health Score for {stock_symbol} is {score}/7")
