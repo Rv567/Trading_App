@@ -10,10 +10,11 @@ def app():
     Newdict_df_close = {key:value["Close"] for key,value in df.items()}
     #Newdict_df_return = {key:value["Close"].pct_change() for key,value in df.items()}
 
+    # Compute correlation matrix
     df = pd.DataFrame(Newdict_df_close)
     df.index = pd.to_datetime(df.index)
     correlation_matrix = df.corr()
-    #Heatmap
+
     mask = np.zeros_like(correlation_matrix, dtype=bool)
     mask[np.triu_indices_from(mask)] = True
     st.header("Correlation Calculation")    
@@ -28,6 +29,7 @@ def app():
     - **Negative Correlation**: When the prices of two stocks move in opposite directions.
     - **No Correlation**: When there is no discernible pattern in the price movements of two stocks.
     """)
+    
     st.header("Couples with Strong Correlation")
     st.write("Select the correlation threshold.")
     threshold = st.slider('Threshold :', min_value=80, max_value=100, value=90, step=1)
@@ -97,17 +99,7 @@ def app():
     df['z_score'] = (df['spread'] - df['spread'].mean()) / df['spread'].std()
     
     st.write(df['z_score'].tail(20))
-    """st.title('Z-Score Histogram')
-
-    # Create a histogram plot
-    fig, ax = plt.subplots()
-    ax.hist(df['z_score'], bins=30, edgecolor='black')
-    ax.set_title('Z-Score Distribution')
-    ax.set_xlabel('Z-Score')
-    ax.set_ylabel('Frequency')
-
-    # Display the histogram in the Streamlit app
-    st.pyplot(fig)"""
+    
     st.subheader("Z-score Statistics")
     st.write(df.describe()["z_score"])
     st.write("95th Percentile of the Z-Score is ",np.percentile(df['z_score'], 95))
