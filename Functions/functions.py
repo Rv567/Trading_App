@@ -1,10 +1,20 @@
 from Functions.mylibraries import *
 
-
-# I-Data Collection and Preparation
 tv = TvDatafeed()
-#Market Index
-#masi = tv.get_hist(symbol='MASI',exchange='CSEMA',interval=Interval.in_daily,n_bars=70000)
+# Data Collection and Preparation
+def fetch_stock_data(tickers, exchange, interval, n_bars):
+    data = {}
+    for ticker in tickers:
+        try:
+            df = tv.get_hist(symbol=ticker, exchange=exchange, interval=interval, n_bars=n_bars)
+            if df is not None:
+                data[ticker] = df
+            else:
+                st.write(f"Failed to fetch data for {ticker}. Retrying...")
+        except Exception as e:
+            st.write(f"Error fetching data for {ticker}: {e}")
+
+    return data
 
 #Load Data
 @st.cache_data(ttl=1800)
